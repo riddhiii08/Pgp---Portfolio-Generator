@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PortfolioForge — Build Your Digital Identity</title>
+  <title>PortfolioForge | Portfolio Generator</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/landing.css" />
   <link rel="stylesheet" href="css/form.css" />
@@ -15,148 +18,173 @@
   <link rel="stylesheet" href="css/preview.css" />
 </head>
 <body>
+  <section id="screen-landing" class="screen">
+    <div id="cursor" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring"></div>
 
-  <!-- ══════════════════════════════════════════
-       SCREEN 1: LANDING PAGE
-  ══════════════════════════════════════════ -->
-  <div id="screen-landing" class="screen active">
-    <div class="landing-bg">
-      <div class="grid-overlay"></div>
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
-
-    <nav class="landing-nav">
-      <div class="logo">
-        <span class="logo-mark">⬡</span>
-        <span class="logo-text">PortfolioForge</span>
-      </div>
+    <nav id="navbar">
+      <div class="logo">PortEdge</div>
       <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#templates-preview">Templates</a>
-        <button class="btn-ghost" onclick="App.goToForm()">Sign In</button>
+        <a href="#features" class="link">Features</a>
+        <a href="#stats" class="link">Community</a>
+        <a href="#" class="login-cta" onclick="App.goToForm(); return false;">Login</a>
+        <a href="#" class="nav-cta" onclick="App.goToForm(); return false;">Sign Up</a>
       </div>
     </nav>
 
-    <section class="hero">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        12 professional templates — free forever
+    <header class="hero">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+      <canvas id="particles"></canvas>
+
+      <div class="hero-content reveal active">
+        <div class="pill">v2.0 is live</div>
+        <h1>Create Beyond Limits</h1>
+        <p>The ultimate personal portfolio builder. Recreate a stunning, fully responsive portfolio website in literally one click based firmly on your configured inputs.</p>
+        <div class="ctas">
+          <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Sign Up Free</a>
+          <a href="#features" class="btn btn-secondary">Explore Engine</a>
+        </div>
       </div>
-      <h1 class="hero-title">
-        Your portfolio<br/>
-        <em>deserves better</em><br/>
-        than a template<br/>
-        <span class="title-accent">you settle for.</span>
-      </h1>
-      <p class="hero-sub">
-        Build a portfolio that commands attention. Pick a template, feed it your story,
-        export it anywhere — HTML, PDF, or CV — in under 5 minutes.
-      </p>
-      <div class="hero-cta">
-        <button class="btn-primary" onclick="App.goToForm()">
-          <span>Start Creating Now</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-        <button class="btn-outline" onclick="App.goToForm()">Continue as Guest</button>
+
+      <div class="hero-3d">
+        <div class="icosahedron">
+          <div class="icosa-face" style="transform: rotateY(0deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(72deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(144deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(216deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(288deg) translateZ(50px) rotateX(20deg);"></div>
+
+          <div class="icosa-face" style="transform: rotateY(36deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(108deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(180deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(252deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(324deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><strong>12+</strong><span>Templates</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>3</strong><span>Export formats</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><strong>∞</strong><span>Customizations</span></div>
+    </header>
+
+    <section id="features">
+      <div class="section-header reveal">
+        <p>THE ARSENAL</p>
+        <h2>Unfair Advantages</h2>
+      </div>
+      <div class="features-grid">
+        <div class="f-card reveal">
+          <i>🎨</i>
+          <h3>Instant Styling</h3>
+          <p>Switch between modern, minimal, and creative templates without losing your data. Pick a layout that works best for your profession.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>🧠</i>
+          <h3>Smart Organization</h3>
+          <p>Dynamically add, remove, and sort your projects, experiences, and skills inside our structured input mechanism.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>⚡</i>
+          <h3>Lightning Fast</h3>
+          <p>Generate a standardized, heavily optimized HTML/CSS payload that you can host absolutely anywhere without heavy dependencies.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>🌊</i>
+          <h3>Responsive DNA</h3>
+          <p>Every generated template is strictly built utilizing standard CSS Flexbox and Grid. Looks flawless from 4k monitors to tiny mobile screens.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>🔗</i>
+          <h3>Instant Export</h3>
+          <p>Download the generated HTML instantaneously, or fetch the PDF version of your accomplishments with just a click.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>🛸</i>
+          <h3>Auto-Save</h3>
+          <p>Your work is safely cached as you type. Never lose a keystroke even if you accidentally close the tab during configuration.</p>
+        </div>
       </div>
     </section>
 
-    <section id="features" class="features-strip">
-      <div class="feature-item">
-        <div class="feat-icon">✦</div>
-        <strong>Form-driven</strong>
-        <span>Fill a form, get a portfolio</span>
-      </div>
-      <div class="feature-item">
-        <div class="feat-icon">◈</div>
-        <strong>Live Preview</strong>
-        <span>See changes in real-time</span>
-      </div>
-      <div class="feature-item">
-        <div class="feat-icon">⬡</div>
-        <strong>Export Anywhere</strong>
-        <span>HTML · PDF · CV Resume</span>
-      </div>
-      <div class="feature-item">
-        <div class="feat-icon">⟡</div>
-        <strong>Auto-saved</strong>
-        <span>Never lose your progress</span>
+    <section id="stats">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h4 data-target="50">0</h4>
+          <p>K+ Creators</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="98" data-suffix="%">0</h4>
+          <p>Satisfaction</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="1" data-suffix="ms">0</h4>
+          <p>Render Time</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="180" data-suffix="+">0</h4>
+          <p>Countries</p>
+        </div>
       </div>
     </section>
 
-    <div class="scroll-indicator">
-      <span>Scroll to explore</span>
-      <div class="scroll-line"></div>
-    </div>
-  </div>
+    <section class="cta-section">
+      <div class="rings"></div>
+      <div class="cta-content reveal">
+        <h2>Ready to Build?</h2>
+        <p>Join the elite tier of professionals owning their digital presence with stunning portfolios.</p>
+        <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Sign Up Now</a>
+        <span class="fine-print">No credit card required. Pure open web tech.</span>
+      </div>
+    </section>
 
-  <!-- ══════════════════════════════════════════
-       SCREEN 2: MULTI-STEP FORM
-  ══════════════════════════════════════════ -->
-  <div id="screen-form" class="screen">
+    <footer>
+      <div>
+        <div class="logo" style="margin-bottom: 20px; font-size: 1.2rem;">PortEdge</div>
+        <p>© 2026 PortEdge Studio.<br />All systems operational.</p>
+      </div>
+      <div>
+        <a href="#features">Engine Architecture</a>
+        <a href="#features">Deployment Guide</a>
+        <a href="#stats">Changelog</a>
+      </div>
+      <div>
+        <a href="#stats">Twitter / X</a>
+        <a href="#features">GitHub</a>
+        <a href="#stats">Discord Community</a>
+      </div>
+    </footer>
+  </section>
 
-    <!-- Progress Bar -->
+  <section id="screen-form" class="screen">
     <div class="progress-bar-wrap">
       <div class="progress-steps">
-        <div class="prog-step active" data-step="1">
-          <div class="prog-num">1</div>
-          <span>Your Info</span>
-        </div>
+        <div class="prog-step" data-step="1"><span class="prog-num">1</span><span>Details</span></div>
         <div class="prog-line"></div>
-        <div class="prog-step" data-step="2">
-          <div class="prog-num">2</div>
-          <span>Template</span>
-        </div>
+        <div class="prog-step" data-step="2"><span class="prog-num">2</span><span>Template</span></div>
         <div class="prog-line"></div>
-        <div class="prog-step" data-step="3">
-          <div class="prog-num">3</div>
-          <span>Customize</span>
-        </div>
+        <div class="prog-step" data-step="3"><span class="prog-num">3</span><span>Customize</span></div>
       </div>
     </div>
 
     <div class="form-layout">
-      <!-- Left Sidebar Navigation -->
       <aside class="form-sidebar">
-        <div class="sidebar-logo">
-          <span class="logo-mark">⬡</span> PortfolioForge
+        <div class="sidebar-logo"><span class="logo-mark">⬡</span> Build Profile</div>
+        <div class="sidebar-nav">
+          <button class="snav-item" type="button" data-section="personal">
+            <span class="snav-icon">1</span><span>Personal Info</span><span id="check-personal" class="snav-check">✓</span>
+          </button>
+          <button class="snav-item" type="button" data-section="skills">
+            <span class="snav-icon">2</span><span>Skills</span><span id="check-skills" class="snav-check">✓</span>
+          </button>
+          <button class="snav-item" type="button" data-section="projects">
+            <span class="snav-icon">3</span><span>Projects</span><span id="check-projects" class="snav-check">✓</span>
+          </button>
+          <button class="snav-item" type="button" data-section="education">
+            <span class="snav-icon">4</span><span>Education</span><span id="check-education" class="snav-check">✓</span>
+          </button>
+          <button class="snav-item" type="button" data-section="contact">
+            <span class="snav-icon">5</span><span>Contact</span><span id="check-contact" class="snav-check">✓</span>
+          </button>
         </div>
-        <nav class="sidebar-nav">
-          <button class="snav-item active" data-section="personal">
-            <span class="snav-icon">👤</span>
-            <span>Personal Info</span>
-            <span class="snav-check" id="check-personal">✓</span>
-          </button>
-          <button class="snav-item" data-section="skills">
-            <span class="snav-icon">⚡</span>
-            <span>Skills</span>
-            <span class="snav-check" id="check-skills">✓</span>
-          </button>
-          <button class="snav-item" data-section="projects">
-            <span class="snav-icon">🚀</span>
-            <span>Projects</span>
-            <span class="snav-check" id="check-projects">✓</span>
-          </button>
-          <button class="snav-item" data-section="education">
-            <span class="snav-icon">🎓</span>
-            <span>Education</span>
-            <span class="snav-check" id="check-education">✓</span>
-          </button>
-          <button class="snav-item" data-section="contact">
-            <span class="snav-icon">📬</span>
-            <span>Contact & Social</span>
-            <span class="snav-check" id="check-contact">✓</span>
-          </button>
-        </nav>
         <div class="sidebar-footer">
           <div class="auto-save-indicator">
             <span class="save-dot"></span>
@@ -165,296 +193,436 @@
         </div>
       </aside>
 
-      <!-- Right Content Area -->
       <main class="form-content">
-
-        <!-- Section: Personal Info -->
-        <section class="form-section active" id="section-personal">
+        <section id="section-personal" class="form-section">
           <div class="section-header">
             <h2>Personal Information</h2>
-            <p>Let's start with the basics — who you are and what you do.</p>
+            <p>Share who you are and what you do.</p>
           </div>
           <div class="form-grid">
             <div class="field-group full">
-              <label>Full Name <span class="req">*</span></label>
-              <input type="text" id="f-name" placeholder="Alex Johnson" data-key="name" />
+              <label for="f-name">Full Name</label>
+              <input id="f-name" type="text" placeholder="Alex Johnson" />
             </div>
             <div class="field-group full">
-              <label>Professional Title <span class="req">*</span></label>
-              <input type="text" id="f-title" placeholder="Full Stack Developer & UI Designer" data-key="title" />
+              <label for="f-title">Professional Title</label>
+              <input id="f-title" type="text" placeholder="Frontend Developer" />
             </div>
             <div class="field-group full">
-              <label>Profile Image URL</label>
+              <label for="f-bio">Bio</label>
+              <textarea id="f-bio" rows="5" placeholder="Write a short intro..."></textarea>
+              <div class="char-count"><span id="bio-count">0</span> characters</div>
+            </div>
+            <div class="field-group full">
+              <label for="f-avatar">Avatar URL</label>
               <div class="image-input-wrap">
-                <input type="url" id="f-avatar" placeholder="https://..." data-key="avatar" />
-                <div class="avatar-preview" id="avatar-preview">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <input id="f-avatar" type="url" placeholder="https://example.com/photo.jpg" />
+                <div id="avatar-preview" class="avatar-preview">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                  </svg>
                 </div>
               </div>
             </div>
-            <div class="field-group full">
-              <label>Bio / About Me <span class="req">*</span></label>
-              <textarea id="f-bio" rows="4" placeholder="A passionate developer with 5+ years of experience building elegant digital products..." data-key="bio"></textarea>
-              <div class="char-count"><span id="bio-count">0</span>/500</div>
-            </div>
           </div>
         </section>
 
-        <!-- Section: Skills -->
-        <section class="form-section" id="section-skills">
+        <section id="section-skills" class="form-section">
           <div class="section-header">
-            <h2>Skills & Technologies</h2>
-            <p>Add your skills as tags. Press Enter or comma to add.</p>
+            <h2>Skills</h2>
+            <p>Press Enter or comma to add skill tags.</p>
           </div>
-          <div class="skills-input-wrap">
-            <div class="skills-tags" id="skills-tags"></div>
-            <input type="text" id="skill-input" placeholder="e.g. JavaScript, React, Node.js..." />
+          <div id="skills-tags" class="skills-input-wrap">
+            <input id="skill-input" type="text" placeholder="Type a skill and press Enter" />
           </div>
-          <div class="skill-suggestions">
-            <span class="suggestion-label">Popular:</span>
-            <div class="suggestions-row" id="skill-suggestions"></div>
-          </div>
+          <div id="skill-suggestions" class="skill-suggestions"></div>
         </section>
 
-        <!-- Section: Projects -->
-        <section class="form-section" id="section-projects">
+        <section id="section-projects" class="form-section">
           <div class="section-header">
             <h2>Projects</h2>
-            <p>Showcase your best work — at least 1 project is recommended.</p>
+            <p>Add your best work with links and tech stack.</p>
           </div>
           <div id="projects-list"></div>
-          <button class="btn-add-item" onclick="FormManager.addProject()">
-            <span>+</span> Add Project
-          </button>
+          <button type="button" class="btn-add-item" onclick="FormManager.addProject()"><span>+</span> Add Project</button>
         </section>
 
-        <!-- Section: Education -->
-        <section class="form-section" id="section-education">
+        <section id="section-education" class="form-section">
           <div class="section-header">
             <h2>Education</h2>
-            <p>Add your academic background and certifications.</p>
+            <p>Add degrees, courses, or certifications.</p>
           </div>
           <div id="education-list"></div>
-          <button class="btn-add-item" onclick="FormManager.addEducation()">
-            <span>+</span> Add Education
-          </button>
+          <button type="button" class="btn-add-item" onclick="FormManager.addEducation()"><span>+</span> Add Education</button>
         </section>
 
-        <!-- Section: Contact & Social -->
-        <section class="form-section" id="section-contact">
+        <section id="section-contact" class="form-section">
           <div class="section-header">
             <h2>Contact & Social</h2>
-            <p>How can people reach you? Add your contact details and socials.</p>
+            <p>These links will appear on your generated portfolio.</p>
           </div>
           <div class="form-grid">
             <div class="field-group">
-              <label>Email</label>
-              <input type="email" id="f-email" placeholder="alex@example.com" data-key="email" />
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" placeholder="you@example.com" />
             </div>
             <div class="field-group">
-              <label>Phone</label>
-              <input type="tel" id="f-phone" placeholder="+1 234 567 890" data-key="phone" />
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" type="text" placeholder="+91 9876543210" />
             </div>
             <div class="field-group full">
-              <label>Location</label>
-              <input type="text" id="f-location" placeholder="San Francisco, CA" data-key="location" />
+              <label for="f-location">Location</label>
+              <input id="f-location" type="text" placeholder="Mumbai, India" />
             </div>
-            <div class="field-group full">
-              <label>GitHub URL</label>
-              <input type="url" id="f-github" placeholder="https://github.com/username" data-key="github" />
+            <div class="field-group">
+              <label for="f-github">GitHub</label>
+              <input id="f-github" type="url" placeholder="https://github.com/username" />
             </div>
-            <div class="field-group full">
-              <label>LinkedIn URL</label>
-              <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/username" data-key="linkedin" />
+            <div class="field-group">
+              <label for="f-linkedin">LinkedIn</label>
+              <input id="f-linkedin" type="url" placeholder="https://linkedin.com/in/username" />
             </div>
-            <div class="field-group full">
-              <label>Portfolio / Website</label>
-              <input type="url" id="f-website" placeholder="https://yoursite.com" data-key="website" />
+            <div class="field-group">
+              <label for="f-website">Website</label>
+              <input id="f-website" type="url" placeholder="https://yourdomain.com" />
             </div>
-            <div class="field-group full">
-              <label>Twitter / X</label>
-              <input type="url" id="f-twitter" placeholder="https://twitter.com/username" data-key="twitter" />
+            <div class="field-group">
+              <label for="f-twitter">Twitter/X</label>
+              <input id="f-twitter" type="url" placeholder="https://x.com/username" />
             </div>
           </div>
         </section>
 
-        <!-- Form Navigation Footer -->
         <div class="form-footer">
-          <button class="btn-ghost" id="btn-prev-section" onclick="FormManager.prevSection()" style="display:none">← Back</button>
+          <button id="btn-prev-section" class="btn-outline" type="button" onclick="FormManager.prevSection()">← Previous</button>
           <div class="section-indicator">
             <span id="current-section-label">Personal Info</span>
-            <span class="section-count" id="section-count-display">1 / 5</span>
+            <span id="section-count-display" class="section-count">1 / 5</span>
           </div>
-          <button class="btn-primary" id="btn-next-section" onclick="FormManager.nextSection()">
-            Next <span>→</span>
-          </button>
+          <button id="btn-next-section" class="btn-primary" type="button" onclick="FormManager.nextSection()">Next →</button>
         </div>
-
       </main>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════════
-       SCREEN 3: TEMPLATE SELECTION
-  ══════════════════════════════════════════ -->
-  <div id="screen-templates" class="screen">
-    <div class="step-header">
-      <div class="step-back" onclick="App.goTo('form')">← Back to Form</div>
+  <section id="screen-templates" class="screen">
+    <header class="step-header">
+      <button class="step-back" type="button" onclick="App.goTo('form')">← Back to Form</button>
       <div class="step-title">
-        <h2>Choose Your Template</h2>
-        <p>Step 2 of 3 — Select a layout that fits your style</p>
+        <h2>Select Template</h2>
+        <p>Choose your base design style</p>
       </div>
-      <button class="btn-primary" onclick="App.goTo('customize')">
-        Next: Customize →
-      </button>
-    </div>
+      <button class="btn-primary" type="button" onclick="App.goTo('customize')">Customize →</button>
+    </header>
 
     <div class="template-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="professional">Professional</button>
-      <button class="filter-btn" data-filter="creative">Creative</button>
-      <button class="filter-btn" data-filter="tech">Tech</button>
+      <button class="filter-btn active" data-filter="all" type="button">All</button>
+      <button class="filter-btn" data-filter="professional" type="button">Professional</button>
+      <button class="filter-btn" data-filter="creative" type="button">Creative</button>
+      <button class="filter-btn" data-filter="tech" type="button">Tech</button>
     </div>
 
-    <div class="templates-grid" id="templates-grid">
-      <!-- Populated by JS -->
-    </div>
-  </div>
+    <div id="templates-grid" class="templates-grid"></div>
+  </section>
 
-  <!-- ══════════════════════════════════════════
-       SCREEN 4: CUSTOMIZATION
-  ══════════════════════════════════════════ -->
-  <div id="screen-customize" class="screen">
-    <div class="step-header">
-      <div class="step-back" onclick="App.goTo('templates')">← Templates</div>
+  <section id="screen-customize" class="screen">
+    <header class="step-header">
+      <button class="step-back" type="button" onclick="App.goTo('templates')">← Back to Templates</button>
       <div class="step-title">
-        <h2>Customize Your Style</h2>
-        <p>Step 3 of 3 — Fine-tune colors, fonts, and layout</p>
+        <h2>Customize Theme</h2>
+        <p>Tune colors, fonts, and layout</p>
       </div>
-      <button class="btn-primary" onclick="App.goTo('preview')">
-        Preview Portfolio →
-      </button>
-    </div>
+      <button class="btn-primary" type="button" onclick="App.goTo('preview')">Preview →</button>
+    </header>
 
     <div class="customize-layout">
-      <div class="customize-panel">
-
-        <!-- Color Themes -->
+      <aside class="customize-panel">
         <div class="cust-group">
           <h3>Color Theme</h3>
-          <div class="color-swatches" id="color-swatches">
-            <!-- Populated by JS -->
-          </div>
+          <div id="color-swatches" class="color-swatches"></div>
         </div>
 
-        <!-- Font Selection -->
         <div class="cust-group">
           <h3>Typography</h3>
-          <div class="font-options" id="font-options">
-            <!-- Populated by JS -->
-          </div>
+          <div id="font-options" class="font-options"></div>
         </div>
 
-        <!-- Layout Options -->
         <div class="cust-group">
-          <h3>Layout Style</h3>
-          <div class="layout-options" id="layout-options">
-            <!-- Populated by JS -->
-          </div>
+          <h3>Layout</h3>
+          <div id="layout-options" class="layout-options"></div>
         </div>
 
-        <!-- Accent Toggle -->
         <div class="cust-group">
-          <h3>Display Options</h3>
+          <h3>Content Options</h3>
           <div class="toggle-options">
-            <label class="toggle-row">
-              <span>Show profile photo</span>
-              <div class="toggle-switch" id="toggle-photo">
-                <input type="checkbox" id="opt-show-photo" checked />
+            <label class="toggle-row" for="opt-show-photo">
+              <span>Show Profile Photo</span>
+              <span class="toggle-switch">
+                <input id="opt-show-photo" type="checkbox" />
                 <span class="toggle-track"></span>
-              </div>
+              </span>
             </label>
-            <label class="toggle-row">
-              <span>Show skill tags</span>
-              <div class="toggle-switch" id="toggle-skills">
-                <input type="checkbox" id="opt-show-skills" checked />
+            <label class="toggle-row" for="opt-show-skills">
+              <span>Show Skills Section</span>
+              <span class="toggle-switch">
+                <input id="opt-show-skills" type="checkbox" />
                 <span class="toggle-track"></span>
-              </div>
+              </span>
             </label>
-            <label class="toggle-row">
-              <span>Dark mode portfolio</span>
-              <div class="toggle-switch" id="toggle-dark">
-                <input type="checkbox" id="opt-dark-mode" />
+            <label class="toggle-row" for="opt-dark-mode">
+              <span>Dark Mode</span>
+              <span class="toggle-switch">
+                <input id="opt-dark-mode" type="checkbox" />
                 <span class="toggle-track"></span>
-              </div>
+              </span>
             </label>
           </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- Live Mini Preview -->
       <div class="customize-preview-wrap">
-        <div class="preview-label">Live Preview</div>
-        <div class="mini-preview-frame" id="mini-preview-frame">
-          <iframe id="mini-preview-iframe" title="Portfolio Preview"></iframe>
+        <div class="preview-label">Live Mini Preview</div>
+        <div class="mini-preview-frame">
+          <iframe id="mini-preview-iframe" title="Mini preview"></iframe>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ══════════════════════════════════════════
-       SCREEN 5: FULL PREVIEW
-  ══════════════════════════════════════════ -->
-  <div id="screen-preview" class="screen">
+  <section id="screen-preview" class="screen">
     <div class="preview-toolbar">
       <div class="toolbar-left">
-        <div class="logo">
-          <span class="logo-mark">⬡</span> PortfolioForge
-        </div>
-        <button class="btn-ghost" onclick="App.goTo('customize')">← Edit</button>
-      </div>
-      <div class="toolbar-center">
+        <div class="logo"><span class="logo-mark">⬡</span> Portfolio Preview</div>
+        <button class="btn-ghost" type="button" onclick="App.goTo('customize')">← Back</button>
+
         <div class="device-toggles">
-          <button class="device-btn active" data-device="desktop" title="Desktop">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </button>
-          <button class="device-btn" data-device="tablet" title="Tablet">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
-          </button>
-          <button class="device-btn" data-device="mobile" title="Mobile">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
-          </button>
+          <button class="device-btn active" type="button" data-device="desktop" title="Desktop">🖥</button>
+          <button class="device-btn" type="button" data-device="tablet" title="Tablet">📱</button>
+          <button class="device-btn" type="button" data-device="mobile" title="Mobile">📲</button>
         </div>
       </div>
+
       <div class="toolbar-right">
-        <button class="btn-export" onclick="Exporter.downloadHTML()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          HTML
-        </button>
-        <button class="btn-export" onclick="Exporter.downloadPDF()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h1"/></svg>
-          PDF
-        </button>
-        <button class="btn-export accent" onclick="Exporter.generateCV()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
-          CV Resume
-        </button>
+        <button class="btn-export" type="button" onclick="Exporter.downloadHTML()">Export HTML</button>
+        <button class="btn-export" type="button" onclick="Exporter.downloadPDF()">Export PDF</button>
+        <button class="btn-export accent" type="button" onclick="Exporter.generateCV()">Generate CV</button>
       </div>
     </div>
 
-    <div class="preview-frame-wrap" id="preview-frame-wrap">
-      <div class="loading-overlay" id="preview-loading">
+    <div class="preview-frame-wrap">
+      <div id="preview-loading" class="loading-overlay hidden">
         <div class="loader-ring"></div>
         <p>Rendering your portfolio...</p>
       </div>
-      <iframe id="preview-iframe" title="Portfolio Preview" class="preview-iframe desktop"></iframe>
+      <iframe id="preview-iframe" class="preview-iframe desktop" title="Portfolio preview"></iframe>
     </div>
-  </div>
+  </section>
 
-  <!-- Toast Notification -->
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- Scripts -->
+  <script>
+    (function initLandingEffects() {
+      const landing = document.getElementById('screen-landing');
+      if (!landing) return;
+
+      const dot = document.getElementById('cursor');
+      const ring = document.getElementById('cursor-ring');
+      const nav = document.getElementById('navbar');
+      const canvas = document.getElementById('particles');
+      const cards = landing.querySelectorAll('.f-card');
+      const reveals = landing.querySelectorAll('.reveal');
+      const counters = landing.querySelectorAll('.stat-item h4');
+      const orbs = landing.querySelectorAll('.orb');
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+
+      if (dot && ring) {
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        });
+
+        const animateCursor = () => {
+          ringX += (mouseX - ringX) * 0.15;
+          ringY += (mouseY - ringY) * 0.15;
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+          requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+
+        document.addEventListener('mousedown', () => { ring.style.transform = 'translate(-50%, -50%) scale(0.8)'; });
+        document.addEventListener('mouseup', () => { ring.style.transform = 'translate(-50%, -50%) scale(1)'; });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!nav) return;
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        if (orbs[0]) orbs[0].style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+        if (orbs[1]) orbs[1].style.transform = `translate(${x * -40}px, ${y * -40}px)`;
+        if (orbs[2]) orbs[2].style.transform = `translate(${x * 60}px, ${y * 60}px)`;
+      });
+
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = Math.max(window.innerHeight, landing.offsetHeight);
+        }
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+          }
+          draw() {
+            ctx.fillStyle = 'rgba(162, 89, 255, 0.5)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        function initParticles() {
+          particlesArray = [];
+          const numberOfParticles = (canvas.width * canvas.height) / 10000;
+          for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+        }
+
+        function handleParticles() {
+          for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            for (let j = i; j < particlesArray.length; j++) {
+              const dx = particlesArray[i].x - particlesArray[j].x;
+              const dy = particlesArray[i].y - particlesArray[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 100) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(186, 192, 149, ${0.1 - dist / 1000})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.stroke();
+              }
+            }
+
+            const mx = particlesArray[i].x - mouseX;
+            const my = particlesArray[i].y - mouseY;
+            const mDist = Math.sqrt(mx * mx + my * my);
+            if (mDist < 150) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(162, 89, 255, ${0.2 - mDist / 1000})`;
+              ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+              ctx.lineTo(mouseX, mouseY);
+              ctx.stroke();
+            }
+          }
+        }
+
+        function animateParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          handleParticles();
+          requestAnimationFrame(animateParticles);
+        }
+
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+          resizeCanvas();
+          initParticles();
+        });
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -15;
+          const rotateY = ((x - centerX) / centerX) * 15;
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0) rotateY(0)';
+        });
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach((r) => revealObserver.observe(r));
+
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = Number(el.getAttribute('data-target') || '0');
+          const suffix = el.getAttribute('data-suffix') || '';
+          let count = 0;
+          const inc = target / 50;
+          const updateCount = () => {
+            count += inc;
+            if (count < target) {
+              el.innerText = Math.ceil(count) + suffix;
+              requestAnimationFrame(updateCount);
+            } else {
+              el.innerText = target + suffix;
+            }
+          };
+          updateCount();
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => counterObserver.observe(c));
+    })();
+  </script>
+
+  <script>
+    (function initGlobalUiInteractions() {
+      const interactive = document.querySelectorAll('.btn-primary, .btn-outline, .btn-export, .template-card, .font-option, .layout-option');
+      interactive.forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+          el.style.transform = `perspective(700px) rotateX(${(-y * 2).toFixed(2)}deg) rotateY(${(x * 2).toFixed(2)}deg) translateY(-1px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = '';
+        });
+      });
+    })();
+  </script>
+
   <script src="js/state.js"></script>
   <script src="js/templates-data.js"></script>
   <script src="js/renderer.js"></script>
