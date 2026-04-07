@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfolioForge — Build Your Digital Identity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="stylesheet" href="css/form.css" />
+  <link rel="stylesheet" href="css/templates.css" />
+  <link rel="stylesheet" href="css/customize.css" />
+  <link rel="stylesheet" href="css/preview.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 1: LANDING PAGE
+  ══════════════════════════════════════════ -->
+  <div id="screen-landing" class="screen active">
+    <div class="landing-bg">
+      <div class="grid-overlay"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="landing-nav">
+      <div class="logo">
+        <span class="logo-mark">⬡</span>
+        <span class="logo-text">PortfolioForge</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#templates-preview">Templates</a>
+        <button class="btn-ghost" onclick="App.goToForm()">Sign In</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        12 professional templates — free forever
+      </div>
+      <h1 class="hero-title">
+        Your portfolio<br/>
+        <em>deserves better</em><br/>
+        than a template<br/>
+        <span class="title-accent">you settle for.</span>
+      </h1>
+      <p class="hero-sub">
+        Build a portfolio that commands attention. Pick a template, feed it your story,
+        export it anywhere — HTML, PDF, or CV — in under 5 minutes.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="App.goToForm()">
+          <span>Start Creating Now</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-outline" onclick="App.goToForm()">Continue as Guest</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>12+</strong><span>Templates</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>3</strong><span>Export formats</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>∞</strong><span>Customizations</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="features-strip">
+      <div class="feature-item">
+        <div class="feat-icon">✦</div>
+        <strong>Form-driven</strong>
+        <span>Fill a form, get a portfolio</span>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon">◈</div>
+        <strong>Live Preview</strong>
+        <span>See changes in real-time</span>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon">⬡</div>
+        <strong>Export Anywhere</strong>
+        <span>HTML · PDF · CV Resume</span>
+      </div>
+      <div class="feature-item">
+        <div class="feat-icon">⟡</div>
+        <strong>Auto-saved</strong>
+        <span>Never lose your progress</span>
+      </div>
+    </section>
+
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 2: MULTI-STEP FORM
+  ══════════════════════════════════════════ -->
+  <div id="screen-form" class="screen">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-steps">
+        <div class="prog-step active" data-step="1">
+          <div class="prog-num">1</div>
+          <span>Your Info</span>
+        </div>
+        <div class="prog-line"></div>
+        <div class="prog-step" data-step="2">
+          <div class="prog-num">2</div>
+          <span>Template</span>
+        </div>
+        <div class="prog-line"></div>
+        <div class="prog-step" data-step="3">
+          <div class="prog-num">3</div>
+          <span>Customize</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-layout">
+      <!-- Left Sidebar Navigation -->
+      <aside class="form-sidebar">
+        <div class="sidebar-logo">
+          <span class="logo-mark">⬡</span> PortfolioForge
+        </div>
+        <nav class="sidebar-nav">
+          <button class="snav-item active" data-section="personal">
+            <span class="snav-icon">👤</span>
+            <span>Personal Info</span>
+            <span class="snav-check" id="check-personal">✓</span>
+          </button>
+          <button class="snav-item" data-section="skills">
+            <span class="snav-icon">⚡</span>
+            <span>Skills</span>
+            <span class="snav-check" id="check-skills">✓</span>
+          </button>
+          <button class="snav-item" data-section="projects">
+            <span class="snav-icon">🚀</span>
+            <span>Projects</span>
+            <span class="snav-check" id="check-projects">✓</span>
+          </button>
+          <button class="snav-item" data-section="education">
+            <span class="snav-icon">🎓</span>
+            <span>Education</span>
+            <span class="snav-check" id="check-education">✓</span>
+          </button>
+          <button class="snav-item" data-section="contact">
+            <span class="snav-icon">📬</span>
+            <span>Contact & Social</span>
+            <span class="snav-check" id="check-contact">✓</span>
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="auto-save-indicator">
+            <span class="save-dot"></span>
+            <span id="save-status">Auto-saved</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Content Area -->
+      <main class="form-content">
+
+        <!-- Section: Personal Info -->
+        <section class="form-section active" id="section-personal">
+          <div class="section-header">
+            <h2>Personal Information</h2>
+            <p>Let's start with the basics — who you are and what you do.</p>
+          </div>
+          <div class="form-grid">
+            <div class="field-group full">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" id="f-name" placeholder="Alex Johnson" data-key="name" />
+            </div>
+            <div class="field-group full">
+              <label>Professional Title <span class="req">*</span></label>
+              <input type="text" id="f-title" placeholder="Full Stack Developer & UI Designer" data-key="title" />
+            </div>
+            <div class="field-group full">
+              <label>Profile Image URL</label>
+              <div class="image-input-wrap">
+                <input type="url" id="f-avatar" placeholder="https://..." data-key="avatar" />
+                <div class="avatar-preview" id="avatar-preview">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="field-group full">
+              <label>Bio / About Me <span class="req">*</span></label>
+              <textarea id="f-bio" rows="4" placeholder="A passionate developer with 5+ years of experience building elegant digital products..." data-key="bio"></textarea>
+              <div class="char-count"><span id="bio-count">0</span>/500</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Skills -->
+        <section class="form-section" id="section-skills">
+          <div class="section-header">
+            <h2>Skills & Technologies</h2>
+            <p>Add your skills as tags. Press Enter or comma to add.</p>
+          </div>
+          <div class="skills-input-wrap">
+            <div class="skills-tags" id="skills-tags"></div>
+            <input type="text" id="skill-input" placeholder="e.g. JavaScript, React, Node.js..." />
+          </div>
+          <div class="skill-suggestions">
+            <span class="suggestion-label">Popular:</span>
+            <div class="suggestions-row" id="skill-suggestions"></div>
+          </div>
+        </section>
+
+        <!-- Section: Projects -->
+        <section class="form-section" id="section-projects">
+          <div class="section-header">
+            <h2>Projects</h2>
+            <p>Showcase your best work — at least 1 project is recommended.</p>
+          </div>
+          <div id="projects-list"></div>
+          <button class="btn-add-item" onclick="FormManager.addProject()">
+            <span>+</span> Add Project
+          </button>
+        </section>
+
+        <!-- Section: Education -->
+        <section class="form-section" id="section-education">
+          <div class="section-header">
+            <h2>Education</h2>
+            <p>Add your academic background and certifications.</p>
+          </div>
+          <div id="education-list"></div>
+          <button class="btn-add-item" onclick="FormManager.addEducation()">
+            <span>+</span> Add Education
+          </button>
+        </section>
+
+        <!-- Section: Contact & Social -->
+        <section class="form-section" id="section-contact">
+          <div class="section-header">
+            <h2>Contact & Social</h2>
+            <p>How can people reach you? Add your contact details and socials.</p>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Email</label>
+              <input type="email" id="f-email" placeholder="alex@example.com" data-key="email" />
+            </div>
+            <div class="field-group">
+              <label>Phone</label>
+              <input type="tel" id="f-phone" placeholder="+1 234 567 890" data-key="phone" />
+            </div>
+            <div class="field-group full">
+              <label>Location</label>
+              <input type="text" id="f-location" placeholder="San Francisco, CA" data-key="location" />
+            </div>
+            <div class="field-group full">
+              <label>GitHub URL</label>
+              <input type="url" id="f-github" placeholder="https://github.com/username" data-key="github" />
+            </div>
+            <div class="field-group full">
+              <label>LinkedIn URL</label>
+              <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/username" data-key="linkedin" />
+            </div>
+            <div class="field-group full">
+              <label>Portfolio / Website</label>
+              <input type="url" id="f-website" placeholder="https://yoursite.com" data-key="website" />
+            </div>
+            <div class="field-group full">
+              <label>Twitter / X</label>
+              <input type="url" id="f-twitter" placeholder="https://twitter.com/username" data-key="twitter" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Form Navigation Footer -->
+        <div class="form-footer">
+          <button class="btn-ghost" id="btn-prev-section" onclick="FormManager.prevSection()" style="display:none">← Back</button>
+          <div class="section-indicator">
+            <span id="current-section-label">Personal Info</span>
+            <span class="section-count" id="section-count-display">1 / 5</span>
+          </div>
+          <button class="btn-primary" id="btn-next-section" onclick="FormManager.nextSection()">
+            Next <span>→</span>
+          </button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 3: TEMPLATE SELECTION
+  ══════════════════════════════════════════ -->
+  <div id="screen-templates" class="screen">
+    <div class="step-header">
+      <div class="step-back" onclick="App.goTo('form')">← Back to Form</div>
+      <div class="step-title">
+        <h2>Choose Your Template</h2>
+        <p>Step 2 of 3 — Select a layout that fits your style</p>
+      </div>
+      <button class="btn-primary" onclick="App.goTo('customize')">
+        Next: Customize →
+      </button>
+    </div>
+
+    <div class="template-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="professional">Professional</button>
+      <button class="filter-btn" data-filter="creative">Creative</button>
+      <button class="filter-btn" data-filter="tech">Tech</button>
+    </div>
+
+    <div class="templates-grid" id="templates-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 4: CUSTOMIZATION
+  ══════════════════════════════════════════ -->
+  <div id="screen-customize" class="screen">
+    <div class="step-header">
+      <div class="step-back" onclick="App.goTo('templates')">← Templates</div>
+      <div class="step-title">
+        <h2>Customize Your Style</h2>
+        <p>Step 3 of 3 — Fine-tune colors, fonts, and layout</p>
+      </div>
+      <button class="btn-primary" onclick="App.goTo('preview')">
+        Preview Portfolio →
+      </button>
+    </div>
+
+    <div class="customize-layout">
+      <div class="customize-panel">
+
+        <!-- Color Themes -->
+        <div class="cust-group">
+          <h3>Color Theme</h3>
+          <div class="color-swatches" id="color-swatches">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Font Selection -->
+        <div class="cust-group">
+          <h3>Typography</h3>
+          <div class="font-options" id="font-options">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Layout Options -->
+        <div class="cust-group">
+          <h3>Layout Style</h3>
+          <div class="layout-options" id="layout-options">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Accent Toggle -->
+        <div class="cust-group">
+          <h3>Display Options</h3>
+          <div class="toggle-options">
+            <label class="toggle-row">
+              <span>Show profile photo</span>
+              <div class="toggle-switch" id="toggle-photo">
+                <input type="checkbox" id="opt-show-photo" checked />
+                <span class="toggle-track"></span>
+              </div>
+            </label>
+            <label class="toggle-row">
+              <span>Show skill tags</span>
+              <div class="toggle-switch" id="toggle-skills">
+                <input type="checkbox" id="opt-show-skills" checked />
+                <span class="toggle-track"></span>
+              </div>
+            </label>
+            <label class="toggle-row">
+              <span>Dark mode portfolio</span>
+              <div class="toggle-switch" id="toggle-dark">
+                <input type="checkbox" id="opt-dark-mode" />
+                <span class="toggle-track"></span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Mini Preview -->
+      <div class="customize-preview-wrap">
+        <div class="preview-label">Live Preview</div>
+        <div class="mini-preview-frame" id="mini-preview-frame">
+          <iframe id="mini-preview-iframe" title="Portfolio Preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SCREEN 5: FULL PREVIEW
+  ══════════════════════════════════════════ -->
+  <div id="screen-preview" class="screen">
+    <div class="preview-toolbar">
+      <div class="toolbar-left">
+        <div class="logo">
+          <span class="logo-mark">⬡</span> PortfolioForge
+        </div>
+        <button class="btn-ghost" onclick="App.goTo('customize')">← Edit</button>
+      </div>
+      <div class="toolbar-center">
+        <div class="device-toggles">
+          <button class="device-btn active" data-device="desktop" title="Desktop">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </button>
+          <button class="device-btn" data-device="tablet" title="Tablet">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
+          </button>
+          <button class="device-btn" data-device="mobile" title="Mobile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <button class="btn-export" onclick="Exporter.downloadHTML()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          HTML
+        </button>
+        <button class="btn-export" onclick="Exporter.downloadPDF()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h1"/></svg>
+          PDF
+        </button>
+        <button class="btn-export accent" onclick="Exporter.generateCV()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+          CV Resume
+        </button>
+      </div>
+    </div>
+
+    <div class="preview-frame-wrap" id="preview-frame-wrap">
+      <div class="loading-overlay" id="preview-loading">
+        <div class="loader-ring"></div>
+        <p>Rendering your portfolio...</p>
+      </div>
+      <iframe id="preview-iframe" title="Portfolio Preview" class="preview-iframe desktop"></iframe>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="js/state.js"></script>
+  <script src="js/templates-data.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/customize.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
