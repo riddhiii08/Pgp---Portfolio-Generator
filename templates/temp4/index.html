@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortEdge | Modern Startup Portfolio</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Gradient Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav-logo">Port<span>Edge</span></a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-close" id="nav-close"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="hero-label fade-in">Creative Tech Partner</span>
+                    <h1 class="hero-title fade-in">Samartha <span>Khatal</span></h1>
+                    <p class="hero-subtitle fade-in">Building the next generation of <span id="typing-text"></span></p>
+                    <p class="hero-description fade-in">I craft high-performance, visually stunning digital solutions
+                        for forward-thinking brands and startups.</p>
+                    <div class="hero-btns fade-in">
+                        <a href="#projects" class="btn btn-primary">Download Portfolio</a>
+                        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-card floating">
+                        <div class="card-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="card-content">
+                            <code>
+                                <span class="c-purple">const</span> <span class="c-blue">developer</span> = {<br>
+                                &nbsp;&nbsp;name: <span class="c-teal">'Samartha'</span>,<br>
+                                &nbsp;&nbsp;role: <span class="c-teal">'Architect'</span>,<br>
+                                &nbsp;&nbsp;drivenBy: <span class="c-teal">'Innovation'</span><br>
+                                };
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-img reveal">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800"
+                                alt="Startup Environment">
+                            <div class="gradient-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="about-content reveal">
+                        <h2 class="section-title">Elevating <span>Digital</span> Experiences</h2>
+                        <p class="about-text">My approach is centered around <strong>Modern Engineering</strong> and
+                            <strong>Vibrant Design</strong>. I believe every pixel should serve a purpose and every
+                            interaction should feel natural.</p>
+                        <p class="about-text">With a focus on speed, scalability, and semantic layouts, I help startups
+                            transform their vision into a polished digital reality.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-num">99%</span>
+                                <span class="stat-label">Client Satisfaction</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-num">50+</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills section" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Core <span>Expertise</span></h2>
+                    <p>Technological stack used to build high-converting platforms.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skills-column reveal">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Frontend Architecture</span>
+                                <span class="skill-val">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress teal" style="width: 0%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>UI/UX Interface Design</span>
+                                <span class="skill-val">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress purple" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skills-column reveal">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Performance Optimization</span>
+                                <span class="skill-val">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress blue" style="width: 0%" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Brand Identity</span>
+                                <span class="skill-val">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress teal" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured <span>Work</span></h2>
+                    <p>Selected projects that demonstrate my commitment to excellence.</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+                                alt="Project 1">
+                            <div class="project-tag">Fintech</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Quantum Ledger</h3>
+                            <p>A next-gen financial dashboard for high-frequency crypto trading and analysis.</p>
+                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card reveal">
+                        <div class="project-img">
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19711039?auto=format&fit=crop&q=80&w=800"
+                                alt="Project 2">
+                            <div class="project-tag">SaaS</div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Cloud Connect</h3>
+                            <p>Collaborative project management tool built for remote engineering teams.</p>
+                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience section" id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">The <span>Journey</span></h2>
+                    <p>Professional path through some of the brightest tech hubs.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2023 - Present</span>
+                            <h3>Senior Product Designer</h3>
+                            <p class="timeline-org">Stellar Tech Systems</p>
+                            <p>Leading the design systems and frontend strategies for enterprise-grade SaaS products.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2021 - 2023</span>
+                            <h3>UI Engineer</h3>
+                            <p class="timeline-org">Vortex Digital</p>
+                            <p>Developed high-fidelity interfaces and interactive prototypes for modern web
+                                applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <div class="contact-info">
+                        <h2>Ready to <span>collaborate?</span></h2>
+                        <p>Let's build something extraordinary together. Reach out for new projects or just to say
+                            hello.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>samartha@portedge.io</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Tech Haven, Silicon Valley</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
+                            <label for="name">Full Name</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Email Address</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="4" required></textarea>
+                            <label for="message">Project Brief</label>
+                            <div class="form-line"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            Send Request <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="nav-logo">Port<span>Edge</span></a>
+                <p>&copy; 2026 PortEdge Solutions. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
