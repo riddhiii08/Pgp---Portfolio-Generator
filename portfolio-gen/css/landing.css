@@ -4,10 +4,10 @@
 
 #screen-landing {
   --bg: #1e2013;
-  --primary: #d4de95;
-  --secondary: #bac095;
-  --hot: #636b2f;
-  --glass: rgba(186, 192, 149, 0.05);
+  --primary: #60a5fa;
+  --secondary: #22d3ee;
+  --hot: #818cf8;
+  --glass: rgba(148, 163, 184, 0.12);
   --font-display-landing: 'Outfit', sans-serif;
   --font-mono-landing: 'IBM Plex Mono', monospace;
   position: relative;
@@ -98,6 +98,7 @@
   font-size: 1.5rem;
   letter-spacing: 2px;
   background: linear-gradient(45deg, var(--primary), var(--secondary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -158,12 +159,15 @@
   justify-content: flex-start;
   padding: 0 10%;
   overflow: hidden;
+  perspective: 1200px;
 }
 
 #screen-landing .hero-content {
   position: relative;
   z-index: 10;
   max-width: 650px;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 #screen-landing .pill {
@@ -176,6 +180,7 @@
   font-size: 0.8rem;
   margin-bottom: 20px;
   color: var(--secondary);
+  transform: translateZ(28px);
 }
 
 #screen-landing .hero h1 {
@@ -184,17 +189,20 @@
   line-height: 1.1;
   margin-bottom: 20px;
   background: linear-gradient(to right, #fff, var(--primary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: landingTextGlow 3s ease-in-out infinite alternate;
+  transform: translateZ(44px);
+  will-change: transform;
 }
 
 @keyframes landingTextGlow {
   from {
-    text-shadow: 0 0 10px rgba(162, 89, 255, 0.2);
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.25);
   }
   to {
-    text-shadow: 0 0 30px rgba(162, 89, 255, 0.6);
+    text-shadow: 0 0 30px rgba(96, 165, 250, 0.65);
   }
 }
 
@@ -203,11 +211,13 @@
   color: #aaa;
   margin-bottom: 40px;
   line-height: 1.6;
+  transform: translateZ(24px);
 }
 
 #screen-landing .ctas {
   display: flex;
   gap: 20px;
+  transform: translateZ(34px);
 }
 
 #screen-landing .btn {
@@ -230,7 +240,7 @@
 
 #screen-landing .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(162, 89, 255, 0.4);
+  box-shadow: 0 10px 22px rgba(96, 165, 250, 0.42);
 }
 
 #screen-landing .btn-secondary {
@@ -253,6 +263,7 @@
   z-index: 5;
   transform-style: preserve-3d;
   animation: landingFloat 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 #screen-landing .icosahedron {
@@ -269,9 +280,9 @@
   height: 0;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 173.2px solid rgba(162, 89, 255, 0.1);
+  border-bottom: 173.2px solid rgba(96, 165, 250, 0.14);
   transform-origin: 100px 115.4px;
-  border-bottom-color: rgba(186, 192, 149, 0.15);
+  border-bottom-color: rgba(96, 165, 250, 0.16);
   -webkit-filter: drop-shadow(0 0 10px var(--primary));
   filter: drop-shadow(0 0 10px var(--primary));
 }
@@ -301,6 +312,7 @@
   filter: blur(80px);
   z-index: 0;
   opacity: 0.5;
+  will-change: transform;
 }
 
 #screen-landing .orb-1 {
@@ -309,6 +321,7 @@
   background: var(--primary);
   top: 10%;
   left: -10%;
+  animation: floatBlobA 12s ease-in-out infinite;
 }
 
 #screen-landing .orb-2 {
@@ -317,6 +330,7 @@
   background: var(--secondary);
   bottom: -10%;
   right: -10%;
+  animation: floatBlobB 15s ease-in-out infinite;
 }
 
 #screen-landing .orb-3 {
@@ -326,6 +340,22 @@
   top: 40%;
   left: 40%;
   opacity: 0.3;
+  animation: floatBlobC 10s ease-in-out infinite;
+}
+
+@keyframes floatBlobA {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(22px, -18px, 0); }
+}
+
+@keyframes floatBlobB {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-24px, 20px, 0); }
+}
+
+@keyframes floatBlobC {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(16px, -16px, 0); }
 }
 
 #screen-landing section {
@@ -364,8 +394,14 @@
   border-radius: 20px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: transform 0.1s;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease, border-color 220ms ease;
   transform-style: preserve-3d;
+  will-change: transform;
+  transform: perspective(900px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg)) translateZ(0);
+}
+
+#screen-landing .f-card:hover {
+  transform: perspective(900px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg)) translateY(-3px);
 }
 
 #screen-landing .f-card i {
@@ -373,6 +409,7 @@
   font-size: 2.5rem;
   margin-bottom: 20px;
   font-style: normal;
+  transform: translateZ(36px);
 }
 
 #screen-landing .f-card h3 {
@@ -394,6 +431,16 @@
   gap: 20px;
   text-align: center;
 }
+
+#screen-landing .stat-item {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1);
+  transform: perspective(900px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg)) translateZ(0);
+}
+
+#screen-landing .stat-item h4 { transform: translateZ(22px); }
+#screen-landing .stat-item p { transform: translateZ(14px); }
 
 #screen-landing .stat-item h4 {
   font-size: 3.5rem;

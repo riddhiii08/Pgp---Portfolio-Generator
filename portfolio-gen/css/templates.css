@@ -2,15 +2,20 @@
    TEMPLATE SELECTION STYLES
 ═══════════════════════════════════════════════ */
 
-#screen-templates { background: var(--surface-2); }
+#screen-templates {
+  background:
+    radial-gradient(900px 500px at 6% -8%, rgba(99, 102, 241, 0.24), transparent 58%),
+    radial-gradient(700px 420px at 95% 8%, rgba(34, 211, 238, 0.18), transparent 62%),
+    linear-gradient(180deg, #0b1120 0%, #0a1020 100%);
+}
 
 .template-filters {
-  display: flex; gap: 8px; padding: 24px 32px; background: rgba(39, 43, 26, .9);
+  display: flex; gap: 8px; padding: 24px 32px; background: rgba(10, 16, 32, .64);
   border-bottom: 1px solid var(--border); flex-wrap: wrap;
   position: sticky;
   top: 70px;
   z-index: 40;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(16px);
 }
 .filter-btn {
   padding: 8px 20px; border-radius: var(--r-full); font-size: .85rem; font-weight: 500;
@@ -24,16 +29,25 @@
   gap: 24px; padding: 32px; max-width: 1400px; margin: 0 auto;
 }
 .template-card {
-  background: var(--surface); border-radius: var(--r-xl); overflow: hidden;
+  background: rgba(18, 28, 46, 0.52); border-radius: var(--r-xl); overflow: hidden;
   border: 2px solid transparent; cursor: pointer; transition: all var(--trans-base);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px) saturate(1.2);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: perspective(980px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg)) translateZ(0);
 }
-.template-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,.28); border-color: var(--accent-dark); }
-.template-card.selected { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light), var(--shadow-md); }
+.template-card:hover { transform: perspective(980px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg)) translateY(-5px) scale(1.02); box-shadow: 0 24px 44px rgba(0,0,0,.34); border-color: rgba(96, 165, 250, 0.7); }
+.template-card.selected {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.16), 0 18px 38px rgba(59, 130, 246, 0.28);
+  animation: selectedPulse 420ms ease;
+}
 
 .template-thumb {
   height: 200px; overflow: hidden; position: relative;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: translateZ(18px);
 }
 .template-thumb-inner {
   width: 100%; height: 100%; position: relative; overflow: hidden;
@@ -55,16 +69,22 @@
 .badge-tech { background: rgba(20,184,166,.85); color: white; }
 .selected-checkmark {
   position: absolute; top: 10px; left: 10px; width: 28px; height: 28px;
-  background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #60a5fa, #22d3ee); border-radius: 50%; display: flex; align-items: center; justify-content: center;
   color: white; font-size: .85rem; opacity: 0; transform: scale(0); transition: all var(--trans-fast);
 }
 .template-card.selected .selected-checkmark { opacity: 1; transform: scale(1); }
 
 .template-info { padding: 16px 20px 20px; }
+.template-info { transform: translateZ(26px); }
 .template-info h3 { font-family: var(--ff-display); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
 .template-info p { font-size: .8rem; color: var(--ink-muted); line-height: 1.5; }
 .template-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
 .t-tag {
-  padding: 2px 8px; background: rgba(212, 222, 149, .08); border: 1px solid rgba(212, 222, 149, .16); border-radius: var(--r-full);
+  padding: 2px 8px; background: rgba(96, 165, 250, .12); border: 1px solid rgba(96, 165, 250, .24); border-radius: var(--r-full);
   font-size: .7rem; color: var(--ink-muted); font-family: var(--ff-mono);
+}
+
+@keyframes selectedPulse {
+  0% { transform: scale(0.985); }
+  100% { transform: scale(1); }
 }

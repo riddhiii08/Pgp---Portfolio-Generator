@@ -9,10 +9,10 @@ const TEMPLATES = [
   // ── PROFESSIONAL ──────────────────────────────
   {
     id: 'minimal-clean',
-    name: 'Minimal Clean',
+    name: 'Minimal',
     category: 'professional',
-    description: 'A clean, typography-driven layout with generous whitespace.',
-    tags: ['Minimal', 'Clean', 'ATS-friendly'],
+    description: 'Editorial white-space system with strong hierarchy and polished sections.',
+    tags: ['Professional', 'Minimal', 'Typography'],
     gradient: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
     textColor: '#2d3748'
   },
@@ -27,30 +27,21 @@ const TEMPLATES = [
   },
   {
     id: 'sidebar-pro',
-    name: 'Sidebar Pro',
+    name: 'Dark Dev',
     category: 'professional',
-    description: 'Two-column layout with dark sidebar and clean content area.',
-    tags: ['Two-column', 'Sidebar', 'Modern'],
+    description: 'Modern dark tech aesthetic with neon accents and elevated cards.',
+    tags: ['Dark', 'Developer', 'Tech UI'],
     gradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)',
     textColor: 'white'
-  },
-  {
-    id: 'timeline',
-    name: 'Timeline',
-    category: 'professional',
-    description: 'Chronological timeline layout perfect for experience-heavy profiles.',
-    tags: ['Timeline', 'Experience', 'Linear'],
-    gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
-    textColor: '#5a3825'
   },
 
   // ── CREATIVE ──────────────────────────────────
   {
     id: 'glassmorphic',
-    name: 'Glassmorphic',
+    name: 'Creative Portfolio',
     category: 'creative',
-    description: 'Frosted glass cards on a vivid gradient background.',
-    tags: ['Glass', 'Gradient', 'Vivid'],
+    description: 'Expressive gradients, asymmetric rhythm, and strong visual personality.',
+    tags: ['Creative', 'Asymmetric', 'Gradient'],
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     textColor: 'white'
   },
@@ -63,35 +54,8 @@ const TEMPLATES = [
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     textColor: 'white'
   },
-  {
-    id: 'neon-dark',
-    name: 'Neon Dark',
-    category: 'creative',
-    description: 'Dark mode with electric neon accents — bold and unmissable.',
-    tags: ['Dark', 'Neon', 'Electric'],
-    gradient: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%)',
-    textColor: '#00ffcc'
-  },
-  {
-    id: 'brutalist',
-    name: 'Brutalist',
-    category: 'creative',
-    description: 'Raw, unapologetic brutalist design that demands attention.',
-    tags: ['Brutalist', 'Bold', 'Unique'],
-    gradient: 'linear-gradient(135deg, #ffd700 0%, #ff6b00 100%)',
-    textColor: '#000'
-  },
 
   // ── TECH ──────────────────────────────────────
-  {
-    id: 'terminal',
-    name: 'Terminal',
-    category: 'tech',
-    description: 'Terminal/code aesthetic with monospace fonts and CLI styling.',
-    tags: ['Terminal', 'Code', 'CLI'],
-    gradient: 'linear-gradient(135deg, #0d1117 0%, #161b22 100%)',
-    textColor: '#7ee787'
-  },
   {
     id: 'matrix-grid',
     name: 'Matrix Grid',
@@ -100,23 +64,5 @@ const TEMPLATES = [
     tags: ['Grid', 'Data', 'Structured'],
     gradient: 'linear-gradient(135deg, #0a192f 0%, #172a45 100%)',
     textColor: '#64ffda'
-  },
-  {
-    id: 'devcard',
-    name: 'DevCard',
-    category: 'tech',
-    description: 'GitHub-inspired card layout tailored for developers.',
-    tags: ['GitHub', 'Cards', 'Developer'],
-    gradient: 'linear-gradient(135deg, #24292f 0%, #1f2328 100%)',
-    textColor: '#f0f6fc'
-  },
-  {
-    id: 'startup',
-    name: 'Startup',
-    category: 'tech',
-    description: 'Modern SaaS-inspired layout with metric callouts.',
-    tags: ['SaaS', 'Modern', 'Metrics'],
-    gradient: 'linear-gradient(135deg, #1DB954 0%, #1a8f3f 100%)',
-    textColor: 'white'
   }
 ];

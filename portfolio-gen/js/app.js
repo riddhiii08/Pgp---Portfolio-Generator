@@ -55,14 +55,26 @@ const App = (() => {
   // ── Pre-screen hooks ──
   function onEnterTemplates() {
     Customizer.initTemplateGrid();
+    initUiRevealAnimations();
+    bindPremium3D(document.getElementById(SCREENS.templates));
   }
 
   function onEnterCustomize() {
     Customizer.initCustomizePanel();
+    initUiRevealAnimations();
+    bindPremium3D(document.getElementById(SCREENS.customize));
   }
 
   function onEnterPreview() {
     renderFullPreview();
+    initUiRevealAnimations();
+    bindPremium3D(document.getElementById(SCREENS.preview));
+  }
+
+  function bindPremium3D(root = document) {
+    if (window.Premium3D && typeof window.Premium3D.bindCardTilt === 'function') {
+      window.Premium3D.bindCardTilt(root || document);
+    }
   }
 
   // ── Progress Step Indicator ──
@@ -134,6 +146,32 @@ const App = (() => {
     toast._t = setTimeout(() => el.classList.remove('show'), 3000);
   }
 
+  // ── Lightweight UI reveal animations ──
+  let revealObserver = null;
+  function initUiRevealAnimations() {
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+    }
+
+    const targets = document.querySelectorAll(
+      '.template-card, .font-option, .layout-option, .cust-group, .dynamic-card, .btn-add-item, .field-group'
+    );
+
+    targets.forEach((el, index) => {
+      if (el.dataset.revealBound === '1') return;
+      el.dataset.revealBound = '1';
+      el.classList.add('ui-reveal');
+      el.style.transitionDelay = `${Math.min(index * 35, 280)}ms`;
+      revealObserver.observe(el);
+    });
+  }
+
   // ── Initialize the entire app ──
   function init() {
     // Restore saved screen or default to landing
@@ -151,6 +189,8 @@ const App = (() => {
     FormManager.init();
     FormManager.restoreChecks();
     initDeviceToggle();
+    initUiRevealAnimations();
+    bindPremium3D(document);
 
     console.log('%c PortfolioForge ⬡ ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
     console.log('State:', State.data());

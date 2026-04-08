@@ -231,6 +231,10 @@ const FormManager = (() => {
         }
       });
     });
+
+    if (window.Premium3D && typeof window.Premium3D.bindCardTilt === 'function') {
+      window.Premium3D.bindCardTilt(container);
+    }
   }
 
   function removeProject(id) {
@@ -302,6 +306,10 @@ const FormManager = (() => {
         }
       });
     });
+
+    if (window.Premium3D && typeof window.Premium3D.bindCardTilt === 'function') {
+      window.Premium3D.bindCardTilt(container);
+    }
   }
 
   function removeEducation(id) {
