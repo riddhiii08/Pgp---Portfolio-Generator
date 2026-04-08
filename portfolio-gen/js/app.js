@@ -69,7 +69,10 @@ const App = (() => {
     if (loading) loading.classList.remove('hidden');
     setTimeout(() => {
       try {
+        const desktopMode = iframe.classList.contains('desktop');
+        window.__previewLayoutOverride = desktopMode ? 'single' : null;
         const html = Renderer.render();
+        window.__previewLayoutOverride = null;
         iframe.srcdoc = html;
         iframe.onload = () => {
           if (loading) {
@@ -83,7 +86,7 @@ const App = (() => {
       } catch(e) {
         console.error('Render error:', e);
         if (loading) loading.classList.add('hidden');
-        toast('Render error â€” check console', 'error');
+        toast('Render error - check console', 'error');
       }
     }, 400);
   }
@@ -97,6 +100,7 @@ const App = (() => {
         const iframe = document.getElementById('preview-iframe');
         if (iframe) {
           iframe.className = `preview-iframe ${device}`;
+          renderFullPreview();
         }
       });
     });
@@ -143,7 +147,7 @@ const App = (() => {
     initUiRevealAnimations();
     bindPremium3D(document);
 
-    console.log('%c PortfolioForge â¬¡ ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
+    console.log('%c PortfolioForge [] ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
     console.log('State:', State.data());
   }
   document.addEventListener('DOMContentLoaded', init);

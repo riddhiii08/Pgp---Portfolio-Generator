@@ -40,11 +40,11 @@
       <canvas id="particles"></canvas>
 
       <div class="hero-content reveal active">
-        <div class="pill">v2.0 is live</div>
+        <!-- <div class="pill">v2.0 is live</div> -->
         <h1>Create Beyond Limits</h1>
         <p>The ultimate personal portfolio builder. Recreate a stunning, fully responsive portfolio website in literally one click based firmly on your configured inputs.</p>
         <div class="ctas">
-          <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Sign Up Free</a>
+          <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Get Started </a>
           <a href="#features" class="btn btn-secondary">Explore Engine</a>
         </div>
       </div>
@@ -73,32 +73,32 @@
       </div>
       <div class="features-grid">
         <div class="f-card reveal">
-          <i>ðŸŽ¨</i>
+          <i>[Design]</i>
           <h3>Instant Styling</h3>
           <p>Switch between modern, minimal, and creative templates without losing your data. Pick a layout that works best for your profession.</p>
         </div>
         <div class="f-card reveal">
-          <i>ðŸ§ </i>
+          <i>[Smart]</i>
           <h3>Smart Organization</h3>
           <p>Dynamically add, remove, and sort your projects, experiences, and skills inside our structured input mechanism.</p>
         </div>
         <div class="f-card reveal">
-          <i>âš¡</i>
+          <i>[Fast]</i>
           <h3>Lightning Fast</h3>
           <p>Generate a standardized, heavily optimized HTML/CSS payload that you can host absolutely anywhere without heavy dependencies.</p>
         </div>
         <div class="f-card reveal">
-          <i>ðŸŒŠ</i>
+          <i>[Fluid]</i>
           <h3>Responsive DNA</h3>
           <p>Every generated template is strictly built utilizing standard CSS Flexbox and Grid. Looks flawless from 4k monitors to tiny mobile screens.</p>
         </div>
         <div class="f-card reveal">
-          <i>ðŸ”—</i>
+          <i>[Export]</i>
           <h3>Instant Export</h3>
           <p>Download the generated HTML instantaneously, or fetch the PDF version of your accomplishments with just a click.</p>
         </div>
         <div class="f-card reveal">
-          <i>ðŸ›¸</i>
+          <i>[Save]</i>
           <h3>Auto-Save</h3>
           <p>Your work is safely cached as you type. Never lose a keystroke even if you accidentally close the tab during configuration.</p>
         </div>
@@ -139,7 +139,7 @@
     <footer>
       <div>
         <div class="logo" style="margin-bottom: 20px; font-size: 1.2rem;">PortEdge</div>
-        <p>Â© 2026 PortEdge Studio.<br />All systems operational.</p>
+        <p>&copy; 2026 PortEdge Studio.<br />All systems operational.</p>
       </div>
       <div>
         <a href="#features">Engine Architecture</a>
@@ -167,22 +167,22 @@
 
     <div class="form-layout">
       <aside class="form-sidebar">
-        <div class="sidebar-logo"><span class="logo-mark">â¬¡</span> Build Profile</div>
+        <div class="sidebar-logo"><span class="logo-mark">[]</span> Build Profile</div>
         <div class="sidebar-nav">
           <button class="snav-item" type="button" data-section="personal">
-            <span class="snav-icon">1</span><span>Personal Info</span><span id="check-personal" class="snav-check">âœ“</span>
+            <span class="snav-icon">1</span><span>Personal Info</span><span id="check-personal" class="snav-check">&#10003;</span>
           </button>
           <button class="snav-item" type="button" data-section="skills">
-            <span class="snav-icon">2</span><span>Skills</span><span id="check-skills" class="snav-check">âœ“</span>
+            <span class="snav-icon">2</span><span>Skills</span><span id="check-skills" class="snav-check">&#10003;</span>
           </button>
           <button class="snav-item" type="button" data-section="projects">
-            <span class="snav-icon">3</span><span>Projects</span><span id="check-projects" class="snav-check">âœ“</span>
+            <span class="snav-icon">3</span><span>Projects</span><span id="check-projects" class="snav-check">&#10003;</span>
           </button>
           <button class="snav-item" type="button" data-section="education">
-            <span class="snav-icon">4</span><span>Education</span><span id="check-education" class="snav-check">âœ“</span>
+            <span class="snav-icon">4</span><span>Education</span><span id="check-education" class="snav-check">&#10003;</span>
           </button>
           <button class="snav-item" type="button" data-section="contact">
-            <span class="snav-icon">5</span><span>Contact</span><span id="check-contact" class="snav-check">âœ“</span>
+            <span class="snav-icon">5</span><span>Contact</span><span id="check-contact" class="snav-check">&#10003;</span>
           </button>
         </div>
         <div class="sidebar-footer">
@@ -295,12 +295,12 @@
         </section>
 
         <div class="form-footer">
-          <button id="btn-prev-section" class="btn-outline" type="button" onclick="FormManager.prevSection()">â† Previous</button>
+          <button id="btn-prev-section" class="btn-outline" type="button" onclick="FormManager.prevSection()"><- Previous</button>
           <div class="section-indicator">
             <span id="current-section-label">Personal Info</span>
             <span id="section-count-display" class="section-count">1 / 5</span>
           </div>
-          <button id="btn-next-section" class="btn-primary" type="button" onclick="FormManager.nextSection()">Next â†’</button>
+          <button id="btn-next-section" class="btn-primary" type="button" onclick="FormManager.nextSection()">Next -></button>
         </div>
       </main>
     </div>
@@ -308,12 +308,12 @@
 
   <section id="screen-templates" class="screen">
     <header class="step-header">
-      <button class="step-back" type="button" onclick="App.goTo('form')">â† Back to Form</button>
+      <button class="step-back" type="button" onclick="App.goTo('form')"><- Back to Form</button>
       <div class="step-title">
         <h2>Select Template</h2>
         <p>Choose your base design style</p>
       </div>
-      <button class="btn-primary" type="button" onclick="App.goTo('customize')">Customize â†’</button>
+      <button class="btn-primary" type="button" onclick="App.goTo('customize')">Customize -></button>
     </header>
 
     <div class="template-filters">
@@ -328,12 +328,12 @@
 
   <section id="screen-customize" class="screen">
     <header class="step-header">
-      <button class="step-back" type="button" onclick="App.goTo('templates')">â† Back to Templates</button>
+      <button class="step-back" type="button" onclick="App.goTo('templates')"><- Back to Templates</button>
       <div class="step-title">
         <h2>Customize Theme</h2>
         <p>Tune colors, fonts, and layout</p>
       </div>
-      <button class="btn-primary" type="button" onclick="App.goTo('preview')">Preview â†’</button>
+      <button class="btn-primary" type="button" onclick="App.goTo('preview')">Preview -></button>
     </header>
 
     <div class="customize-layout">
@@ -393,13 +393,13 @@
   <section id="screen-preview" class="screen">
     <div class="preview-toolbar">
       <div class="toolbar-left">
-        <div class="logo"><span class="logo-mark">â¬¡</span> Portfolio Preview</div>
-        <button class="btn-ghost" type="button" onclick="App.goTo('customize')">â† Back</button>
+        <div class="logo"><span class="logo-mark">[]</span> Portfolio Preview</div>
+        <button class="btn-ghost" type="button" onclick="App.goTo('customize')"><- Back</button>
 
         <div class="device-toggles">
-          <button class="device-btn active" type="button" data-device="desktop" title="Desktop">ðŸ–¥</button>
-          <button class="device-btn" type="button" data-device="tablet" title="Tablet">ðŸ“±</button>
-          <button class="device-btn" type="button" data-device="mobile" title="Mobile">ðŸ“²</button>
+          <button class="device-btn active" type="button" data-device="desktop" title="Desktop">D</button>
+          <button class="device-btn" type="button" data-device="tablet" title="Tablet">T</button>
+          <button class="device-btn" type="button" data-device="mobile" title="Mobile">M</button>
         </div>
       </div>
 

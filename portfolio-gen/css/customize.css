@@ -50,7 +50,7 @@
 .color-swatch:hover { transform: scale(1.15); }
 .color-swatch.active { border-color: var(--ink); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--ink); }
 .color-swatch::after {
-  content: 'âœ“'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  content: 'OK'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   color: white; font-size: .65rem; font-weight: 700; opacity: 0;
 }
 .color-swatch.active::after { opacity: 1; }

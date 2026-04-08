@@ -25,7 +25,7 @@ const Renderer = (() => {
     if (contact.linkedin) links.push(`<a href="${esc(contact.linkedin)}" target="_blank">LinkedIn</a>`);
     if (contact.twitter)  links.push(`<a href="${esc(contact.twitter)}" target="_blank">Twitter</a>`);
     if (contact.website)  links.push(`<a href="${esc(contact.website)}" target="_blank">Website</a>`);
-    return links.join(' Â· ');
+    return links.join(' | ');
   };
   function buildDocument(bodyHTML, css, title, fontURL) {
     return `<!DOCTYPE html>
@@ -75,6 +75,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
     const initialDarkMode = Boolean(theme && theme.darkMode);
     const chosenAccent = theme && theme.accent ? theme.accent : '#2563eb';
     const chosenFont = FONT_STACKS[(theme && theme.font) || 'Inter'] || "'Inter', sans-serif";
+    const chosenFontURL = FONT_IMPORTS[(theme && theme.font) || 'Inter'] || FONT_IMPORTS['Inter'];
     const chosenLayout = toLayoutClass((theme && theme.layout) || 'single');
     const showPhoto = !(theme && theme.showPhoto === false);
     const showSkills = !(theme && theme.showSkills === false);
@@ -143,11 +144,13 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         --glow-color: rgba(37, 99, 235, 0.25);
         --container-width: 1120px;
         --radius: 18px;
+        --font-ui: ${chosenFont};
+        --user-accent: ${chosenAccent};
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
-        font-family: 'Inter', 'Poppins', sans-serif;
+        font-family: var(--font-ui, 'Inter', sans-serif);
         background: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
@@ -157,8 +160,10 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         min-height: 100vh;
         --font-ui: ${chosenFont};
         --user-accent: ${chosenAccent};
+        --accent-color: var(--user-accent);
         background: var(--bg-color);
         color: var(--text-color);
+        font-family: var(--font-ui, 'Inter', sans-serif);
         transition: background 260ms ease, color 260ms ease;
       }
 
@@ -558,6 +563,17 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         --border-color: #1f314f;
         --shadow-color: rgba(1, 7, 17, 0.65);
         --glow-color: rgba(56, 189, 248, 0.4);
+      }
+
+      .portfolio-container.dark-mode {
+        --bg-color: #0b1220;
+        --text-color: #e2e8f0;
+        --muted-color: #9fb0c8;
+        --card-bg: #0f1b31;
+        --surface-soft: #0c1628;
+        --border-color: #1f314f;
+        --shadow-color: rgba(1, 7, 17, 0.65);
+        --glow-color: rgba(56, 189, 248, 0.28);
       }
 
       
@@ -1021,6 +1037,28 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         background: rgba(20,184,166,.12);
       }
 
+      .portfolio-container {
+        --font-ui: ${chosenFont};
+        --accent-color: var(--user-accent);
+      }
+
+      .portfolio-container,
+      .portfolio-container * {
+        font-family: var(--font-ui, 'Inter', sans-serif);
+      }
+
+      .portfolio-container.dark-mode {
+        --bg-color: #0b1220;
+        --text-color: #e2e8f0;
+        --muted-color: #9fb0c8;
+        --card-bg: #0f1b31;
+        --surface-soft: #0c1628;
+        --border-color: #1f314f;
+        --shadow-color: rgba(1, 7, 17, 0.65);
+        --glow-color: rgba(56, 189, 248, 0.28);
+        --accent-color: var(--user-accent);
+      }
+
       .layout-two-column .portfolio-shell {
         display: grid;
         grid-template-columns: minmax(0, 32%) minmax(0, 68%);
@@ -1061,26 +1099,16 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       @media print {
         @page { size: A4; margin: 12mm; }
 
-        body {
-          background: #ffffff !important;
-          color: #111111 !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
         }
 
-        .portfolio-container,
-        .portfolio-shell,
-        .hero,
-        .section-card,
-        .project-card,
-        .edu-item,
-        .hero-side {
-          background: #ffffff !important;
-          color: #111111 !important;
-          border-color: #d1d5db !important;
-          box-shadow: none !important;
-          backdrop-filter: none !important;
-          filter: none !important;
+        * {
+          animation: none !important;
+          transition: none !important;
           text-shadow: none !important;
         }
 
@@ -1118,6 +1146,16 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
           transform: none !important;
         }
 
+        .hero,
+        .section-card,
+        .project-card,
+        .edu-item,
+        .hero-side {
+          box-shadow: none !important;
+          backdrop-filter: none !important;
+          filter: none !important;
+        }
+
         .project-card:hover,
         .theme-buttons button:hover,
         .dark-toggle:hover,
@@ -1129,30 +1167,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         .portfolio-shell::after {
           display: none !important;
           content: none !important;
-        }
-
-        a,
-        .project-meta a,
-        .contact-links a,
-        .hero .role,
-        .section-title,
-        .project-card p,
-        .edu-item p,
-        .edu-item span,
-        .template-label {
-          color: #111111 !important;
-        }
-
-        .project-meta a,
-        .contact-links a {
-          color: #1d4ed8 !important;
-        }
-
-        .skill-chip,
-        .tech-chip {
-          background: #eef2f7 !important;
-          color: #111111 !important;
-          border-color: #cbd5e1 !important;
         }
       }
 
@@ -1260,7 +1274,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       body,
       css,
       personal.name,
-      'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap'
+      chosenFontURL
     );
   }
   function renderMinimalClean(d, theme) {
@@ -1350,7 +1364,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .header-text h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
       .header-text .role { font-size: 1.05rem; color: ${muted}; margin-bottom: 12px; }
       .contact-line { font-size: .85rem; color: ${muted}; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-      .contact-line span::before { content: 'Â·'; margin-right: 8px; }
+      .contact-line span::before { content: '|'; margin-right: 8px; }
       .contact-line span:first-child::before { content: ''; margin: 0; }
       
       section { margin-bottom: 48px; }
@@ -1400,7 +1414,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-footer">
           <div class="tech-tags">${(p.tech || '').split(',').filter(Boolean).map(t =>
             `<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-          ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View Project â†’</a>` : ''}
+          ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View Project -></a>` : ''}
         </div>
       </div>`).join('');
 
@@ -1410,7 +1424,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div>
           <div class="edu-name">${esc(e.institution)}</div>
           <div class="edu-degree">${esc(e.degree)} ${e.field ? `in ${esc(e.field)}` : ''}</div>
-          <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â€“ ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
+          <div class="edu-dates">${esc(e.from || '')}${e.to ? ` - ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
         </div>
       </div>`).join('');
 
@@ -1468,7 +1482,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         </div>
       </section>
 
-      <div class="footer">Built with PortfolioForge Â· ${new Date().getFullYear()}</div>
+      <div class="footer">Built with PortfolioForge | ${new Date().getFullYear()}</div>
     </div>
     </div>`;
 
@@ -1546,14 +1560,14 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-desc">${esc(p.description)}</div>
         <div class="tech-tags">${(p.tech || '').split(',').filter(Boolean).map(t =>
           `<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-        ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View â†’</a>` : ''}
+        ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View -></a>` : ''}
       </div>`).join('');
 
     const eduHTML = education.map(e => `
       <div class="edu-item">
         <div class="edu-name">${esc(e.institution)}</div>
         <div class="edu-degree">${esc(e.degree)}${e.field ? `, ${esc(e.field)}` : ''}</div>
-        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â€“ ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
+        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` - ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
       </div>`).join('');
 
     const body = `
@@ -1567,12 +1581,12 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <div class="s-name">${esc(personal.name) || 'Your Name'}</div>
       <div class="s-role">${esc(personal.title) || 'Your Title'}</div>
       <div class="s-section-title">Contact</div>
-      ${contact.email ? `<div class="s-contact-item">âœ‰ <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></div>` : ''}
-      ${contact.phone ? `<div class="s-contact-item">â˜Ž ${esc(contact.phone)}</div>` : ''}
-      ${contact.location ? `<div class="s-contact-item">ðŸ“ ${esc(contact.location)}</div>` : ''}
-      ${contact.github ? `<div class="s-contact-item">âŒ¥ <a href="${esc(contact.github)}" target="_blank">GitHub</a></div>` : ''}
+      ${contact.email ? `<div class="s-contact-item">Email: <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></div>` : ''}
+      ${contact.phone ? `<div class="s-contact-item">Phone: ${esc(contact.phone)}</div>` : ''}
+      ${contact.location ? `<div class="s-contact-item">Location: ${esc(contact.location)}</div>` : ''}
+      ${contact.github ? `<div class="s-contact-item">GitHub: <a href="${esc(contact.github)}" target="_blank">GitHub</a></div>` : ''}
       ${contact.linkedin ? `<div class="s-contact-item">in <a href="${esc(contact.linkedin)}" target="_blank">LinkedIn</a></div>` : ''}
-      ${contact.website ? `<div class="s-contact-item">ðŸŒ <a href="${esc(contact.website)}" target="_blank">Website</a></div>` : ''}
+      ${contact.website ? `<div class="s-contact-item">Website: <a href="${esc(contact.website)}" target="_blank">Website</a></div>` : ''}
       ${theme.showSkills && skills.length ? `
       <div class="s-section-title">Skills</div>
       <div class="skills-wrap">${skillsHTML(skills)}</div>` : ''}
@@ -1671,17 +1685,17 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <div class="edu-block">
         <div class="edu-inst">${esc(e.institution)}</div>
         <div class="edu-deg">${esc(e.degree)}${e.field ? ` // ${esc(e.field)}` : ''}</div>
-        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â†’ ${e.current ? 'now' : esc(e.to)}` : ''}</div>
+        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` -> ${e.current ? 'now' : esc(e.to)}` : ''}</div>
       </div>`).join('');
 
     const body = `
     <div class="container">
       <div class="window-bar">
         <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-        <div class="window-title">portfolio.sh â€” bash â€” 120Ã—40</div>
+        <div class="window-title">portfolio.sh - bash - 120x40</div>
       </div>
       <div class="terminal-body">
-        <div class="comment">## ${esc(personal.name || 'developer')}'s portfolio â€” ${new Date().getFullYear()}</div>
+        <div class="comment">## ${esc(personal.name || 'developer')}'s portfolio - ${new Date().getFullYear()}</div>
 
         <div class="prompt"><span class="p-user">visitor</span><span class="p-sep">@</span><span class="p-path">portfolio</span><span class="p-sep">:~$</span><span class="p-cmd">cat about.txt</span></div>
         <div class="output">
@@ -1777,14 +1791,14 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-title">${esc(p.title)}</div>
         <div class="project-desc">${esc(p.description)}</div>
         <div class="tech-tags">${(p.tech||'').split(',').filter(Boolean).map(t=>`<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-        ${p.link?`<a class="project-link" href="${esc(p.link)}" target="_blank">â†’ ${esc(p.link)}</a>`:''}
+        ${p.link?`<a class="project-link" href="${esc(p.link)}" target="_blank">-> ${esc(p.link)}</a>`:''}
       </div>`).join('');
 
     const eduHTML = education.map(e=>`
       <div class="edu-item">
         <div class="edu-name">${esc(e.institution)}</div>
         <div class="edu-degree">${esc(e.degree)}${e.field?`, ${esc(e.field)}`:''}</div>
-        <div class="edu-dates">${esc(e.from||'')}${e.to?` â€“ ${e.current?'Present':esc(e.to)}`:''}</div>
+        <div class="edu-dates">${esc(e.from||'')}${e.to?` - ${e.current?'Present':esc(e.to)}`:''}</div>
       </div>`).join('');
 
     const body = `
@@ -1794,7 +1808,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div>
           <h1>${esc(personal.name)||'Your Name'}</h1>
           <div class="role">${esc(personal.title)||'Your Title'}</div>
-          <div class="contact-line">${[contact.email,contact.phone,contact.location].filter(Boolean).map(esc).join(' Â· ')}</div>
+          <div class="contact-line">${[contact.email,contact.phone,contact.location].filter(Boolean).map(esc).join(' | ')}</div>
         </div>
       </div>
       ${personal.bio?`<div class="glass"><div class="section-title">About</div><p class="bio">${esc(personal.bio)}</p></div>`:``}
@@ -2066,7 +2080,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <header class="header">
         ${nonEmpty(personal.name) ? `<h1 class="name">${esc(personal.name)}</h1>` : ''}
         ${nonEmpty(personal.title) ? `<p class="job-title">${esc(personal.title)}</p>` : ''}
-        ${contactParts.length ? `<div class="contact-row">${contactParts.join(' Â· ')}</div>` : ''}
+        ${contactParts.length ? `<div class="contact-row">${contactParts.join(' | ')}</div>` : ''}
       </header>`;
 
     const summary = renderSection(
@@ -2115,7 +2129,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
             <h3 class="institution">${esc(institution)}</h3>
             ${nonEmpty(duration) ? `<div class="date">${esc(duration)}</div>` : ''}
           </div>
-          ${nonEmpty(degree) || nonEmpty(field) ? `<p class="degree-field">${esc([degree, field].filter(nonEmpty).join(' Â· '))}</p>` : ''}
+          ${nonEmpty(degree) || nonEmpty(field) ? `<p class="degree-field">${esc([degree, field].filter(nonEmpty).join(' | '))}</p>` : ''}
         </article>`;
     }).filter(Boolean).join('');
 
@@ -2128,7 +2142,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         ${skillsSection}
         ${workSection}
         ${educationSection}
-        <footer class="footer">Generated by PortfolioForge Â· 2026</footer>
+        <footer class="footer">Generated by PortfolioForge | 2026</footer>
       </main>`;
 
     return buildDocument(body, css, personal.name || 'Resume', FONT_IMPORTS['Inter']);
@@ -2142,7 +2156,17 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
     );
   }
   function render() {
-    const d = State.data();
+    const source = State.data();
+    const previewLayoutOverride = typeof window !== 'undefined' ? window.__previewLayoutOverride : null;
+    const d = previewLayoutOverride
+      ? {
+          ...source,
+          theme: {
+            ...source.theme,
+            layout: previewLayoutOverride
+          }
+        }
+      : source;
     const allowedTemplates = new Set([
       'minimal-clean',
       'executive',

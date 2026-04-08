@@ -22,9 +22,9 @@ const Customizer = (() => {
     { name: 'Roboto',     sample: 'Material classic' }
   ];
   const LAYOUTS = [
-    { id: 'single',  label: 'Single', icon: 'â–¬' },
-    { id: 'two-col', label: 'Two Col', icon: 'â–â–Œ' },
-    { id: 'grid',    label: 'Grid',   icon: 'âŠž' }
+    { id: 'single',  label: 'Single', icon: '-' },
+    { id: 'two-col', label: 'Two Col', icon: '||' },
+    { id: 'grid',    label: 'Grid',   icon: '#' }
   ];
 
   function renderTemplateThumb(t) {
@@ -223,7 +223,7 @@ const Customizer = (() => {
             ${renderTemplateThumb(t)}
           </div>
           <span class="template-badge badge-${t.category}">${t.category}</span>
-          <div class="selected-checkmark">âœ“</div>
+          <div class="selected-checkmark">OK</div>
         </div>
         <div class="template-info">
           <h3>${t.name}</h3>
@@ -284,7 +284,7 @@ const Customizer = (() => {
           <div class="font-name">${f.name}</div>
           <div class="font-sample">${f.sample}</div>
         </div>
-        <span class="font-check">âœ“</span>
+        <span class="font-check">OK</span>
       </div>
     `).join('');
   }
@@ -308,15 +308,15 @@ const Customizer = (() => {
     const dark = document.getElementById('opt-dark-mode');
     if (photo) {
       photo.checked = State.get('theme.showPhoto') !== false;
-      photo.addEventListener('change', () => { State.set('theme.showPhoto', photo.checked); schedulePreview(); });
+      photo.addEventListener('change', () => { State.set('theme.showPhoto', photo.checked); schedulePreview(0); });
     }
     if (skills) {
       skills.checked = State.get('theme.showSkills') !== false;
-      skills.addEventListener('change', () => { State.set('theme.showSkills', skills.checked); schedulePreview(); });
+      skills.addEventListener('change', () => { State.set('theme.showSkills', skills.checked); schedulePreview(0); });
     }
     if (dark) {
       dark.checked = !!State.get('theme.darkMode');
-      dark.addEventListener('change', () => { State.set('theme.darkMode', dark.checked); schedulePreview(); });
+      dark.addEventListener('change', () => { State.set('theme.darkMode', dark.checked); schedulePreview(0); });
     }
   }
   function setAccent(color) {
@@ -324,7 +324,7 @@ const Customizer = (() => {
     document.querySelectorAll('.color-swatch').forEach(el => {
       el.classList.toggle('active', el.style.background === color || el.style.backgroundColor === color);
     });
-    schedulePreview();
+    schedulePreview(0);
   }
 
   function setFont(font) {
@@ -335,7 +335,7 @@ const Customizer = (() => {
     document.querySelectorAll('.font-option .font-check').forEach((el, i) => {
       el.style.opacity = FONTS[i]?.name === font ? '1' : '0';
     });
-    schedulePreview();
+    schedulePreview(0);
   }
 
   function setLayout(layout) {

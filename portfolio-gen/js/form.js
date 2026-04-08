@@ -123,7 +123,7 @@ const FormManager = (() => {
     skills.forEach((s, i) => {
       const tag = document.createElement('div');
       tag.className = 'skill-tag';
-      tag.innerHTML = `<span>${s}</span><button onclick="FormManager.removeSkillByIndex(${i})" title="Remove">Ã—</button>`;
+      tag.innerHTML = `<span>${s}</span><button onclick="FormManager.removeSkillByIndex(${i})" title="Remove">x</button>`;
       container.insertBefore(tag, input);
     });
   }
@@ -167,7 +167,7 @@ const FormManager = (() => {
     card.innerHTML = `
       <div class="card-header">
         <h4>Project ${State.get('projects').length}</h4>
-        <button class="card-remove" onclick="FormManager.removeProject('${id}')" title="Remove">âœ•</button>
+        <button class="card-remove" onclick="FormManager.removeProject('${id}')" title="Remove">x</button>
       </div>
       <div class="form-grid">
         <div class="field-group full">
@@ -235,7 +235,7 @@ const FormManager = (() => {
     card.innerHTML = `
       <div class="card-header">
         <h4>Education / Certification</h4>
-        <button class="card-remove" onclick="FormManager.removeEducation('${id}')" title="Remove">âœ•</button>
+        <button class="card-remove" onclick="FormManager.removeEducation('${id}')" title="Remove">x</button>
       </div>
       <div class="form-grid">
         <div class="field-group full">
@@ -324,7 +324,7 @@ const FormManager = (() => {
     if (label) label.textContent = SECTION_LABELS[SECTIONS[currentSection]];
     if (count) count.textContent = `${currentSection + 1} / ${SECTIONS.length}`;
     if (nextBtn) {
-      nextBtn.textContent = currentSection === SECTIONS.length - 1 ? 'Choose Template â†’' : 'Next â†’';
+      nextBtn.textContent = currentSection === SECTIONS.length - 1 ? 'Choose Template ->' : 'Next ->';
     }
   }
 
