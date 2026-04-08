@@ -1,21 +1,6 @@
-/* ═══════════════════════════════════════════════
-   RENDERER.JS — Portfolio HTML Generator
-   
-   Takes app state (data + template + theme) and
-   outputs a complete standalone HTML document.
-   
-   3 fully implemented templates:
-     - minimal-clean
-     - sidebar-pro
-     - terminal
-   
-   Other templates render with correct styling
-   using their theme colors/gradients.
-═══════════════════════════════════════════════ */
+﻿
 
 const Renderer = (() => {
-
-  // ── Font imports map ──
   const FONT_IMPORTS = {
     'DM Sans':    'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap',
     'Inter':      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
@@ -25,8 +10,6 @@ const Renderer = (() => {
     'Roboto':     'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap',
     'JetBrains Mono': 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap'
   };
-
-  // ── Helpers ──
   const esc = str => String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const initials = name => name ? name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2) : '?';
   const skillsHTML = (skills) => skills.map(s =>
@@ -42,10 +25,8 @@ const Renderer = (() => {
     if (contact.linkedin) links.push(`<a href="${esc(contact.linkedin)}" target="_blank">LinkedIn</a>`);
     if (contact.twitter)  links.push(`<a href="${esc(contact.twitter)}" target="_blank">Twitter</a>`);
     if (contact.website)  links.push(`<a href="${esc(contact.website)}" target="_blank">Website</a>`);
-    return links.join(' · ');
+    return links.join(' Â· ');
   };
-
-  // ── Wrapper: build full standalone HTML doc ──
   function buildDocument(bodyHTML, css, title, fontURL) {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -61,10 +42,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
 <body>${bodyHTML}</body>
 </html>`;
   }
-
-  // ══════════════════════════════════════════════
-  // MODERN THEME SYSTEM (4 distinct production themes)
-  // ══════════════════════════════════════════════
   function renderModernPortfolio(d, defaultThemeClass = 'theme-minimal', variant = 'minimal-clean') {
     const { personal, skills, projects, education, contact, theme } = d;
 
@@ -583,7 +560,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         --glow-color: rgba(56, 189, 248, 0.4);
       }
 
-      /* Template-level identity overrides */
+      
       .variant-minimal-clean {
         --bg-color: #ffffff;
         --text-color: #111827;
@@ -1159,13 +1136,23 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         .contact-links a,
         .hero .role,
         .section-title,
-        .tech-chip,
-        .skill-chip,
         .project-card p,
         .edu-item p,
         .edu-item span,
         .template-label {
           color: #111111 !important;
+        }
+
+        .project-meta a,
+        .contact-links a {
+          color: #1d4ed8 !important;
+        }
+
+        .skill-chip,
+        .tech-chip {
+          background: #eef2f7 !important;
+          color: #111111 !important;
+          border-color: #cbd5e1 !important;
         }
       }
 
@@ -1276,10 +1263,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap'
     );
   }
-
-  // ══════════════════════════════════════════════
-  // TEMPLATE 1: MINIMAL CLEAN
-  // ══════════════════════════════════════════════
   function renderMinimalClean(d, theme) {
     const { personal, skills, projects, education, contact } = d;
     const layoutClass = toLayoutClass(theme.layout);
@@ -1300,7 +1283,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .container { max-width: 800px; margin: 0 auto; padding: 60px 32px; }
       .content-section { margin-bottom: 48px; }
 
-      /* Layout system */
+      
       #portfolioPreview.layout-single .container {
         max-width: 800px;
         display: block;
@@ -1356,7 +1339,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
           background: transparent;
         }
       }
-      /* Header */
+      
       .header { display: flex; align-items: flex-start; gap: 28px; margin-bottom: 60px; }
       .avatar {
         width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
@@ -1367,22 +1350,22 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .header-text h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
       .header-text .role { font-size: 1.05rem; color: ${muted}; margin-bottom: 12px; }
       .contact-line { font-size: .85rem; color: ${muted}; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-      .contact-line span::before { content: '·'; margin-right: 8px; }
+      .contact-line span::before { content: 'Â·'; margin-right: 8px; }
       .contact-line span:first-child::before { content: ''; margin: 0; }
-      /* Sections */
+      
       section { margin-bottom: 48px; }
       .section-title {
         font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em;
         color: ${accent}; border-bottom: 2px solid ${accent}; padding-bottom: 8px; margin-bottom: 20px;
       }
       .bio { color: ${muted}; line-height: 1.8; font-size: .97rem; }
-      /* Skills */
+      
       .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
       .skill-chip {
         padding: 5px 14px; background: ${cardBg}; border: 1px solid ${border};
         border-radius: 9999px; font-size: .8rem; font-weight: 500; color: ${ink};
       }
-      /* Projects */
+      
       .project-card {
         padding: 20px; background: ${cardBg}; border-radius: 10px;
         border: 1px solid ${border}; margin-bottom: 14px;
@@ -1393,20 +1376,20 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
       .tech-tag { padding: 2px 10px; background: ${accent}22; border-radius: 9999px; font-size: .72rem; color: ${accent}; font-weight: 500; }
       .project-link { font-size: .8rem; color: ${accent}; }
-      /* Education */
+      
       .edu-item { display: flex; gap: 20px; margin-bottom: 20px; }
       .edu-dot { width: 10px; height: 10px; border-radius: 50%; background: ${accent}; margin-top: 6px; flex-shrink: 0; }
       .edu-name { font-weight: 600; margin-bottom: 2px; }
       .edu-degree { font-size: .875rem; color: ${muted}; }
       .edu-dates { font-size: .78rem; color: ${muted}; margin-top: 2px; }
-      /* Socials */
+      
       .social-links { display: flex; flex-wrap: wrap; gap: 12px; }
       .social-links a {
         padding: 8px 18px; border: 1.5px solid ${border}; border-radius: 9999px;
         font-size: .85rem; font-weight: 500; color: ${ink}; transition: all .2s;
       }
       .social-links a:hover { background: ${accent}; border-color: ${accent}; color: white; text-decoration: none; }
-      /* Footer */
+      
       .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid ${border}; text-align: center; font-size: .75rem; color: ${muted}; }
     `;
 
@@ -1417,7 +1400,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-footer">
           <div class="tech-tags">${(p.tech || '').split(',').filter(Boolean).map(t =>
             `<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-          ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View Project →</a>` : ''}
+          ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View Project â†’</a>` : ''}
         </div>
       </div>`).join('');
 
@@ -1427,7 +1410,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div>
           <div class="edu-name">${esc(e.institution)}</div>
           <div class="edu-degree">${esc(e.degree)} ${e.field ? `in ${esc(e.field)}` : ''}</div>
-          <div class="edu-dates">${esc(e.from || '')}${e.to ? ` – ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
+          <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â€“ ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
         </div>
       </div>`).join('');
 
@@ -1485,16 +1468,12 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         </div>
       </section>
 
-      <div class="footer">Built with PortfolioForge · ${new Date().getFullYear()}</div>
+      <div class="footer">Built with PortfolioForge Â· ${new Date().getFullYear()}</div>
     </div>
     </div>`;
 
     return buildDocument(body, css, personal.name, FONT_IMPORTS[font]);
   }
-
-  // ══════════════════════════════════════════════
-  // TEMPLATE 2: SIDEBAR PRO
-  // ══════════════════════════════════════════════
   function renderSidebarPro(d, theme) {
     const { personal, skills, projects, education, contact } = d;
     const accent = theme.accent;
@@ -1513,7 +1492,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       body { font-family: '${font}', sans-serif; background: ${mainBg}; color: ${mainInk}; display: flex; min-height: 100vh; }
       a { color: ${accent}; text-decoration: none; }
-      /* Sidebar */
+      
       .sidebar {
         width: 280px; min-height: 100vh; background: ${sidebarBg}; color: ${sideInk};
         padding: 40px 28px; display: flex; flex-direction: column; flex-shrink: 0;
@@ -1536,7 +1515,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .s-contact-item a:hover { color: ${sideInk}; }
       .skill-chip { display: inline-block; padding: 4px 12px; margin: 3px 2px; background: rgba(255,255,255,.08); border-radius: 9999px; font-size: .78rem; }
       .skills-wrap { display: flex; flex-wrap: wrap; }
-      /* Main */
+      
       .main { flex: 1; padding: 48px 44px; }
       section { margin-bottom: 40px; }
       .section-title {
@@ -1544,7 +1523,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         color: ${accent}; border-bottom: 2px solid ${accent}22; padding-bottom: 8px; margin-bottom: 20px;
       }
       .bio { color: ${mainMuted}; line-height: 1.8; font-size: .95rem; }
-      /* Projects */
+      
       .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .project-card {
         padding: 20px; background: ${cardBg}; border-radius: 10px; border: 1px solid ${border};
@@ -1554,7 +1533,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       .tech-tags { display: flex; flex-wrap: wrap; gap: 4px; }
       .tech-tag { padding: 2px 8px; background: ${accent}18; border-radius: 9999px; font-size: .7rem; color: ${accent}; }
       .project-link { font-size: .78rem; color: ${accent}; margin-top: 8px; display: block; }
-      /* Education */
+      
       .edu-item { margin-bottom: 20px; padding-left: 16px; border-left: 2px solid ${accent}; }
       .edu-name { font-weight: 600; font-size: .95rem; }
       .edu-degree { font-size: .85rem; color: ${mainMuted}; }
@@ -1567,14 +1546,14 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-desc">${esc(p.description)}</div>
         <div class="tech-tags">${(p.tech || '').split(',').filter(Boolean).map(t =>
           `<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-        ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View →</a>` : ''}
+        ${p.link ? `<a class="project-link" href="${esc(p.link)}" target="_blank">View â†’</a>` : ''}
       </div>`).join('');
 
     const eduHTML = education.map(e => `
       <div class="edu-item">
         <div class="edu-name">${esc(e.institution)}</div>
         <div class="edu-degree">${esc(e.degree)}${e.field ? `, ${esc(e.field)}` : ''}</div>
-        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` – ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
+        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â€“ ${e.current ? 'Present' : esc(e.to)}` : ''}</div>
       </div>`).join('');
 
     const body = `
@@ -1588,12 +1567,12 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <div class="s-name">${esc(personal.name) || 'Your Name'}</div>
       <div class="s-role">${esc(personal.title) || 'Your Title'}</div>
       <div class="s-section-title">Contact</div>
-      ${contact.email ? `<div class="s-contact-item">✉ <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></div>` : ''}
-      ${contact.phone ? `<div class="s-contact-item">☎ ${esc(contact.phone)}</div>` : ''}
-      ${contact.location ? `<div class="s-contact-item">📍 ${esc(contact.location)}</div>` : ''}
-      ${contact.github ? `<div class="s-contact-item">⌥ <a href="${esc(contact.github)}" target="_blank">GitHub</a></div>` : ''}
+      ${contact.email ? `<div class="s-contact-item">âœ‰ <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></div>` : ''}
+      ${contact.phone ? `<div class="s-contact-item">â˜Ž ${esc(contact.phone)}</div>` : ''}
+      ${contact.location ? `<div class="s-contact-item">ðŸ“ ${esc(contact.location)}</div>` : ''}
+      ${contact.github ? `<div class="s-contact-item">âŒ¥ <a href="${esc(contact.github)}" target="_blank">GitHub</a></div>` : ''}
       ${contact.linkedin ? `<div class="s-contact-item">in <a href="${esc(contact.linkedin)}" target="_blank">LinkedIn</a></div>` : ''}
-      ${contact.website ? `<div class="s-contact-item">🌐 <a href="${esc(contact.website)}" target="_blank">Website</a></div>` : ''}
+      ${contact.website ? `<div class="s-contact-item">ðŸŒ <a href="${esc(contact.website)}" target="_blank">Website</a></div>` : ''}
       ${theme.showSkills && skills.length ? `
       <div class="s-section-title">Skills</div>
       <div class="skills-wrap">${skillsHTML(skills)}</div>` : ''}
@@ -1615,10 +1594,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
 
     return buildDocument(body, css, personal.name, FONT_IMPORTS[font]);
   }
-
-  // ══════════════════════════════════════════════
-  // TEMPLATE 3: TERMINAL
-  // ══════════════════════════════════════════════
   function renderTerminal(d, theme) {
     const { personal, skills, projects, education, contact } = d;
     const accent = theme.accent === '#5b4cf5' ? '#7ee787' : theme.accent;
@@ -1632,7 +1607,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       a { color: ${blue}; text-decoration: none; }
       a:hover { text-decoration: underline; }
       .container { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
-      /* Window chrome */
+      
       .window-bar {
         background: #161b22; border: 1px solid #30363d; border-bottom: none;
         border-radius: 10px 10px 0 0; padding: 12px 16px; display: flex; align-items: center; gap: 8px;
@@ -1644,39 +1619,39 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         background: #161b22; border: 1px solid #30363d; border-top: none;
         border-radius: 0 0 10px 10px; padding: 28px 32px;
       }
-      /* Prompt lines */
+      
       .prompt { display: flex; gap: 10px; margin-bottom: 4px; font-size: .875rem; }
       .p-user { color: ${green}; } .p-sep { color: ${muted}; } .p-cmd { color: ${ink}; }
       .p-path { color: ${blue}; }
       .output { padding-left: 0; margin-bottom: 20px; }
-      /* Comments */
+      
       .comment { color: ${muted}; font-size: .78rem; margin-bottom: 16px; }
-      /* Header output */
+      
       .ascii-name {
         color: ${accent}; font-size: 1.1rem; font-weight: 700; letter-spacing: .05em;
         border: 1px solid ${accent}44; padding: 12px 20px; display: inline-block;
         border-radius: 4px; margin-bottom: 8px;
       }
       .role-line { color: ${muted}; font-size: .85rem; margin-bottom: 16px; }
-      /* Skills */
+      
       .skill-chip { color: ${green}; margin-right: 6px; font-size: .82rem; }
-      /* Section header */
+      
       .s-header { color: ${blue}; font-size: .85rem; font-weight: 700; margin-bottom: 12px; }
-      /* Project */
+      
       .project-block { border-left: 2px solid ${accent}; padding: 12px 16px; margin-bottom: 16px; background: #0d1117; border-radius: 0 6px 6px 0; }
       .proj-title { color: ${ink}; font-weight: 700; margin-bottom: 4px; font-size: .9rem; }
       .proj-desc { color: ${muted}; font-size: .8rem; margin-bottom: 8px; line-height: 1.6; }
       .proj-meta { font-size: .75rem; }
       .proj-tech { color: ${accent}; } .proj-link { color: ${blue}; margin-left: 12px; }
-      /* Education */
+      
       .edu-block { margin-bottom: 12px; }
       .edu-inst { color: ${ink}; font-weight: 600; font-size: .87rem; }
       .edu-deg { color: ${muted}; font-size: .8rem; }
       .edu-dates { color: ${accent}; font-size: .75rem; }
-      /* Contact */
+      
       .contact-row { display: flex; align-items: center; gap: 12px; font-size: .82rem; color: ${muted}; margin-bottom: 6px; }
       .c-key { color: ${blue}; min-width: 90px; } .c-eq { color: ${muted}; } .c-val { color: ${green}; }
-      /* Cursor */
+      
       .cursor { display: inline-block; width: 8px; height: 1em; background: ${ink}; animation: blink 1s step-end infinite; vertical-align: text-bottom; }
       @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
       .footer-prompt { margin-top: 24px; }
@@ -1696,17 +1671,17 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <div class="edu-block">
         <div class="edu-inst">${esc(e.institution)}</div>
         <div class="edu-deg">${esc(e.degree)}${e.field ? ` // ${esc(e.field)}` : ''}</div>
-        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` → ${e.current ? 'now' : esc(e.to)}` : ''}</div>
+        <div class="edu-dates">${esc(e.from || '')}${e.to ? ` â†’ ${e.current ? 'now' : esc(e.to)}` : ''}</div>
       </div>`).join('');
 
     const body = `
     <div class="container">
       <div class="window-bar">
         <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
-        <div class="window-title">portfolio.sh — bash — 120×40</div>
+        <div class="window-title">portfolio.sh â€” bash â€” 120Ã—40</div>
       </div>
       <div class="terminal-body">
-        <div class="comment">## ${esc(personal.name || 'developer')}'s portfolio — ${new Date().getFullYear()}</div>
+        <div class="comment">## ${esc(personal.name || 'developer')}'s portfolio â€” ${new Date().getFullYear()}</div>
 
         <div class="prompt"><span class="p-user">visitor</span><span class="p-sep">@</span><span class="p-path">portfolio</span><span class="p-sep">:~$</span><span class="p-cmd">cat about.txt</span></div>
         <div class="output">
@@ -1743,10 +1718,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
 
     return buildDocument(body, css, personal.name, FONT_IMPORTS['JetBrains Mono']);
   }
-
-  // ══════════════════════════════════════════════
-  // TEMPLATE 4: GLASSMORPHIC (Creative)
-  // ══════════════════════════════════════════════
   function renderGlassmorphic(d, theme) {
     const { personal, skills, projects, education, contact } = d;
     const accent = theme.accent;
@@ -1806,14 +1777,14 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div class="project-title">${esc(p.title)}</div>
         <div class="project-desc">${esc(p.description)}</div>
         <div class="tech-tags">${(p.tech||'').split(',').filter(Boolean).map(t=>`<span class="tech-tag">${esc(t.trim())}</span>`).join('')}</div>
-        ${p.link?`<a class="project-link" href="${esc(p.link)}" target="_blank">→ ${esc(p.link)}</a>`:''}
+        ${p.link?`<a class="project-link" href="${esc(p.link)}" target="_blank">â†’ ${esc(p.link)}</a>`:''}
       </div>`).join('');
 
     const eduHTML = education.map(e=>`
       <div class="edu-item">
         <div class="edu-name">${esc(e.institution)}</div>
         <div class="edu-degree">${esc(e.degree)}${e.field?`, ${esc(e.field)}`:''}</div>
-        <div class="edu-dates">${esc(e.from||'')}${e.to?` – ${e.current?'Present':esc(e.to)}`:''}</div>
+        <div class="edu-dates">${esc(e.from||'')}${e.to?` â€“ ${e.current?'Present':esc(e.to)}`:''}</div>
       </div>`).join('');
 
     const body = `
@@ -1823,7 +1794,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         <div>
           <h1>${esc(personal.name)||'Your Name'}</h1>
           <div class="role">${esc(personal.title)||'Your Title'}</div>
-          <div class="contact-line">${[contact.email,contact.phone,contact.location].filter(Boolean).map(esc).join(' · ')}</div>
+          <div class="contact-line">${[contact.email,contact.phone,contact.location].filter(Boolean).map(esc).join(' Â· ')}</div>
         </div>
       </div>
       ${personal.bio?`<div class="glass"><div class="section-title">About</div><p class="bio">${esc(personal.bio)}</p></div>`:``}
@@ -1843,10 +1814,6 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
 
     return buildDocument(body, css, personal.name, FONT_IMPORTS[font]);
   }
-
-  // ══════════════════════════════════════════════
-  // TEMPLATE 5: RESUME BLUEPRINT (Print-ready CV)
-  // ══════════════════════════════════════════════
   function renderResumeBlueprint(d) {
     const { personal, skills, projects, education, contact } = d;
     const layoutClass = toLayoutClass(d?.theme?.layout);
@@ -2099,7 +2066,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       <header class="header">
         ${nonEmpty(personal.name) ? `<h1 class="name">${esc(personal.name)}</h1>` : ''}
         ${nonEmpty(personal.title) ? `<p class="job-title">${esc(personal.title)}</p>` : ''}
-        ${contactParts.length ? `<div class="contact-row">${contactParts.join(' · ')}</div>` : ''}
+        ${contactParts.length ? `<div class="contact-row">${contactParts.join(' Â· ')}</div>` : ''}
       </header>`;
 
     const summary = renderSection(
@@ -2148,7 +2115,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
             <h3 class="institution">${esc(institution)}</h3>
             ${nonEmpty(duration) ? `<div class="date">${esc(duration)}</div>` : ''}
           </div>
-          ${nonEmpty(degree) || nonEmpty(field) ? `<p class="degree-field">${esc([degree, field].filter(nonEmpty).join(' · '))}</p>` : ''}
+          ${nonEmpty(degree) || nonEmpty(field) ? `<p class="degree-field">${esc([degree, field].filter(nonEmpty).join(' Â· '))}</p>` : ''}
         </article>`;
     }).filter(Boolean).join('');
 
@@ -2161,30 +2128,19 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
         ${skillsSection}
         ${workSection}
         ${educationSection}
-        <footer class="footer">Generated by PortfolioForge · 2026</footer>
+        <footer class="footer">Generated by PortfolioForge Â· 2026</footer>
       </main>`;
 
     return buildDocument(body, css, personal.name || 'Resume', FONT_IMPORTS['Inter']);
   }
-
-  // ══════════════════════════════════════════════
-  // GENERIC FALLBACK for other templates
-  // ══════════════════════════════════════════════
   function renderGeneric(d, theme, tpl) {
-    // Find template meta for gradient
     const meta = TEMPLATES.find(t => t.id === tpl) || TEMPLATES[0];
-    // Use minimal-clean as base, apply template gradient as hero
     const base = renderMinimalClean(d, theme);
-    // Inject a hero gradient bar
     return base.replace(
       '<div class="container">',
       `<div style="height:8px;background:${meta.gradient}"></div><div class="container">`
     );
   }
-
-  // ══════════════════════════════════════════════
-  // MAIN RENDER FUNCTION — Public API
-  // ══════════════════════════════════════════════
   function render() {
     const d = State.data();
     const allowedTemplates = new Set([

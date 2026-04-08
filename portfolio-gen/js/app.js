@@ -1,15 +1,6 @@
-/* ═══════════════════════════════════════════════
-   APP.JS — Main Application Controller
-   
-   Handles: screen routing, initialization,
-   preview rendering, device toggle, toast notifications.
-   
-   Loaded LAST — all modules must exist first.
-═══════════════════════════════════════════════ */
+﻿
 
 const App = (() => {
-
-  // ── Screen map ──
   const SCREENS = {
     landing:   'screen-landing',
     form:      'screen-form',
@@ -17,24 +8,14 @@ const App = (() => {
     customize: 'screen-customize',
     preview:   'screen-preview'
   };
-
-  // ── Current active screen ──
   let currentScreen = 'landing';
-
-  // ── Navigate to a screen ──
   function goTo(screenName) {
     if (!SCREENS[screenName]) { console.warn('Unknown screen:', screenName); return; }
-
-    // Run pre-screen hooks
     if (screenName === 'templates')  onEnterTemplates();
     if (screenName === 'customize')  onEnterCustomize();
     if (screenName === 'preview')    onEnterPreview();
-
-    // Hide current screen
     const prev = document.getElementById(SCREENS[currentScreen]);
     if (prev) prev.classList.remove('active');
-
-    // Show new screen
     currentScreen = screenName;
     State.set('currentScreen', screenName);
 
@@ -43,16 +24,10 @@ const App = (() => {
       next.classList.add('active', 'entering');
       setTimeout(() => next.classList.remove('entering'), 400);
     }
-
-    // Update progress indicator
     updateProgressIndicator(screenName);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  // ── Alias for landing → form ──
   function goToForm() { goTo('form'); }
-
-  // ── Pre-screen hooks ──
   function onEnterTemplates() {
     Customizer.initTemplateGrid();
     initUiRevealAnimations();
@@ -76,8 +51,6 @@ const App = (() => {
       window.Premium3D.bindCardTilt(root || document);
     }
   }
-
-  // ── Progress Step Indicator ──
   function updateProgressIndicator(screen) {
     const stepMap = { form: 1, templates: 2, customize: 3, preview: 3 };
     const currentStep = stepMap[screen] || 0;
@@ -88,16 +61,12 @@ const App = (() => {
       else if (step === currentStep) el.classList.add('active');
     });
   }
-
-  // ── Render Full Preview ──
   function renderFullPreview() {
     const loading = document.getElementById('preview-loading');
     const iframe = document.getElementById('preview-iframe');
     if (!iframe) return;
 
     if (loading) loading.classList.remove('hidden');
-
-    // Small delay so loading shows
     setTimeout(() => {
       try {
         const html = Renderer.render();
@@ -108,19 +77,16 @@ const App = (() => {
             setTimeout(() => loading.classList.add('hidden'), 400);
           }
         };
-        // Safety fallback
         setTimeout(() => {
           if (loading) { loading.style.opacity = '0'; setTimeout(() => loading.classList.add('hidden'), 400); }
         }, 3000);
       } catch(e) {
         console.error('Render error:', e);
         if (loading) loading.classList.add('hidden');
-        toast('Render error — check console', 'error');
+        toast('Render error â€” check console', 'error');
       }
     }, 400);
   }
-
-  // ── Device Toggle (preview screen) ──
   function initDeviceToggle() {
     document.querySelectorAll('.device-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -135,8 +101,6 @@ const App = (() => {
       });
     });
   }
-
-  // ── Toast Notifications ──
   function toast(message, type = 'info') {
     const el = document.getElementById('toast');
     if (!el) return;
@@ -145,8 +109,6 @@ const App = (() => {
     clearTimeout(toast._t);
     toast._t = setTimeout(() => el.classList.remove('show'), 3000);
   }
-
-  // ── Lightweight UI reveal animations ──
   let revealObserver = null;
   function initUiRevealAnimations() {
     if (!revealObserver) {
@@ -171,32 +133,19 @@ const App = (() => {
       revealObserver.observe(el);
     });
   }
-
-  // ── Initialize the entire app ──
   function init() {
-    // Restore saved screen or default to landing
     const savedScreen = State.get('currentScreen') || 'landing';
-
-    // Always start on landing for fresh experience
-    // (Comment next line to restore last screen across refreshes)
-    // const startScreen = savedScreen === 'landing' ? 'landing' : savedScreen;
-
-    // Show landing
     const landing = document.getElementById(SCREENS.landing);
     if (landing) landing.classList.add('active');
-
-    // Init sub-modules
     FormManager.init();
     FormManager.restoreChecks();
     initDeviceToggle();
     initUiRevealAnimations();
     bindPremium3D(document);
 
-    console.log('%c PortfolioForge ⬡ ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
+    console.log('%c PortfolioForge â¬¡ ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
     console.log('State:', State.data());
   }
-
-  // ── Kick off on DOM ready ──
   document.addEventListener('DOMContentLoaded', init);
 
   return { goTo, goToForm, toast, renderFullPreview };

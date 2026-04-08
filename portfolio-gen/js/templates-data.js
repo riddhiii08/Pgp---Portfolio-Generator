@@ -1,12 +1,6 @@
-/* ═══════════════════════════════════════════════
-   TEMPLATES-DATA.JS — Template Registry
-   
-   Defines all available templates with metadata.
-   The actual HTML generation is in renderer.js.
-═══════════════════════════════════════════════ */
+﻿
 
 const TEMPLATES = [
-  // ── PROFESSIONAL ──────────────────────────────
   {
     id: 'minimal-clean',
     name: 'Minimal',
@@ -34,8 +28,6 @@ const TEMPLATES = [
     gradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)',
     textColor: 'white'
   },
-
-  // ── CREATIVE ──────────────────────────────────
   {
     id: 'glassmorphic',
     name: 'Creative Portfolio',
@@ -54,8 +46,6 @@ const TEMPLATES = [
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
     textColor: 'white'
   },
-
-  // ── TECH ──────────────────────────────────────
   {
     id: 'matrix-grid',
     name: 'Matrix Grid',

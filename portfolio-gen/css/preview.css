@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════════════
-	 PREVIEW SCREEN STYLES
-═══════════════════════════════════════════════ */
+﻿
 
 #screen-preview {
 	display: none; flex-direction: column; min-height: 100vh;
@@ -11,7 +9,7 @@
 }
 #screen-preview.active { display: flex; }
 
-/* Toolbar */
+
 .preview-toolbar {
 	display: flex; align-items: center; justify-content: space-between;
 	padding: 12px 24px; background: rgba(9, 14, 28, .72); color: var(--ink); gap: 16px;
@@ -25,7 +23,7 @@
 .toolbar-left .btn-ghost { color: var(--ink-muted); font-size: .85rem; }
 .toolbar-left .btn-ghost:hover { color: var(--accent); background: rgba(212, 222, 149, .1); }
 
-/* Device Toggles */
+
 .device-toggles { display: flex; gap: 4px; background: rgba(212, 222, 149, .08); border-radius: var(--r-full); padding: 4px; border: 1px solid var(--border); }
 .device-btn {
 	width: 34px; height: 34px; border-radius: var(--r-full); display: flex; align-items: center;
@@ -34,7 +32,7 @@
 .device-btn:hover { color: var(--accent); transform: translateY(-1px); }
 .device-btn.active { background: linear-gradient(45deg, var(--accent), var(--accent-dark)); color: #04101f; box-shadow: 0 8px 16px rgba(59, 130, 246, .28); }
 
-/* Export Buttons */
+
 .toolbar-right { display: flex; gap: 8px; }
 .btn-export {
 	display: inline-flex; align-items: center; gap: 6px;
@@ -50,7 +48,7 @@
 .btn-export.accent { background: linear-gradient(45deg, var(--accent), var(--accent-dark)); color: #1e2013; border-color: transparent; }
 .btn-export.accent:hover { background: var(--accent-dark); }
 
-/* Preview Frame Wrapper */
+
 .preview-frame-wrap {
 	flex: 1; display: flex; justify-content: center; align-items: flex-start;
 	padding: 32px; position: relative; overflow: auto;
@@ -68,7 +66,7 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-overlay p { font-size: .85rem; color: var(--ink-muted); }
 
-/* The iframe */
+
 .preview-iframe {
 	background: white; border: none; border-radius: var(--r-xl);
 	box-shadow: var(--shadow-xl); transition: all var(--trans-slow);
@@ -78,3 +76,4 @@
 .preview-iframe.desktop { width: min(1200px, 100%); height: calc(100vh - 40px); }
 .preview-iframe.tablet { width: 768px; height: 860px; }
 .preview-iframe.mobile { width: 375px; height: 720px; }
+

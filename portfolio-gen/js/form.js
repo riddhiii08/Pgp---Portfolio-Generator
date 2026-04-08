@@ -1,14 +1,6 @@
-/* ═══════════════════════════════════════════════
-   FORM.JS — Multi-Step Form Manager
-   
-   Handles: section navigation, field binding,
-   skill tags, dynamic project/education cards,
-   validation, and data syncing to State.
-═══════════════════════════════════════════════ */
+﻿
 
 const FormManager = (() => {
-
-  // ── Ordered section list ──
   const SECTIONS = ['personal', 'skills', 'projects', 'education', 'contact'];
   const SECTION_LABELS = {
     personal: 'Personal Info',
@@ -18,15 +10,11 @@ const FormManager = (() => {
     contact: 'Contact & Social'
   };
   let currentSection = 0;
-
-  // ── Skill input suggestions ──
   const SKILL_SUGGESTIONS = [
     'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Node.js',
     'Python', 'Django', 'FastAPI', 'SQL', 'PostgreSQL', 'MongoDB',
     'Docker', 'Kubernetes', 'AWS', 'Git', 'Figma', 'CSS', 'GraphQL'
   ];
-
-  // ── Initialize form ──
   function init() {
     bindPersonalFields();
     bindContactFields();
@@ -39,8 +27,6 @@ const FormManager = (() => {
     bindAvatarPreview();
     bindBioCounter();
   }
-
-  // ── Bind plain input fields to State ──
   function bindPersonalFields() {
     const d = State.data();
     ['name', 'title', 'bio', 'avatar'].forEach(key => {
@@ -66,8 +52,6 @@ const FormManager = (() => {
       });
     });
   }
-
-  // ── Avatar preview ──
   function bindAvatarPreview() {
     const input = document.getElementById('f-avatar');
     const preview = document.getElementById('avatar-preview');
@@ -85,8 +69,6 @@ const FormManager = (() => {
     updatePreview(input.value);
     input.addEventListener('input', () => updatePreview(input.value));
   }
-
-  // ── Bio character counter ──
   function bindBioCounter() {
     const bio = document.getElementById('f-bio');
     const counter = document.getElementById('bio-count');
@@ -95,14 +77,10 @@ const FormManager = (() => {
     bio.addEventListener('input', update);
     update();
   }
-
-  // ── Skills Tag Input ──
   function initSkillsInput() {
     const input = document.getElementById('skill-input');
     const container = document.getElementById('skills-tags');
     if (!input || !container) return;
-
-    // Load existing skills
     renderSkillTags();
 
     input.addEventListener('keydown', (e) => {
@@ -112,7 +90,6 @@ const FormManager = (() => {
         if (val) addSkill(val);
         input.value = '';
       }
-      // Backspace to remove last tag
       if (e.key === 'Backspace' && !input.value) {
         const skills = State.get('skills');
         if (skills.length) removeSkill(skills.length - 1);
@@ -141,14 +118,12 @@ const FormManager = (() => {
     const container = document.getElementById('skills-tags');
     if (!container) return;
     const skills = State.get('skills');
-    // Remove existing tags (keep input)
     container.querySelectorAll('.skill-tag').forEach(t => t.remove());
-    // Insert tags before input
     const input = document.getElementById('skill-input');
     skills.forEach((s, i) => {
       const tag = document.createElement('div');
       tag.className = 'skill-tag';
-      tag.innerHTML = `<span>${s}</span><button onclick="FormManager.removeSkillByIndex(${i})" title="Remove">×</button>`;
+      tag.innerHTML = `<span>${s}</span><button onclick="FormManager.removeSkillByIndex(${i})" title="Remove">Ã—</button>`;
       container.insertBefore(tag, input);
     });
   }
@@ -165,13 +140,10 @@ const FormManager = (() => {
 
   function addSkillFromSuggestion(name) {
     addSkill(name);
-    // Dim the suggestion
     document.querySelectorAll('.sug-tag').forEach(el => {
       if (el.textContent === name) el.style.opacity = '.35';
     });
   }
-
-  // ── Projects ──
   let projectCounter = 0;
 
   function loadProjectsFromState() {
@@ -182,7 +154,6 @@ const FormManager = (() => {
   function addProject(data = null) {
     const id = data?.id || `proj_${Date.now()}_${projectCounter++}`;
     if (!data) {
-      // New project — push to state
       const projects = [...State.get('projects'), { id, title: '', description: '', tech: '', link: '' }];
       State.set('projects', projects);
       data = { id, title: '', description: '', tech: '', link: '' };
@@ -196,7 +167,7 @@ const FormManager = (() => {
     card.innerHTML = `
       <div class="card-header">
         <h4>Project ${State.get('projects').length}</h4>
-        <button class="card-remove" onclick="FormManager.removeProject('${id}')" title="Remove">✕</button>
+        <button class="card-remove" onclick="FormManager.removeProject('${id}')" title="Remove">âœ•</button>
       </div>
       <div class="form-grid">
         <div class="field-group full">
@@ -217,8 +188,6 @@ const FormManager = (() => {
         </div>
       </div>`;
     container.appendChild(card);
-
-    // Bind inputs
     card.querySelectorAll('[data-proj]').forEach(el => {
       el.addEventListener('input', () => {
         const field = el.getAttribute('data-field');
@@ -244,8 +213,6 @@ const FormManager = (() => {
     if (card) { card.style.opacity = '0'; card.style.transform = 'scale(.97)'; card.style.transition = 'all .2s'; setTimeout(() => card.remove(), 200); }
     updateSectionCheck('projects');
   }
-
-  // ── Education ──
   let eduCounter = 0;
 
   function loadEducationFromState() {
@@ -268,7 +235,7 @@ const FormManager = (() => {
     card.innerHTML = `
       <div class="card-header">
         <h4>Education / Certification</h4>
-        <button class="card-remove" onclick="FormManager.removeEducation('${id}')" title="Remove">✕</button>
+        <button class="card-remove" onclick="FormManager.removeEducation('${id}')" title="Remove">âœ•</button>
       </div>
       <div class="form-grid">
         <div class="field-group full">
@@ -318,17 +285,11 @@ const FormManager = (() => {
     const card = document.getElementById(`edu-card-${id}`);
     if (card) { card.style.opacity = '0'; card.style.transition = 'all .2s'; setTimeout(() => card.remove(), 200); }
   }
-
-  // ── Section Navigation ──
   function goToSection(idx) {
     const sections = SECTIONS;
     if (idx < 0 || idx >= sections.length) return;
-
-    // Deactivate all
     document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.snav-item').forEach(s => s.classList.remove('active'));
-
-    // Activate target
     const sectionId = `section-${sections[idx]}`;
     const section = document.getElementById(sectionId);
     if (section) section.classList.add('active');
@@ -345,7 +306,6 @@ const FormManager = (() => {
     if (currentSection < SECTIONS.length - 1) {
       goToSection(currentSection + 1);
     } else {
-      // Last section — go to templates
       App.goTo('templates');
     }
   }
@@ -364,7 +324,7 @@ const FormManager = (() => {
     if (label) label.textContent = SECTION_LABELS[SECTIONS[currentSection]];
     if (count) count.textContent = `${currentSection + 1} / ${SECTIONS.length}`;
     if (nextBtn) {
-      nextBtn.textContent = currentSection === SECTIONS.length - 1 ? 'Choose Template →' : 'Next →';
+      nextBtn.textContent = currentSection === SECTIONS.length - 1 ? 'Choose Template â†’' : 'Next â†’';
     }
   }
 
@@ -373,8 +333,6 @@ const FormManager = (() => {
       btn.addEventListener('click', () => goToSection(i));
     });
   }
-
-  // ── Validation ──
   function validatePersonal() {
     const name = document.getElementById('f-name');
     const title = document.getElementById('f-title');
@@ -391,8 +349,6 @@ const FormManager = (() => {
     if (!valid) App.toast('Please fill in your Name and Title', 'error');
     return valid;
   }
-
-  // ── Section completion check ──
   function updateSectionCheck(section) {
     const d = State.data();
     let complete = false;
@@ -406,13 +362,9 @@ const FormManager = (() => {
     const check = document.getElementById(`check-${section}`);
     if (check) check.classList.toggle('visible', complete);
   }
-
-  // ── HTML escape (local helper) ──
   function esc(str) {
     return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
-
-  // ── Restore section checks from loaded state ──
   function restoreChecks() {
     ['personal','skills','projects','education','contact'].forEach(updateSectionCheck);
   }

@@ -1,9 +1,6 @@
-/* ═══════════════════════════════════════════════
-   PORTFOLIOFORGE — MAIN CSS
-   Base styles, CSS variables, shared components
-═══════════════════════════════════════════════ */
+﻿
 
-/* ── CSS Custom Properties ── */
+
 :root {
   --ff-display: 'Syne', sans-serif;
   --ff-body: 'DM Sans', sans-serif;
@@ -56,7 +53,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 input, textarea, select { font-family: inherit; font-size: 1rem; outline: none; border: none; background: none; }
 textarea { resize: vertical; }
 
-/* ── Screen System ── */
+
 .screen { min-height: 100vh; display: none; opacity: 0; transition: opacity var(--trans-base); }
 .screen.active { display: block; opacity: 1; }
 .screen.entering { animation: screenIn 350ms cubic-bezier(.4,0,.2,1) forwards; }
@@ -65,7 +62,7 @@ textarea { resize: vertical; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Buttons ── */
+
 .btn-primary {
   display: inline-flex; align-items: center; gap: var(--sp-2);
   padding: 12px 24px;
@@ -108,7 +105,7 @@ textarea { resize: vertical; }
 .btn-ghost:hover { color: var(--accent); background: rgba(212, 222, 149, .08); }
 .btn-ghost:active { transform: translateY(1px) scale(.99) translateZ(-2px); }
 
-/* ── Step Header ── */
+
 .step-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--sp-4) var(--sp-8); border-bottom: 1px solid var(--border);
@@ -124,7 +121,7 @@ textarea { resize: vertical; }
 }
 .step-back:hover { color: var(--accent); background: rgba(212, 222, 149, .1); }
 
-/* ── Toast ── */
+
 .toast {
   position: fixed; bottom: 32px; left: 50%;
   transform: translateX(-50%) translateY(80px);
@@ -136,11 +133,11 @@ textarea { resize: vertical; }
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* ── Logo ── */
+
 .logo { display: flex; align-items: center; gap: 8px; font-family: var(--ff-display); font-weight: 700; font-size: 1.1rem; }
 .logo-mark { color: var(--accent); font-size: 1.4rem; }
 
-/* ── Scrollbar ── */
+
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 9999px; }
@@ -148,7 +145,7 @@ textarea { resize: vertical; }
 
 .req { color: var(--accent); }
 
-/* ── Toggle Switch ── */
+
 .toggle-row {
   display: flex; align-items: center; justify-content: space-between;
   padding: 12px 0; border-bottom: 1px solid var(--border);
@@ -168,7 +165,7 @@ textarea { resize: vertical; }
 .toggle-switch input:checked + .toggle-track { background: var(--accent); }
 .toggle-switch input:checked + .toggle-track::after { transform: translateX(18px); }
 
-/* ── Reusable UI Reveal ── */
+
 .ui-reveal {
   opacity: 0;
   transform: translateY(12px);

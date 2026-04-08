@@ -1,14 +1,6 @@
-/* ═══════════════════════════════════════════════
-   CUSTOMIZE.JS — Template Selection + Style Picker
-   
-   Manages the template grid (screen 3) and
-   the customization panel (screen 4) with
-   live mini-preview updates.
-═══════════════════════════════════════════════ */
+﻿
 
 const Customizer = (() => {
-
-  // ── Color Themes ──
   const COLOR_THEMES = [
     { name: 'Violet',   accent: '#5b4cf5' },
     { name: 'Ocean',    accent: '#0ea5e9' },
@@ -21,8 +13,6 @@ const Customizer = (() => {
     { name: 'Slate',    accent: '#475569' },
     { name: 'Midnight', accent: '#1e1b4b' }
   ];
-
-  // ── Font Options ──
   const FONTS = [
     { name: 'DM Sans',    sample: 'Clean & modern' },
     { name: 'Inter',      sample: 'The web standard' },
@@ -31,12 +21,10 @@ const Customizer = (() => {
     { name: 'Montserrat', sample: 'Geometric & bold' },
     { name: 'Roboto',     sample: 'Material classic' }
   ];
-
-  // ── Layout Options ──
   const LAYOUTS = [
-    { id: 'single',  label: 'Single', icon: '▬' },
-    { id: 'two-col', label: 'Two Col', icon: '▐▌' },
-    { id: 'grid',    label: 'Grid',   icon: '⊞' }
+    { id: 'single',  label: 'Single', icon: 'â–¬' },
+    { id: 'two-col', label: 'Two Col', icon: 'â–â–Œ' },
+    { id: 'grid',    label: 'Grid',   icon: 'âŠž' }
   ];
 
   function renderTemplateThumb(t) {
@@ -217,8 +205,6 @@ const Customizer = (() => {
           </div>`;
     }
   }
-
-  // ── Template Grid ──
   function initTemplateGrid() {
     const grid = document.getElementById('templates-grid');
     if (!grid) return;
@@ -237,7 +223,7 @@ const Customizer = (() => {
             ${renderTemplateThumb(t)}
           </div>
           <span class="template-badge badge-${t.category}">${t.category}</span>
-          <div class="selected-checkmark">✓</div>
+          <div class="selected-checkmark">âœ“</div>
         </div>
         <div class="template-info">
           <h3>${t.name}</h3>
@@ -246,8 +232,6 @@ const Customizer = (() => {
         </div>
       </div>
     `).join('');
-
-    // Filter buttons
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -269,8 +253,6 @@ const Customizer = (() => {
     });
     App.toast(`Template "${TEMPLATES.find(t=>t.id===id)?.name}" selected`);
   }
-
-  // ── Customization Panel ──
   function initCustomizePanel() {
     renderColorSwatches();
     renderFontOptions();
@@ -302,7 +284,7 @@ const Customizer = (() => {
           <div class="font-name">${f.name}</div>
           <div class="font-sample">${f.sample}</div>
         </div>
-        <span class="font-check">✓</span>
+        <span class="font-check">âœ“</span>
       </div>
     `).join('');
   }
@@ -337,8 +319,6 @@ const Customizer = (() => {
       dark.addEventListener('change', () => { State.set('theme.darkMode', dark.checked); schedulePreview(); });
     }
   }
-
-  // ── Setters ──
   function setAccent(color) {
     State.set('theme.accent', color);
     document.querySelectorAll('.color-swatch').forEach(el => {
@@ -366,8 +346,6 @@ const Customizer = (() => {
     renderLayoutOptions();
     schedulePreview(0);
   }
-
-  // ── Mini Preview ──
   let previewTimeout = null;
   function schedulePreview(delay = 300) {
     clearTimeout(previewTimeout);

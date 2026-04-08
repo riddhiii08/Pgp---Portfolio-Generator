@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════════════
-   MULTI-STEP FORM STYLES
-═══════════════════════════════════════════════ */
+﻿
 
 #screen-form {
   display: none; flex-direction: column; min-height: 100vh;
@@ -11,7 +9,7 @@
 }
 #screen-form.active { display: flex; }
 
-/* ── Progress Bar ── */
+
 .progress-bar-wrap {
   background: rgba(9, 14, 28, 0.68); border-bottom: 1px solid var(--border);
   padding: 16px 32px; position: sticky; top: 0; z-index: 100;
@@ -36,12 +34,12 @@
 .prog-step.done .prog-num { background: var(--success); border-color: var(--success); color: white; }
 .prog-line { flex: 1; height: 1px; background: var(--border); margin: 0 12px; min-width: 40px; }
 
-/* ── Form Layout ── */
+
 .form-layout {
   display: grid; grid-template-columns: 260px 1fr; flex: 1; min-height: 0;
 }
 
-/* ── Sidebar ── */
+
 .form-sidebar {
   border-right: 1px solid var(--border); background: rgba(10, 16, 32, 0.55);
   display: flex; flex-direction: column; position: sticky; top: 61px;
@@ -81,13 +79,13 @@
 }
 .save-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
 
-/* ── Form Content ── */
+
 .form-content {
   display: flex; flex-direction: column; min-height: calc(100vh - 61px);
   overflow-y: auto;
 }
 
-/* ── Form Sections ── */
+
 .form-section {
   display: none; flex: 1; padding: var(--sp-10) var(--sp-12);
   max-width: 760px; animation: fadeUp 300ms ease forwards;
@@ -119,7 +117,7 @@
   margin-bottom: 14px;
 }
 
-/* ── Form Grid ── */
+
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); }
 .field-group { display: flex; flex-direction: column; gap: 6px; }
 .field-group.full { grid-column: 1 / -1; }
@@ -142,7 +140,7 @@
 .field-group input.error { border-color: var(--danger); }
 .char-count { font-size: .75rem; color: var(--ink-faint); text-align: right; margin-top: 4px; }
 
-/* ── Avatar Preview ── */
+
 .image-input-wrap { display: flex; gap: 12px; align-items: center; }
 .image-input-wrap input { flex: 1; }
 .avatar-preview {
@@ -152,7 +150,7 @@
 }
 .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ── Skills Input ── */
+
 .skills-input-wrap {
   border: 1.5px solid var(--border); border-radius: var(--r-md);
   padding: 12px; min-height: 100px; display: flex; flex-wrap: wrap;
@@ -189,7 +187,7 @@
 }
 .sug-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(96, 165, 250, 0.12); transform: translateY(-1px); }
 
-/* ── Dynamic Cards (Projects / Education) ── */
+
 .dynamic-card {
   border: 1.5px solid var(--border); border-radius: var(--r-lg);
   padding: 20px; margin-bottom: 16px; background: rgba(15, 25, 42, 0.6);
@@ -227,7 +225,7 @@
 .btn-add-item:hover span { transform: rotate(90deg); transition: transform var(--trans-base); }
 .btn-add-item span { font-size: 1.2rem; }
 
-/* ── Form Footer ── */
+
 .form-footer {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 48px; border-top: 1px solid var(--border);

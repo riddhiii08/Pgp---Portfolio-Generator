@@ -1,18 +1,9 @@
-/* ═══════════════════════════════════════════════
-   STATE.JS — Global App State & localStorage Sync
-   
-   Single source of truth for all app data.
-   Every mutation calls State.save() to persist.
-═══════════════════════════════════════════════ */
+﻿
 
 const State = (() => {
   const STORAGE_KEY = 'portfolioforge_v1';
-
-  // ── Default State Shape ──
   const DEFAULT = {
     currentScreen: 'landing',
-
-    // Form data
     personal: {
       name: '', title: '', bio: '', avatar: ''
     },
@@ -23,8 +14,6 @@ const State = (() => {
       email: '', phone: '', location: '',
       github: '', linkedin: '', website: '', twitter: ''
     },
-
-    // Template & customization
     selectedTemplate: 'minimal-clean',
     theme: {
       accent: '#5b4cf5',
@@ -35,13 +24,10 @@ const State = (() => {
       darkMode: false
     }
   };
-
-  // ── Load from localStorage or use defaults ──
   let data = (() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        // Deep merge stored with defaults (handles new fields gracefully)
         const parsed = JSON.parse(stored);
         return deepMerge(JSON.parse(JSON.stringify(DEFAULT)), parsed);
       }
@@ -59,12 +45,9 @@ const State = (() => {
     }
     return target;
   }
-
-  // ── Save to localStorage ──
   function save() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      // Update save indicator
       const el = document.getElementById('save-status');
       if (el) {
         el.textContent = 'Saved just now';
@@ -72,14 +55,10 @@ const State = (() => {
       }
     } catch (e) { console.warn('State save error:', e); }
   }
-
-  // ── Reset all data ──
   function reset() {
     data = JSON.parse(JSON.stringify(DEFAULT));
     save();
   }
-
-  // ── Getters & Setters ──
   function get(path) {
     if (!path) return data;
     return path.split('.').reduce((obj, key) => obj?.[key], data);
@@ -95,7 +74,5 @@ const State = (() => {
     obj[keys[keys.length - 1]] = value;
     save();
   }
-
-  // ── Expose public API ──
   return { get, set, save, reset, data: () => data };
 })();
