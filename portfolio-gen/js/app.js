@@ -28,6 +28,7 @@ const App = (() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function goToForm() { goTo('form'); }
+  function goToTemplates() { goTo('templates'); } // For buttons that specifically say "Choose Template"
   function onEnterTemplates() {
     Customizer.initTemplateGrid();
     initUiRevealAnimations();
@@ -152,5 +153,5 @@ const App = (() => {
   }
   document.addEventListener('DOMContentLoaded', init);
 
-  return { goTo, goToForm, toast, renderFullPreview };
+  return { goTo, goToForm, goToTemplates, toast, renderFullPreview };
 })();

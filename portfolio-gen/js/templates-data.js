@@ -1,6 +1,6 @@
 ﻿
 
-const templates = [
+const TEMPLATES = [
   {
     id: "temp1",
     name: "Template 1",
