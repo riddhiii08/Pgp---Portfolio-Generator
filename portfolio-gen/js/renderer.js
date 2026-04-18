@@ -53,6 +53,13 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       'Montserrat': "'Montserrat', 'Inter', sans-serif",
       'Roboto': "'Roboto', 'Inter', sans-serif"
     };
+    //new functn added for temp1 testing //
+    function rendertemp1(d) {
+  return `
+    <h1>${d.personal.name}</h1>
+    <p>${d.personal.title}</p>
+  `;
+}
 
     const safeSkills = Array.isArray(skills) ? skills.map((s) => String(s || '').trim()).filter(Boolean) : [];
     const safeProjects = Array.isArray(projects) ? projects : [];
@@ -2184,6 +2191,7 @@ ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
       case 'glassmorphic':  return renderModernPortfolio(d, 'theme-creative', 'glassmorphic');
       case 'editorial':     return renderModernPortfolio(d, 'theme-creative', 'editorial');
       case 'matrix-grid':   return renderModernPortfolio(d, 'theme-grid', 'matrix-grid');
+      case 'temp1':         return renderTemp1(d);
       default:              return renderModernPortfolio(d, 'theme-minimal', 'minimal-clean');
     }
   }
