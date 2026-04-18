@@ -1,0 +1,678 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfolioForge | Portfolio Generator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="stylesheet" href="css/form.css" />
+  <link rel="stylesheet" href="css/templates.css" />
+  <link rel="stylesheet" href="css/customize.css" />
+  <link rel="stylesheet" href="css/preview.css" />
+</head>
+<body>
+  <section id="screen-landing" class="screen">
+    <div id="cursor" class="cursor-dot"></div>
+    <div id="cursor-ring" class="cursor-ring"></div>
+
+    <nav id="navbar">
+      <div class="logo">PortEdge</div>
+      <div class="nav-links">
+        <a href="#features" class="link">Features</a>
+        <a href="#stats" class="link">Community</a>
+        <a href="#" class="login-cta" onclick="App.goToForm(); return false;">Login</a>
+        <a href="#" class="nav-cta" onclick="App.goToForm(); return false;">Sign Up</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+      <canvas id="particles"></canvas>
+
+      <div class="hero-content reveal active">
+        <!-- <div class="pill">v2.0 is live</div> -->
+        <h1>Create Beyond Limits</h1>
+        <p>The ultimate personal portfolio builder. Recreate a stunning, fully responsive portfolio website in literally one click based firmly on your configured inputs.</p>
+        <div class="ctas">
+          <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Get Started </a>
+          <a href="#features" class="btn btn-secondary">Explore Engine</a>
+        </div>
+      </div>
+
+      <div class="hero-3d">
+        <div class="icosahedron">
+          <div class="icosa-face" style="transform: rotateY(0deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(72deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(144deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(216deg) translateZ(50px) rotateX(20deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(288deg) translateZ(50px) rotateX(20deg);"></div>
+
+          <div class="icosa-face" style="transform: rotateY(36deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(108deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(180deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(252deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+          <div class="icosa-face" style="transform: rotateY(324deg) translateZ(50px) rotateX(-20deg) rotateZ(180deg);"></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="features">
+      <div class="section-header reveal">
+        <p>THE ARSENAL</p>
+        <h2>Unfair Advantages</h2>
+      </div>
+      <div class="features-grid">
+        <div class="f-card reveal">
+          <i>[Design]</i>
+          <h3>Instant Styling</h3>
+          <p>Switch between modern, minimal, and creative templates without losing your data. Pick a layout that works best for your profession.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>[Smart]</i>
+          <h3>Smart Organization</h3>
+          <p>Dynamically add, remove, and sort your projects, experiences, and skills inside our structured input mechanism.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>[Fast]</i>
+          <h3>Lightning Fast</h3>
+          <p>Generate a standardized, heavily optimized HTML/CSS payload that you can host absolutely anywhere without heavy dependencies.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>[Fluid]</i>
+          <h3>Responsive DNA</h3>
+          <p>Every generated template is strictly built utilizing standard CSS Flexbox and Grid. Looks flawless from 4k monitors to tiny mobile screens.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>[Export]</i>
+          <h3>Instant Export</h3>
+          <p>Download the generated HTML instantaneously, or fetch the PDF version of your accomplishments with just a click.</p>
+        </div>
+        <div class="f-card reveal">
+          <i>[Save]</i>
+          <h3>Auto-Save</h3>
+          <p>Your work is safely cached as you type. Never lose a keystroke even if you accidentally close the tab during configuration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h4 data-target="50">0</h4>
+          <p>K+ Creators</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="98" data-suffix="%">0</h4>
+          <p>Satisfaction</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="1" data-suffix="ms">0</h4>
+          <p>Render Time</p>
+        </div>
+        <div class="stat-item reveal">
+          <h4 data-target="180" data-suffix="+">0</h4>
+          <p>Countries</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="rings"></div>
+      <div class="cta-content reveal">
+        <h2>Ready to Build?</h2>
+        <p>Join the elite tier of professionals owning their digital presence with stunning portfolios.</p>
+        <a href="#" class="btn btn-primary" onclick="App.goToForm(); return false;">Sign Up Now</a>
+        <span class="fine-print">No credit card required. Pure open web tech.</span>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <div class="logo" style="margin-bottom: 20px; font-size: 1.2rem;">PortEdge</div>
+        <p>&copy; 2026 PortEdge Studio.<br />All systems operational.</p>
+      </div>
+      <div>
+        <a href="#features">Engine Architecture</a>
+        <a href="#features">Deployment Guide</a>
+        <a href="#stats">Changelog</a>
+      </div>
+      <div>
+        <a href="#stats">Twitter / X</a>
+        <a href="#features">GitHub</a>
+        <a href="#stats">Discord Community</a>
+      </div>
+    </footer>
+  </section>
+
+  <section id="screen-form" class="screen">
+    <div class="progress-bar-wrap">
+      <div class="progress-steps">
+        <div class="prog-step" data-step="1"><span class="prog-num">1</span><span>Details</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step" data-step="2"><span class="prog-num">2</span><span>Template</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step" data-step="3"><span class="prog-num">3</span><span>Customize</span></div>
+      </div>
+    </div>
+
+    <div class="form-layout">
+      <aside class="form-sidebar">
+        <div class="sidebar-logo"><span class="logo-mark">[]</span> Build Profile</div>
+        <div class="sidebar-nav">
+          <button class="snav-item" type="button" data-section="personal">
+            <span class="snav-icon">1</span><span>Personal Info</span><span id="check-personal" class="snav-check">&#10003;</span>
+          </button>
+          <button class="snav-item" type="button" data-section="skills">
+            <span class="snav-icon">2</span><span>Skills</span><span id="check-skills" class="snav-check">&#10003;</span>
+          </button>
+          <button class="snav-item" type="button" data-section="projects">
+            <span class="snav-icon">3</span><span>Projects</span><span id="check-projects" class="snav-check">&#10003;</span>
+          </button>
+          <button class="snav-item" type="button" data-section="education">
+            <span class="snav-icon">4</span><span>Education</span><span id="check-education" class="snav-check">&#10003;</span>
+          </button>
+          <button class="snav-item" type="button" data-section="contact">
+            <span class="snav-icon">5</span><span>Contact</span><span id="check-contact" class="snav-check">&#10003;</span>
+          </button>
+        </div>
+        <div class="sidebar-footer">
+          <div class="auto-save-indicator">
+            <span class="save-dot"></span>
+            <span id="save-status">Auto-saved</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="form-content">
+        <section id="section-personal" class="form-section">
+          <div class="section-header">
+            <h2>Personal Information</h2>
+            <p>Share who you are and what you do.</p>
+          </div>
+          <div class="form-grid">
+            <div class="field-group full">
+              <label for="f-name">Full Name</label>
+              <input id="f-name" type="text" placeholder="Alex Johnson" />
+            </div>
+            <div class="field-group full">
+              <label for="f-title">Professional Title</label>
+              <input id="f-title" type="text" placeholder="Frontend Developer" />
+            </div>
+            <div class="field-group full">
+              <label for="f-bio">Bio</label>
+              <textarea id="f-bio" rows="5" placeholder="Write a short intro..."></textarea>
+              <div class="char-count"><span id="bio-count">0</span> characters</div>
+            </div>
+            <div class="field-group full">
+              <label for="f-avatar">Avatar URL</label>
+              <div class="image-input-wrap">
+                <input id="f-avatar" type="url" placeholder="https://example.com/photo.jpg" />
+                <div id="avatar-preview" class="avatar-preview">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-skills" class="form-section">
+          <div class="section-header">
+            <h2>Skills</h2>
+            <p>Press Enter or comma to add skill tags.</p>
+          </div>
+          <div id="skills-tags" class="skills-input-wrap">
+            <input id="skill-input" type="text" placeholder="Type a skill and press Enter" />
+          </div>
+          <div id="skill-suggestions" class="skill-suggestions"></div>
+        </section>
+
+        <section id="section-projects" class="form-section">
+          <div class="section-header">
+            <h2>Projects</h2>
+            <p>Add your best work with links and tech stack.</p>
+          </div>
+          <div id="projects-list"></div>
+          <button type="button" class="btn-add-item" onclick="FormManager.addProject()"><span>+</span> Add Project</button>
+        </section>
+
+        <section id="section-education" class="form-section">
+          <div class="section-header">
+            <h2>Education</h2>
+            <p>Add degrees, courses, or certifications.</p>
+          </div>
+          <div id="education-list"></div>
+          <button type="button" class="btn-add-item" onclick="FormManager.addEducation()"><span>+</span> Add Education</button>
+        </section>
+
+        <section id="section-contact" class="form-section">
+          <div class="section-header">
+            <h2>Contact & Social</h2>
+            <p>These links will appear on your generated portfolio.</p>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="field-group">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" type="text" placeholder="+91 9876543210" />
+            </div>
+            <div class="field-group full">
+              <label for="f-location">Location</label>
+              <input id="f-location" type="text" placeholder="Mumbai, India" />
+            </div>
+            <div class="field-group">
+              <label for="f-github">GitHub</label>
+              <input id="f-github" type="url" placeholder="https://github.com/username" />
+            </div>
+            <div class="field-group">
+              <label for="f-linkedin">LinkedIn</label>
+              <input id="f-linkedin" type="url" placeholder="https://linkedin.com/in/username" />
+            </div>
+            <div class="field-group">
+              <label for="f-website">Website</label>
+              <input id="f-website" type="url" placeholder="https://yourdomain.com" />
+            </div>
+            <div class="field-group">
+              <label for="f-twitter">Twitter/X</label>
+              <input id="f-twitter" type="url" placeholder="https://x.com/username" />
+            </div>
+          </div>
+        </section>
+
+        <div class="form-footer">
+          <button id="btn-prev-section" class="btn-outline" type="button" onclick="FormManager.prevSection()"><- Previous</button>
+          <div class="section-indicator">
+            <span id="current-section-label">Personal Info</span>
+            <span id="section-count-display" class="section-count">1 / 5</span>
+          </div>
+          <button id="btn-next-section" class="btn-primary" type="button" onclick="FormManager.nextSection()">Next -></button>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <section id="screen-templates" class="screen">
+    <header class="step-header">
+      <button class="step-back" type="button" onclick="App.goTo('form')"><- Back to Form</button>
+      <div class="step-title">
+        <h2>Select Template</h2>
+        <p>Choose your base design style</p>
+      </div>
+      <button class="btn-primary" type="button" onclick="App.goTo('customize')">Customize -></button>
+    </header>
+
+    <div class="template-filters">
+      <button class="filter-btn active" data-filter="all" type="button">All</button>
+      <button class="filter-btn" data-filter="professional" type="button">Professional</button>
+      <button class="filter-btn" data-filter="creative" type="button">Creative</button>
+      <button class="filter-btn" data-filter="tech" type="button">Tech</button>
+    </div>
+
+    <div id="templates-grid" class="templates-grid"></div>
+  </section>
+
+  <section id="screen-customize" class="screen">
+    <header class="step-header">
+      <button class="step-back" type="button" onclick="App.goTo('templates')"><- Back to Templates</button>
+      <div class="step-title">
+        <h2>Customize Theme</h2>
+        <p>Tune colors, fonts, and layout</p>
+      </div>
+      <button class="btn-primary" type="button" onclick="App.goTo('preview')">Preview -></button>
+    </header>
+
+    <div class="customize-layout">
+      <aside class="customize-panel">
+        <div class="cust-group">
+          <h3>Color Theme</h3>
+          <div id="color-swatches" class="color-swatches"></div>
+        </div>
+
+        <div class="cust-group">
+          <h3>Typography</h3>
+          <div id="font-options" class="font-options"></div>
+        </div>
+
+        <div class="cust-group">
+          <h3>Layout</h3>
+          <div id="layout-options" class="layout-options"></div>
+        </div>
+
+        <div class="cust-group">
+          <h3>Content Options</h3>
+          <div class="toggle-options">
+            <label class="toggle-row" for="opt-show-photo">
+              <span>Show Profile Photo</span>
+              <span class="toggle-switch">
+                <input id="opt-show-photo" type="checkbox" />
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row" for="opt-show-skills">
+              <span>Show Skills Section</span>
+              <span class="toggle-switch">
+                <input id="opt-show-skills" type="checkbox" />
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+            <label class="toggle-row" for="opt-dark-mode">
+              <span>Dark Mode</span>
+              <span class="toggle-switch">
+                <input id="opt-dark-mode" type="checkbox" />
+                <span class="toggle-track"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <div class="customize-preview-wrap">
+        <div class="preview-label">Live Mini Preview</div>
+        <div class="mini-preview-frame">
+          <iframe id="mini-preview-iframe" title="Mini preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-preview" class="screen">
+    <div class="preview-toolbar">
+      <div class="toolbar-left">
+        <div class="logo"><span class="logo-mark">[]</span> Portfolio Preview</div>
+        <button class="btn-ghost" type="button" onclick="App.goTo('customize')"><- Back</button>
+
+        <div class="device-toggles">
+          <button class="device-btn active" type="button" data-device="desktop" title="Desktop">D</button>
+          <button class="device-btn" type="button" data-device="tablet" title="Tablet">T</button>
+          <button class="device-btn" type="button" data-device="mobile" title="Mobile">M</button>
+        </div>
+      </div>
+
+      <div class="toolbar-right">
+        <button class="btn-export" type="button" onclick="Exporter.downloadHTML()">Export HTML</button>
+        <button class="btn-export" type="button" onclick="Exporter.downloadPDF()">Export PDF</button>
+        <button class="btn-export accent" type="button" onclick="Exporter.generateCV()">Generate CV</button>
+      </div>
+    </div>
+
+    <div class="preview-frame-wrap">
+      <div id="preview-loading" class="loading-overlay hidden">
+        <div class="loader-ring"></div>
+        <p>Rendering your portfolio...</p>
+      </div>
+      <iframe id="preview-iframe" class="preview-iframe desktop" title="Portfolio preview"></iframe>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function initLandingEffects() {
+      const landing = document.getElementById('screen-landing');
+      if (!landing) return;
+
+      const dot = document.getElementById('cursor');
+      const ring = document.getElementById('cursor-ring');
+      const nav = document.getElementById('navbar');
+      const canvas = document.getElementById('particles');
+      const hero = landing.querySelector('.hero');
+      const heroContent = landing.querySelector('.hero-content');
+      const heroModel = landing.querySelector('.hero-3d');
+      const reveals = landing.querySelectorAll('.reveal');
+      const counters = landing.querySelectorAll('.stat-item h4');
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let parallaxX = 0;
+      let parallaxY = 0;
+      let parallaxQueued = false;
+
+      const applyHeroParallax = () => {
+        parallaxQueued = false;
+        if (!hero || window.matchMedia('(pointer: coarse)').matches) return;
+
+        const x = (parallaxX / window.innerWidth - 0.5);
+        const y = (parallaxY / window.innerHeight - 0.5);
+
+        if (heroContent) {
+          heroContent.style.transform = `translate3d(${(x * 16).toFixed(2)}px, ${(y * 12).toFixed(2)}px, 0)`;
+        }
+        if (heroModel) {
+          heroModel.style.transform = `translateY(-50%) perspective(1000px) rotateY(${(x * 7).toFixed(2)}deg) rotateX(${(-y * 5).toFixed(2)}deg)`;
+        }
+      };
+
+      if (dot && ring) {
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+
+          parallaxX = e.clientX;
+          parallaxY = e.clientY;
+          if (!parallaxQueued) {
+            parallaxQueued = true;
+            requestAnimationFrame(applyHeroParallax);
+          }
+        });
+
+        const animateCursor = () => {
+          ringX += (mouseX - ringX) * 0.15;
+          ringY += (mouseY - ringY) * 0.15;
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+          requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+
+        document.addEventListener('mousedown', () => { ring.style.transform = 'translate(-50%, -50%) scale(0.8)'; });
+        document.addEventListener('mouseup', () => { ring.style.transform = 'translate(-50%, -50%) scale(1)'; });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!nav) return;
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      });
+
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = Math.max(window.innerHeight, landing.offsetHeight);
+        }
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+          }
+          draw() {
+            ctx.fillStyle = 'rgba(162, 89, 255, 0.5)';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        function initParticles() {
+          particlesArray = [];
+          const numberOfParticles = (canvas.width * canvas.height) / 10000;
+          for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+        }
+
+        function handleParticles() {
+          for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            for (let j = i; j < particlesArray.length; j++) {
+              const dx = particlesArray[i].x - particlesArray[j].x;
+              const dy = particlesArray[i].y - particlesArray[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 100) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(186, 192, 149, ${0.1 - dist / 1000})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.stroke();
+              }
+            }
+
+            const mx = particlesArray[i].x - mouseX;
+            const my = particlesArray[i].y - mouseY;
+            const mDist = Math.sqrt(mx * mx + my * my);
+            if (mDist < 150) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(162, 89, 255, ${0.2 - mDist / 1000})`;
+              ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+              ctx.lineTo(mouseX, mouseY);
+              ctx.stroke();
+            }
+          }
+        }
+
+        function animateParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          handleParticles();
+          requestAnimationFrame(animateParticles);
+        }
+
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', () => {
+          resizeCanvas();
+          initParticles();
+        });
+      }
+
+      if (window.Premium3D && typeof window.Premium3D.bindCardTilt === 'function') {
+        window.Premium3D.bindCardTilt(landing);
+      }
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach((r) => revealObserver.observe(r));
+
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = Number(el.getAttribute('data-target') || '0');
+          const suffix = el.getAttribute('data-suffix') || '';
+          let count = 0;
+          const inc = target / 50;
+          const updateCount = () => {
+            count += inc;
+            if (count < target) {
+              el.innerText = Math.ceil(count) + suffix;
+              requestAnimationFrame(updateCount);
+            } else {
+              el.innerText = target + suffix;
+            }
+          };
+          updateCount();
+          observer.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => counterObserver.observe(c));
+    })();
+  </script>
+
+  <script>
+    (function initGlobalUiInteractions() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+      const CARD_SELECTOR = '.f-card, .template-card, .cust-group, .dynamic-card, .stat-item';
+
+      function bindCardTilt(root = document) {
+        if (prefersReducedMotion || isCoarsePointer) return;
+
+        root.querySelectorAll(CARD_SELECTOR).forEach((card) => {
+          if (card.dataset.tiltBound === '1') return;
+          card.dataset.tiltBound = '1';
+
+          let raf = 0;
+          const maxTilt = Number(card.dataset.tiltMax || 7);
+
+          const onMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width;
+            const py = (e.clientY - rect.top) / rect.height;
+
+            const ry = (px - 0.5) * maxTilt * 2;
+            const rx = (0.5 - py) * maxTilt * 1.6;
+
+            if (raf) cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              card.style.setProperty('--tilt-rx', `${rx.toFixed(2)}deg`);
+              card.style.setProperty('--tilt-ry', `${ry.toFixed(2)}deg`);
+            });
+          };
+
+          const onLeave = () => {
+            card.style.setProperty('--tilt-rx', '0deg');
+            card.style.setProperty('--tilt-ry', '0deg');
+          };
+
+          card.style.setProperty('--tilt-rx', '0deg');
+          card.style.setProperty('--tilt-ry', '0deg');
+          card.addEventListener('mousemove', onMove, { passive: true });
+          card.addEventListener('mouseleave', onLeave);
+        });
+      }
+
+      const pressables = document.querySelectorAll('.btn-primary, .btn-outline, .btn-secondary, .btn-export, .btn-add-item');
+      pressables.forEach((btn) => {
+        btn.addEventListener('mouseleave', () => btn.blur());
+      });
+
+      window.Premium3D = { bindCardTilt };
+      bindCardTilt(document);
+    })();
+  </script>
+
+  <script src="js/state.js"></script>
+  <script src="js/templates-data.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/customize.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
