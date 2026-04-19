@@ -1,34 +1,64 @@
 ﻿
 
-const TEMPLATES = [
+window.templates = [
   {
     id: "temp1",
     name: "Template 1",
+    description: "Clean modern layout",
+    category: "creative",
+    tags: ["modern", "clean"],
+    gradient: "linear-gradient(135deg, #667eea, #764ba2)",
+    textColor: "#ffffff",
     path: "../templates/temp1/index.html"
   },
   {
     id: "temp2",
     name: "Template 2",
+    description: "Professional business layout",
+    category: "professional",
+    tags: ["business"],
+    gradient: "linear-gradient(135deg, #0ea5e9, #0369a1)",
+    textColor: "#ffffff",
     path: "../templates/temp2/index.html"
   },
   {
     id: "temp3",
     name: "Template 3",
+    description: "Creative portfolio design",
+    category: "creative",
+    tags: ["design"],
+    gradient: "linear-gradient(135deg, #f97316, #ea580c)",
+    textColor: "#ffffff",
     path: "../templates/temp3/index.html"
   },
   {
     id: "temp4",
     name: "Template 4",
-    path: "../templates/temp4/index.html",
+    description: "Minimal elegant layout",
+    category: "professional",
+    tags: ["minimal"],
+    gradient: "linear-gradient(135deg, #22c55e, #15803d)",
+    textColor: "#ffffff",
+    path: "../templates/temp4/index.html"
   },
   {
     id: "temp5",
     name: "Template 5",
+    description: "Bold modern UI",
+    category: "creative",
+    tags: ["bold"],
+    gradient: "linear-gradient(135deg, #e11d48, #be123c)",
+    textColor: "#ffffff",
     path: "../templates/temp5/index.html"
   },
   {
     id: "temp6",
     name: "Template 6",
+    description: "Simple clean resume",
+    category: "professional",
+    tags: ["simple"],
+    gradient: "linear-gradient(135deg, #475569, #1e293b)",
+    textColor: "#ffffff",
     path: "../templates/temp6/index.html"
   }
 ];

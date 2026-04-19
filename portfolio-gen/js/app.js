@@ -1,6 +1,4 @@
-﻿
-
-const App = (() => {
+﻿const App = (() => {
   const SCREENS = {
     landing:   'screen-landing',
     form:      'screen-form',
@@ -11,9 +9,9 @@ const App = (() => {
   let currentScreen = 'landing';
   function goTo(screenName) {
     if (!SCREENS[screenName]) { console.warn('Unknown screen:', screenName); return; }
-    if (screenName === 'templates')  onEnterTemplates();
-    if (screenName === 'customize')  onEnterCustomize();
-    if (screenName === 'preview')    onEnterPreview();
+    if (screenName === 'templates') onEnterTemplates();
+    if (screenName === 'customize') onEnterCustomize();
+    if (screenName === 'preview')   onEnterPreview();
     const prev = document.getElementById(SCREENS[currentScreen]);
     if (prev) prev.classList.remove('active');
     currentScreen = screenName;
@@ -28,7 +26,8 @@ const App = (() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function goToForm() { goTo('form'); }
-  function goToTemplates() { goTo('templates'); } // For buttons that specifically say "Choose Template"
+  function goToTEMPLATES() { goTo('templates'); }
+  function goToTemplates()  { goTo('templates'); }
   function onEnterTemplates() {
     Customizer.initTemplateGrid();
     initUiRevealAnimations();
@@ -38,13 +37,13 @@ const App = (() => {
   function onEnterCustomize() {
     Customizer.initCustomizePanel();
     initUiRevealAnimations();
-    bindPremium3D(document.getElementById(SCREENS.customize));
+    bindPremium3D(document.getElementById(SCREENS.CUSTOMIZE));
   }
 
   function onEnterPreview() {
     renderFullPreview();
     initUiRevealAnimations();
-    bindPremium3D(document.getElementById(SCREENS.preview));
+    bindPremium3D(document.getElementById(SCREENS.PREVIEW));
   }
 
   function bindPremium3D(root = document) {
@@ -153,5 +152,5 @@ const App = (() => {
   }
   document.addEventListener('DOMContentLoaded', init);
 
-  return { goTo, goToForm, goToTemplates, toast, renderFullPreview };
+  return { goTo, goToForm, goToTEMPLATES, goToTemplates, toast, renderFullPreview };
 })();

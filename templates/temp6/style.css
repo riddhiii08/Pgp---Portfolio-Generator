@@ -82,10 +82,11 @@ img { max-width: 100%; display: block; }
 }
 
 #navbar.scrolled {
-    background: rgba(10, 10, 12, 0.85);
-    backdrop-filter: blur(15px);
+    background: rgba(10, 10, 12, 0.4); /* Much more transparent */
+    backdrop-filter: blur(40px); /* Deep blur for premium look */
+    -webkit-backdrop-filter: blur(40px);
     padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08); /* More defined edge */
 }
 
 .nav-container {
@@ -177,9 +178,9 @@ img { max-width: 100%; display: block; }
     animation: floatShape 20s infinite alternate ease-in-out;
 }
 
-.shape-1 { width: 400px; height: 400px; background: var(--accent-purple); top: 10%; left: -5%; }
-.shape-2 { width: 350px; height: 350px; background: var(--accent-pink); bottom: 10%; right: -5%; animation-delay: -5s; }
-.shape-3 { width: 300px; height: 300px; background: var(--accent-orange); top: 40%; left: 60%; animation-delay: -10s; }
+.shape-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -10%; left: -10%; opacity: 0.15; }
+.shape-2 { width: 500px; height: 500px; background: var(--accent-pink); bottom: -10%; right: -10%; animation-delay: -5s; opacity: 0.15; }
+.shape-3 { width: 400px; height: 400px; background: var(--accent-orange); top: 30%; left: 50%; transform: translateX(-50%); animation: floatShape 25s infinite alternate ease-in-out; opacity: 0.1; }
 .shape-4 { width: 250px; height: 250px; background: var(--accent-purple); bottom: 40%; left: 20%; animation-delay: -15s; }
 
 @keyframes floatShape {
@@ -205,20 +206,21 @@ img { max-width: 100%; display: block; }
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(60px, 12vw, 150px);
-    line-height: 0.85;
-    font-weight: 700;
-    letter-spacing: -6px;
     margin-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline; /* Align name parts correctly */
     gap: 0 40px;
     opacity: 0;
+    width: 100%; /* Ensure it takes full width for flex-wrap */
     animation: fadeInUp 0.8s forwards 0.5s;
 }
 
 .name-part { position: relative; }
-.name-part.accent { color: var(--accent-orange); }
+.name-part.accent { 
+    color: var(--accent-orange); 
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.4); /* Premium Glow */
+}
 
 .hero-typed {
     font-size: 24px;
@@ -340,7 +342,8 @@ section {
 
 .image-stack {
     position: relative;
-    height: 650px;
+    height: 600px; /* Standardize height for better alignment */
+    width: 100%;
 }
 
 .image-box {
@@ -606,10 +609,12 @@ section {
 
 /* ── 10. Contact Section ── */
 .contact-box {
-    background: var(--bg-soft);
+    background: rgba(18, 18, 23, 0.5); /* Glass core */
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border-radius: 40px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-info-grid {
