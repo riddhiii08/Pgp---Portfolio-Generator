@@ -38,6 +38,7 @@ const Renderer = (() => {
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <title>${esc(title || 'My Portfolio')}</title>
 ${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -2964,36 +2965,34 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Modern Startup Portfolio (Inter / Outfit)
   function renderTemp4(d) {
     const { personal, skills, projects, education, contact, theme } = d;
-    const safeSkills    = Array.isArray(skills)    ? skills    : [];
-    const safeProjects  = Array.isArray(projects)  ? projects  : [];
-    const safeEducation = Array.isArray(education) ? education : [];
-    const accent = (theme && theme.accent) ? theme.accent : '#6f42c1';
     const e = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     const norm = v => { const r=String(v||'').trim(); return r&&!/^https?:\/\//i.test(r)?'https://'+r:r; };
 
-    const skillBars = safeSkills.slice(0,6).map((s,i) => {
-      const pct = Math.max(70,95-i*4);
-      const colors = ['teal','purple','blue','teal','purple','blue'];
-      return `<div class="skill-item">
-        <div class="skill-info"><span>${e(s)}</span><span class="skill-val">${pct}%</span></div>
-        <div class="skill-bar"><div class="skill-progress ${colors[i%3]}" style="width:0%" data-width="${pct}%"></div></div>
-      </div>`;
+    const safeSkills = Array.isArray(skills) ? skills : [];
+    const safeProjects = Array.isArray(projects) ? projects : [];
+    const safeEducation = Array.isArray(education) ? education : [];
+    const accent = (theme && theme.accent) ? theme.accent : '#6f42c1';
+
+    const titleWords = JSON.stringify((personal.bio || '').split('.').map(s=>s.trim()).filter(s=>s.length>4));
+
+    const skillsHTML = safeSkills.map((s, i) => {
+      const p = Math.max(70, 95 - i*4);
+      const c = ['teal', 'purple', 'blue'][i % 3];
+      return `<div class="skill-item"><div class="skill-info"><span>${e(s)}</span><span class="skill-val">${p}%</span></div><div class="skill-bar"><div class="skill-progress ${c}" style="width: 0%" data-width="${p}%"></div></div></div>`;
     }).join('');
 
-    const projectsHTML = safeProjects.map(p => {
-      const href = norm(p.link);
-      const tag = (p.tech||'').split(',')[0].trim()||'Project';
-      return `<div class="project-card reveal">
+    const projectsHTML = safeProjects.map(p => `
+      <div class="project-card reveal">
         <div class="project-img" style="height:300px;background:linear-gradient(135deg,#f8f9fa,#e9ecef);display:flex;align-items:center;justify-content:center;font-size:3rem;color:${accent};position:relative">
-          <div class="project-tag">${e(tag)}</div>&#128187;
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="${e(p.title)}" style="width:100%;height:100%;object-fit:cover">
+          <div class="project-tag">${e((p.tech || '').split(',')[0] || 'Tech')}</div>
         </div>
         <div class="project-info">
           <h3>${e(p.title)}</h3>
           <p>${e(p.description)}</p>
-          ${href?`<a href="${e(href)}" target="_blank" class="project-link">Explore Case Study <i class="fas fa-arrow-right"></i></a>`:''}
+          ${p.link ? `<a href="${norm(p.link)}" target="_blank" class="project-link">Explore Work <i class="fas fa-arrow-right"></i></a>` : ''}
         </div>
-      </div>`;
-    }).join('');
+      </div>`).join('');
 
     const timelineHTML = safeEducation.map(edu => {
       const dates = [edu.from, edu.to?(edu.current?'Present':edu.to):''].filter(Boolean).join(' - ');
@@ -3009,13 +3008,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     }).join('');
 
     const socialHTML = [
-      contact.github   && `<a href="${e(norm(contact.github))}"   target="_blank"><i class="fab fa-github"></i></a>`,
-      contact.linkedin && `<a href="${e(norm(contact.linkedin))}" target="_blank"><i class="fab fa-linkedin-in"></i></a>`,
-      contact.twitter  && `<a href="${e(norm(contact.twitter))}"  target="_blank"><i class="fab fa-twitter"></i></a>`,
-      contact.website  && `<a href="${e(norm(contact.website))}"  target="_blank"><i class="fas fa-globe"></i></a>`,
+      contact.github   && `<a href="${norm(contact.github)}"   target="_blank"><i class="fab fa-github"></i></a>`,
+      contact.linkedin && `<a href="${norm(contact.linkedin)}" target="_blank"><i class="fab fa-linkedin-in"></i></a>`,
+      contact.twitter  && `<a href="${norm(contact.twitter)}"  target="_blank"><i class="fab fa-twitter"></i></a>`,
+      contact.website  && `<a href="${norm(contact.website)}"  target="_blank"><i class="fas fa-globe"></i></a>`,
     ].filter(Boolean).join('');
-
-    const titleWords = JSON.stringify(personal.title ? [personal.title] : ['ELEGANT_CODE','CREATIVE_UI','STARTUP_SOLUTIONS']);
 
     const css = `
       :root{--primary:${accent};--accent:#20c997;--secondary:#007bff;--bg-light:#f8f9fa;--bg-dark:#0f172a;--text-main:#1e293b;--text-muted:#64748b;--white:#fff;--gradient-1:linear-gradient(135deg,${accent} 0%,#007bff 100%);--gradient-2:linear-gradient(135deg,#20c997 0%,#007bff 100%);--shadow-soft:0 10px 30px rgba(0,0,0,.05);--shadow-bold:0 20px 40px rgba(111,66,193,.15);--border-radius:16px;--transition:all .4s cubic-bezier(.4,0,.2,1);--font-heading:'Outfit',sans-serif;--font-body:'Inter',sans-serif}
@@ -3030,7 +3027,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       h1,h2,h3,h4{font-family:var(--font-heading);color:var(--text-main);font-weight:700}
       .section-header{text-align:center;margin-bottom:80px}
       .section-title{font-size:3rem;margin-bottom:15px}
-      .section-title span,.hero-title span{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+      .section-title span,.hero-title span,.nav-logo span{background:var(--gradient-1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
       .section-header p{color:var(--text-muted);font-size:1.1rem}
       .btn{display:inline-block;padding:16px 36px;border-radius:40px;font-weight:600;font-size:1rem;cursor:pointer;border:none;transition:var(--transition)}
       .btn-primary{background:var(--gradient-1);color:#fff;box-shadow:var(--shadow-bold)}.btn-primary:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(111,66,193,.25)}
@@ -3103,21 +3100,6 @@ document.addEventListener('DOMContentLoaded',()=>{
       @media(max-width:768px){.nav-list{display:none}.hero-title{font-size:2.8rem}.projects-grid{grid-template-columns:1fr}}
     `;
 
-    const script = `
-document.addEventListener('DOMContentLoaded',()=>{
-  const header=document.getElementById('header');
-  window.addEventListener('scroll',()=>header.classList.toggle('sticky',window.scrollY>100));
-  const words=${titleWords};let wi=0,ci=0,del=false;
-  const el=document.getElementById('typing-text');
-  function type(){const w=words[wi];el.textContent=del?w.substring(0,ci-1):w.substring(0,ci+1);if(!del&&el.textContent===w){del=true;setTimeout(type,2000);return;}if(del&&el.textContent===''){del=false;wi=(wi+1)%words.length;setTimeout(type,500);return;}ci=del?ci-1:ci+1;setTimeout(type,del?50:100);}
-  if(el)type();
-  const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;entry.target.classList.add('active');if(entry.target.classList.contains('skills-grid')){entry.target.querySelectorAll('.skill-progress').forEach(b=>{b.style.width=b.getAttribute('data-width');});}});},{threshold:0.1});
-  document.querySelectorAll('.reveal,.fade-in,.skills-grid').forEach(el=>obs.observe(el));
-  setTimeout(()=>document.querySelectorAll('.hero .fade-in').forEach(el=>el.classList.add('active')),100);
-  const form=document.querySelector('.contact-form');
-  if(form){form.addEventListener('submit',ev=>{ev.preventDefault();const btn=form.querySelector('.submit-btn');const orig=btn.innerHTML;btn.innerHTML='Sending... <i class="fas fa-spinner fa-spin"></i>';btn.style.pointerEvents='none';setTimeout(()=>{btn.innerHTML='Success <i class="fas fa-check"></i>';btn.style.background='linear-gradient(135deg,#20c997 0%,#007bff 100%)';setTimeout(()=>{btn.innerHTML=orig;btn.style.background='';btn.style.pointerEvents='all';form.reset();},3000);},2000);});}
-});`;
-
     const nameFirst = (personal.name||'').split(' ')[0]||'Your';
     const nameLast  = (personal.name||'').split(' ').slice(1).join(' ')||'Name';
 
@@ -3127,8 +3109,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   <nav class="nav container">
     <a href="#" class="nav-logo">Port<span>Edge</span></a>
     <ul class="nav-list">
-      <li><a href="#home"       class="nav-link active">Home</a></li>
-      <li><a href="#about"      class="nav-link">About</a></li>
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
       ${safeSkills.length    ?`<li><a href="#skills"     class="nav-link">Skills</a></li>`:''}
       ${safeProjects.length  ?`<li><a href="#projects"   class="nav-link">Projects</a></li>`:''}
       ${safeEducation.length ?`<li><a href="#experience" class="nav-link">Experience</a></li>`:''}
@@ -3242,9 +3224,60 @@ document.addEventListener('DOMContentLoaded',()=>{
       <div class="footer-social">${socialHTML||'<a href="#"><i class="fab fa-github"></i></a>'}</div>
     </div>
   </div>
-</footer>`;
+</footer>
+<script>
+  const header=document.getElementById('header');
+  if(header) window.addEventListener('scroll',()=>header.classList.toggle('sticky',window.scrollY>100));
+  
+  const words=${titleWords};
+  const el=document.getElementById('typing-text');
+  if(el && words.length > 0){
+    let wi=0,ci=0,del=false;
+    function type(){
+      const w=words[wi];
+      el.textContent=del?w.substring(0,ci-1):w.substring(0,ci+1);
+      if(!del&&el.textContent===w){del=true;setTimeout(type,2000);return;}
+      if(del&&el.textContent===''){del=false;wi=(wi+1)%words.length;setTimeout(type,500);return;}
+      ci=del?ci-1:ci+1;setTimeout(type,del?50:100);
+    }
+    type();
+  }
 
-    return buildDocument(body, css, personal.name);
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      entry.target.classList.add('active');
+      if(entry.target.classList.contains('skills-grid')){
+        entry.target.querySelectorAll('.skill-progress').forEach(b=>{b.style.width=b.getAttribute('data-width');});
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal,.fade-in,.skills-grid').forEach(el=>obs.observe(el));
+  setTimeout(()=>document.querySelectorAll('.hero .fade-in').forEach(el=>el.classList.add('active')),100);
+
+  const form=document.querySelector('.contact-form');
+  if(form){
+    form.addEventListener('submit',ev=>{
+      ev.preventDefault();
+      const btn=form.querySelector('.submit-btn');
+      const orig=btn.innerHTML;
+      btn.innerHTML='Sending... <i class="fas fa-spinner fa-spin"></i>';
+      btn.style.pointerEvents='none';
+      setTimeout(()=>{
+        btn.innerHTML='Success <i class="fas fa-check"></i>';
+        btn.style.background='linear-gradient(135deg,#20c997 0%,#007bff 100%)';
+        setTimeout(()=>{
+          btn.innerHTML=orig;
+          btn.style.background='';
+          btn.style.pointerEvents='all';
+          form.reset();
+        },3000);
+      },2000);
+    });
+  }
+</script>`;
+
+    return buildDocument(body, css, personal.name, 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
   }
 
   // ─── renderTemp5 ─────────────────────────────────────────────────────────────
