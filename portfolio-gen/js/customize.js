@@ -1,6 +1,4 @@
-﻿
-
-const Customizer = (() => {
+﻿const Customizer = (() => {
   const COLOR_THEMES = [
     { name: 'Violet',   accent: '#5b4cf5' },
     { name: 'Ocean',    accent: '#0ea5e9' },
@@ -209,36 +207,57 @@ const Customizer = (() => {
     const grid = document.getElementById('templates-grid');
     if (!grid) return;
 
-    const availableIds = new Set(TEMPLATES.map(t => t.id));
+    const availableIds = new Set(templates.map(t => t.id));
     const selected = State.get('selectedTemplate');
     if (!availableIds.has(selected)) {
-      State.set('selectedTemplate', 'minimal-clean');
+      State.set('selectedTemplate', templates[0].id);
     }
 
-    grid.innerHTML = TEMPLATES.map(t => `
+    // Remove old listener by replacing the node with a clone
+    const newGrid = grid.cloneNode(false);
+    grid.parentNode.replaceChild(newGrid, grid);
+
+    // Build cards — NO inline onclick anywhere
+    newGrid.innerHTML = templates.map(t => `
       <div class="template-card ${State.get('selectedTemplate') === t.id ? 'selected' : ''}"
-           data-template="${t.id}" onclick="Customizer.selectTemplate('${t.id}')">
+           data-template="${t.id}">
         <div class="template-thumb">
-          <div class="template-thumb-inner" style="background:${t.gradient}">
+          <div class="template-thumb-inner" style="background:${t.gradient || '#333'}">
             ${renderTemplateThumb(t)}
           </div>
-          <span class="template-badge badge-${t.category}">${t.category}</span>
-          <div class="selected-checkmark">OK</div>
+          <div class="template-hover-overlay">
+            <button class="template-select-btn" type="button" data-template="${t.id}">Select Template</button>
+          </div>
+          <span class="template-badge badge-${t.category || 'default'}">${t.category || 'default'}</span>
+          <div class="selected-checkmark">✓</div>
         </div>
         <div class="template-info">
           <h3>${t.name}</h3>
-          <p>${t.description}</p>
-          <div class="template-tags">${t.tags.map(tag => `<span class="t-tag">${tag}</span>`).join('')}</div>
+          <p>${t.description || ''}</p>
+          <div class="template-tags">
+            ${(t.tags || []).map(tag => `<span class="t-tag">${tag}</span>`).join('')}
+          </div>
         </div>
       </div>
     `).join('');
+
+    // Single delegated listener — reads data-template from the closest card
+    newGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.template-card');
+      if (!card) return;
+      selectTemplate(card.dataset.template);
+    });
+
+    // Filter buttons — also clone to remove old listeners
     document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      newBtn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        grid.querySelectorAll('.template-card').forEach(card => {
-          const tpl = TEMPLATES.find(t => t.id === card.dataset.template);
+        newBtn.classList.add('active');
+        const filter = newBtn.dataset.filter;
+        newGrid.querySelectorAll('.template-card').forEach(card => {
+          const tpl = templates.find(t => t.id === card.dataset.template);
           card.style.display = (filter === 'all' || tpl?.category === filter) ? '' : 'none';
         });
       });
@@ -246,12 +265,12 @@ const Customizer = (() => {
   }
 
   function selectTemplate(id) {
-    if (!TEMPLATES.some(t => t.id === id)) return;
+    if (!templates.some(t => t.id === id)) return;
     State.set('selectedTemplate', id);
     document.querySelectorAll('.template-card').forEach(card => {
       card.classList.toggle('selected', card.dataset.template === id);
     });
-    App.toast(`Template "${TEMPLATES.find(t=>t.id===id)?.name}" selected`);
+    App.toast(`Template "${templates.find(t => t.id === id)?.name}" selected`);
   }
   function initCustomizePanel() {
     renderColorSwatches();

@@ -1,6 +1,4 @@
-﻿
-
-const FormManager = (() => {
+﻿const FormManager = (() => {
   const SECTIONS = ['personal', 'skills', 'projects', 'education', 'contact'];
   const SECTION_LABELS = {
     personal: 'Personal Info',

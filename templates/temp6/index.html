@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortEdge Artis | Highly Creative Portfolio</title>
+    <meta name="description" content="An artistic and visually stunning developer portfolio template for creative professionals.">
+    <!-- Google Fonts: Space Grotesk and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-blob"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Port<span>Edge</span></a>
+            <div class="nav-links" id="nav-links">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Expertise</a>
+                <a href="#projects" class="nav-link">Works</a>
+                <a href="#contact" class="nav-link">Connect</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="hero-content container">
+            <div class="hero-text-wrapper">
+                <h2 class="hero-tagline">Creative Engineering</h2>
+                <h1 class="hero-title">
+                    <span class="name-part">PortEdge</span> 
+                    <span class="name-part accent">Artis</span>
+                </h1>
+                <div class="hero-typed">
+                    <span id="typed-text"></span><span class="cursor-type">|</span>
+                </div>
+                <p class="hero-desc">
+                    Designing digital experiences where <span class="highlight">art</span> meets <span class="highlight">logic</span>. 
+                    Pushing the boundaries of web aesthetics with bold typography and vibrant layouts.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-main">Explore Work</a>
+                    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <div class="line"></div>
+            <span>Scroll</span>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="asymmetric-grid">
+                <div class="about-image-part reveal">
+                    <div class="image-stack">
+                        <div class="image-box main-img">
+                            <img src="https://images.unsplash.com/photo-1541462608141-ad4d157ee785?q=80&w=2070&auto=format&fit=crop" alt="Abstract Art">
+                        </div>
+                        <div class="image-box floating-img">
+                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop" alt="Crystal Rendering">
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text-part reveal">
+                    <h2 class="section-title">The Philosophy</h2>
+                    <p class="section-subtitle">Beyond the Grid</p>
+                    <p class="about-bio">
+                        I believe that every line of code is a brushstroke. My approach blends asymmetrical design principles with high-performance execution. 
+                        I don't just build websites; I curate <span class="text-accent">digital identities</span> that resonate.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-num">08+</span>
+                            <span class="stat-label">Years of Vision</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">120+</span>
+                            <span class="stat-label">Creative Deployments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Hardwired Creativity</h2>
+                <p class="section-subtitle">Technical Palette</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="skill-card reveal">
+                    <div class="card-glow"></div>
+                    <div class="card-icon"><i class="fas fa-terminal"></i></div>
+                    <h3>Core Dev</h3>
+                    <p>Building resilient architectures with modern JS frameworks and robust backend logic.</p>
+                    <div class="tags">
+                        <span>TypeScript</span>
+                        <span>Node.js</span>
+                        <span>Next.js</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="card-glow"></div>
+                    <div class="card-icon"><i class="fas fa-bezier-curve"></i></div>
+                    <h3>UI Artistry</h3>
+                    <p>Crafting pixel-perfect layouts with a focus on motion design and accessibility.</p>
+                    <div class="tags">
+                        <span>Figma</span>
+                        <span>GSAP</span>
+                        <span>SASS</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="card-glow"></div>
+                    <div class="card-icon"><i class="fas fa-wind"></i></div>
+                    <h3>Optimization</h3>
+                    <p>Engineered for speed. Minimalist logic for maximum visual impact and SEO performance.</p>
+                    <div class="tags">
+                        <span>Lighthouse</span>
+                        <span>CDN</span>
+                        <span>Edge</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Curated Gallery</h2>
+                <p class="section-subtitle">Recent Experiments</p>
+            </div>
+            <div class="projects-asymmetric-grid">
+                <!-- Project 1 -->
+                <div class="project-item project-large reveal">
+                    <div class="project-inner">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3>HyperSpace UI</h3>
+                            <p>Experimental 3D navigation module</p>
+                            <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-item project-side reveal">
+                    <div class="project-inner">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1935&auto=format&fit=crop" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3>Neon Flux</h3>
+                            <p>Dynamic lighting system for SaaS</p>
+                            <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-item project-side reveal">
+                    <div class="project-inner">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2070&auto=format&fit=crop" alt="Project 3">
+                        </div>
+                        <div class="project-info">
+                            <h3>Quantum Core</h3>
+                            <p>Minimalist CRM architecture</p>
+                            <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">The Odyssey</h2>
+                <p class="section-subtitle">Growth Plot</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-path"></div>
+                <div class="timeline-event reveal" style="--i: 1">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <span class="event-date">2023 - NOW</span>
+                        <h3>Lead Creative Dev</h3>
+                        <h4>Studio Morph</h4>
+                        <p>Directing design systems for disruptive tech startups.</p>
+                    </div>
+                </div>
+                <div class="timeline-event reveal" style="--i: 2">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <span class="event-date">2020 - 2023</span>
+                        <h3>UI/UX Specialist</h3>
+                        <h4>Gradient Labs</h4>
+                        <p>Pioneering dark-mode interfaces and gesture-based web apps.</p>
+                    </div>
+                </div>
+                <div class="timeline-event reveal" style="--i: 3">
+                    <div class="event-marker"></div>
+                    <div class="event-content">
+                        <span class="event-date">2018 - 2020</span>
+                        <h3>Frontend Visionary</h3>
+                        <h4>Freelance Collective</h4>
+                        <p>Crafting over 50+ unique digital identities worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-box reveal">
+                <div class="contact-info-grid">
+                    <div class="contact-text">
+                        <h2 class="section-title">Start a Spark</h2>
+                        <p>Let's collaborate on something extraordinary. No boundaries, just ideas.</p>
+                        <ul class="contact-details">
+                            <li><i class="fas fa-envelope"></i> hello@portedge-artis.io</li>
+                            <li><i class="fas fa-location-dot"></i> Global / Remote</li>
+                        </ul>
+                        <div class="socials">
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper">
+                        <form id="contact-form" class="artistic-form">
+                            <div class="input-group">
+                                <input type="text" id="name" required placeholder=" ">
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" required placeholder=" ">
+                                <label for="email">Digital Address</label>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" rows="4" required placeholder=" "></textarea>
+                                <label for="message">Your Vision</label>
+                            </div>
+                            <button type="submit" class="btn btn-main">
+                                <span>Fire Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-logo">Port<span>Edge</span> Artis</div>
+            <p>&copy; 2024. Curated with passion and precision. No boundaries.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

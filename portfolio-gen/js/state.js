@@ -14,7 +14,7 @@ const State = (() => {
       email: '', phone: '', location: '',
       github: '', linkedin: '', website: '', twitter: ''
     },
-    selectedTemplate: 'minimal-clean',
+    selectedTemplate: 'temp1',
     theme: {
       accent: '#5b4cf5',
       font: 'DM Sans',

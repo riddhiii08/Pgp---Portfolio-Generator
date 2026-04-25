@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortEdge | Developer Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container container">
+            <a href="#" class="logo">Port<span>Edge</span></a>
+            <ul id="nav-menu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-grid container">
+            <div class="hero-content">
+                <p class="hero-tag">Available for Hire</p>
+                <h1 class="hero-title">Hi, I'm <span class="highlight">Alex Miller</span></h1>
+                <h2 class="hero-subtitle"><span id="typing-text"></span><span class="cursor">|</span></h2>
+                <p class="hero-description">
+                    Building architecture-first web applications with precision and clean code. 
+                    Specializing in performance, accessibility, and modern aesthetics.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Let's Connect</a>
+                </div>
+            </div>
+            <div class="hero-pattern">
+                <!-- Decorative Grid Pattern -->
+                <div class="grid-overlay"></div>
+                <div class="hero-code-block">
+                    <div class="code-header">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+  <span class="property">name</span>: <span class="string">'PortEdge'</span>,
+  <span class="property">role</span>: <span class="string">'Fullstack'</span>,
+  <span class="property">passion</span>: <span class="string">'Clean Code'</span>,
+  <span class="property">status</span>: <span class="string">'Building...'</span>
+};</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>01. Bio</h3>
+                    <p>I am a passionate software engineer with over 5 years of experience in the industry. I love turning complex problems into simple, elegant solutions.</p>
+                </div>
+                <div class="about-card">
+                    <h3>02. Philosophy</h3>
+                    <p>Code is not just for machines; it's for humans too. I prioritize readability and maintainability in everything I build.</p>
+                </div>
+                <div class="about-card">
+                    <h3>03. Goals</h3>
+                    <p>To continue learning and sharing knowledge while building products that make a real difference in people's lives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-soft">
+        <div class="container">
+            <div class="section-header">
+                <h2>Expertise</h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>Modern JavaScript</li>
+                        <li>React / Next.js</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <i class="fas fa-server"></i>
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Node.js / Express</li>
+                        <li>Python / Django</li>
+                        <li>PostgreSQL / MongoDB</li>
+                        <li>API Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <i class="fas fa-tools"></i>
+                    <h3>DevOps</h3>
+                    <ul>
+                        <li>Git & CI/CD</li>
+                        <li>Docker / Kubernetes</li>
+                        <li>AWS / Firebase</li>
+                        <li>Linux Admin</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Works</h2>
+                <div class="line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-box" style="--img: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>Quantum Dashboard</h3>
+                            <p>Real-time analytics for SaaS businesses.</p>
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Three.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box" style="--img: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop');">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>Nexus Finance</h3>
+                            <p>Crypto portfolio tracker with deep insights.</p>
+                            <div class="tags">
+                                <span>Next.js</span>
+                                <span>D3.js</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box" style="--img: url('https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2031&auto=format&fit=crop');">
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3>Orbital CMS</h3>
+                            <p>A headless CMS designed for speeds.</p>
+                            <div class="tags">
+                                <span>Go</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section bg-soft">
+        <div class="container">
+            <div class="section-header">
+                <h2>Journey</h2>
+                <div class="line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - Present</div>
+                    <div class="timeline-card">
+                        <h3>Senior Web Developer</h3>
+                        <h4>TechFlow Solutions</h4>
+                        <p>Leading the frontend team to build scalable React applications for global clients.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2018 - 2021</div>
+                    <div class="timeline-card">
+                        <h3>Fullstack Engineer</h3>
+                        <h4>BuildBase Inc</h4>
+                        <p>Developed core marketplace features using Node.js and Next.js, improving load times by 40%.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 - 2018</div>
+                    <div class="timeline-card">
+                        <h3>Junior Developer</h3>
+                        <h4>Alpha Bits</h4>
+                        <p>Contributed to internal tools and responsive landing pages for various startups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact</h2>
+                <div class="line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's talk about yours project.</h3>
+                    <p>I'm always looking for new challenges and interesting projects to work on.</p>
+                    <div class="contact-methods">
+                        <div class="method">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@portedge.io</span>
+                        </div>
+                        <div class="method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New York, NY / Remote</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 PortEdge Template. Created with <i class="fas fa-heart"></i> for developers.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

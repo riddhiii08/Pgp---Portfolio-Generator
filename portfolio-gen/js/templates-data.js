@@ -1,58 +1,64 @@
 ﻿
 
-const TEMPLATES = [
+window.templates = [
   {
-    id: 'minimal-clean',
-    name: 'Minimal',
-    category: 'professional',
-    description: 'Editorial white-space system with strong hierarchy and polished sections.',
-    tags: ['Professional', 'Minimal', 'Typography'],
-    gradient: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-    textColor: '#2d3748'
+    id: "temp1",
+    name: "Template 1",
+    description: "Clean modern layout",
+    category: "creative",
+    tags: ["modern", "clean"],
+    gradient: "linear-gradient(135deg, #667eea, #764ba2)",
+    textColor: "#ffffff",
+    path: "../templates/temp1/index.html"
   },
   {
-    id: 'executive',
-    name: 'Executive',
-    category: 'professional',
-    description: 'Bold header with structured content blocks for senior roles.',
-    tags: ['Bold', 'Structured', 'Corporate'],
-    gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
-    textColor: 'white'
+    id: "temp2",
+    name: "Template 2",
+    description: "Professional business layout",
+    category: "professional",
+    tags: ["business"],
+    gradient: "linear-gradient(135deg, #0ea5e9, #0369a1)",
+    textColor: "#ffffff",
+    path: "../templates/temp2/index.html"
   },
   {
-    id: 'sidebar-pro',
-    name: 'Dark Dev',
-    category: 'professional',
-    description: 'Modern dark tech aesthetic with neon accents and elevated cards.',
-    tags: ['Dark', 'Developer', 'Tech UI'],
-    gradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)',
-    textColor: 'white'
+    id: "temp3",
+    name: "Template 3",
+    description: "Creative portfolio design",
+    category: "creative",
+    tags: ["design"],
+    gradient: "linear-gradient(135deg, #f97316, #ea580c)",
+    textColor: "#ffffff",
+    path: "../templates/temp3/index.html"
   },
   {
-    id: 'glassmorphic',
-    name: 'Creative Portfolio',
-    category: 'creative',
-    description: 'Expressive gradients, asymmetric rhythm, and strong visual personality.',
-    tags: ['Creative', 'Asymmetric', 'Gradient'],
-    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    textColor: 'white'
+    id: "temp4",
+    name: "Template 4",
+    description: "Minimal elegant layout",
+    category: "professional",
+    tags: ["minimal"],
+    gradient: "linear-gradient(135deg, #22c55e, #15803d)",
+    textColor: "#ffffff",
+    path: "../templates/temp4/index.html"
   },
   {
-    id: 'editorial',
-    name: 'Editorial',
-    category: 'creative',
-    description: 'Magazine-style asymmetric layout for designers and artists.',
-    tags: ['Magazine', 'Asymmetric', 'Artistic'],
-    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    textColor: 'white'
+    id: "temp5",
+    name: "Template 5",
+    description: "Bold modern UI",
+    category: "creative",
+    tags: ["bold"],
+    gradient: "linear-gradient(135deg, #e11d48, #be123c)",
+    textColor: "#ffffff",
+    path: "../templates/temp5/index.html"
   },
   {
-    id: 'matrix-grid',
-    name: 'Matrix Grid',
-    category: 'tech',
-    description: 'Structured grid layout with data-driven visual hierarchy.',
-    tags: ['Grid', 'Data', 'Structured'],
-    gradient: 'linear-gradient(135deg, #0a192f 0%, #172a45 100%)',
-    textColor: '#64ffda'
+    id: "temp6",
+    name: "Template 6",
+    description: "Simple clean resume",
+    category: "professional",
+    tags: ["simple"],
+    gradient: "linear-gradient(135deg, #475569, #1e293b)",
+    textColor: "#ffffff",
+    path: "../templates/temp6/index.html"
   }
 ];
