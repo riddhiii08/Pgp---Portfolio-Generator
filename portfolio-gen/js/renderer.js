@@ -26,17 +26,12 @@ const Renderer = (() => {
     return links.join(' | ');
   };
 
-<<<<<<< HEAD
-  //HTML document wrapper 
-  
-=======
   const normalizeLink = (value) => {
     const raw = String(value || '').trim();
     if (!raw) return '';
     return /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
   };
 
->>>>>>> ecf6e2cdddb2ec736e044607f846c9f21a823a83
   function buildDocument(bodyHTML, css, title, fontURL) {
     return `<!DOCTYPE html>
 <html lang="en">
