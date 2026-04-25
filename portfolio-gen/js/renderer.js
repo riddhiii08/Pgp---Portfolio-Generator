@@ -27,6 +27,9 @@ const Renderer = (() => {
     if (contact.website)  links.push(`<a href="${esc(contact.website)}" target="_blank">Website</a>`);
     return links.join(' | ');
   };
+
+  //HTML document wrapper 
+  
   function buildDocument(bodyHTML, css, title, fontURL) {
     return `<!DOCTYPE html>
 <html lang="en">
