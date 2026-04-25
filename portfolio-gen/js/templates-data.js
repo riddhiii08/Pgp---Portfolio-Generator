@@ -53,11 +53,11 @@ window.templates = [
   },
   {
     id: "temp6",
-    name: "Template 6",
-    description: "Simple clean resume",
-    category: "professional",
-    tags: ["simple"],
-    gradient: "linear-gradient(135deg, #475569, #1e293b)",
+    name: "Template 6 - Prepaid Landing",
+    description: "Bold prepaid telecom landing page",
+    category: "creative",
+    tags: ["landing", "telecom", "bold"],
+    gradient: "linear-gradient(135deg, #16213e, #00f0ff)",
     textColor: "#ffffff",
     path: "../templates/temp6/index.html"
   }

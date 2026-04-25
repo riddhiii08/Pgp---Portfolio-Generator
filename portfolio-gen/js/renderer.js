@@ -33,17 +33,18 @@ const Renderer = (() => {
   };
 
   function buildDocument(bodyHTML, css, title, fontURL) {
+    const fontImport = fontURL
+      ? `@import url('${fontURL}');\n`
+      : '';
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <title>${esc(title || 'My Portfolio')}</title>
-${fontURL ? `<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="${fontURL}" rel="stylesheet"/>` : ''}
-<style>${css}</style>
+<style>
+${fontImport}${css}
+</style>
 </head>
 <body>${bodyHTML}</body>
 </html>`;
