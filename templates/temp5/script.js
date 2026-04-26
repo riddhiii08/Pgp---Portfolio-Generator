@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Typing Animation
     const typingText = document.getElementById('typing-text');
-    const words = ["Fullstack Developer", "UI/UX Designer", "Problem Solver", "Tech Enthusiast"];
+    const customTitle = (window.__PORTEDGE_DATA__?.personal?.title || '').trim();
+    const words = customTitle ? [customTitle] : ["Fullstack Developer", "UI/UX Designer", "Problem Solver", "Tech Enthusiast"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let typeSpeed = 100;
 
     function type() {
+        if (!typingText) return;
         const currentWord = words[wordIndex];
         
         if (isDeleting) {
@@ -32,7 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, typeSpeed);
     }
 
-    if (typingText) type();
+    if (typingText) {
+        if (customTitle) typingText.textContent = customTitle;
+        else type();
+    }
 
     // 2. Sticky Navbar & Scroll Progress
     const navbar = document.getElementById('navbar');

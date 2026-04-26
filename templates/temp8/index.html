@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortEdge | Signal Deck Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container nav-shell">
+            <a href="#" class="logo">Port<span>Edge</span></a>
+            <nav class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-shell">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">Product Style Portfolio</p>
+                <h1 class="hero-name" id="hero-name">Samartha <span>Khatal</span></h1>
+                <p class="hero-subtitle">Frontend Engineer and Systems Thinker</p>
+                <p class="hero-intro">Signal Deck feels closer to a clean SaaS dashboard than a traditional portfolio, with crisp panels and stronger data-style presentation.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Open Case Studies</a>
+                    <a href="#contact" class="btn btn-outline">Request Work</a>
+                </div>
+            </div>
+            <div class="hero-panels reveal">
+                <article class="panel highlight profile-visual about-img">
+                    <div class="signal-wave"></div>
+                    <div class="signal-wave" style="opacity: 0.2; width: 80%;"></div>
+                    <div class="signal-wave" style="opacity: 0.1; width: 60%;"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container about-shell reveal">
+            <div>
+                <h2 class="section-title">About</h2>
+            </div>
+            <div class="about-copy">
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section skills" id="skills">
+        <div class="container board-grid">
+            <div class="board-card reveal">
+                <p class="card-label">Skill Matrix</p>
+                <div class="skill-item">
+                    <div class="skill-top"><span>JavaScript Architecture</span><span>94%</span></div>
+                    <div class="skill-track"><span data-width="94%"></span></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top"><span>Responsive Systems</span><span>91%</span></div>
+                    <div class="skill-track"><span data-width="91%"></span></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top"><span>UI Consistency</span><span>88%</span></div>
+                    <div class="skill-track"><span data-width="88%"></span></div>
+                </div>
+            </div>
+            <div class="board-card reveal">
+                <p class="card-label">Stack</p>
+                <div class="stack-list">
+                    <span>HTML/CSS</span><span>JavaScript</span><span>Design Systems</span><span>Accessibility</span><span>Figma</span><span>Interaction Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">Projects</p>
+                <h2 class="section-title">Cleaner signal, less noise.</h2>
+            </div>
+            <div class="case-grid">
+                <article class="case-card reveal">
+                    <span class="case-type">Web Platform</span>
+                    <h3>Portfolio Builder UI</h3>
+                    <p>Reframed customization and preview tooling into a more focused multi-step interface.</p>
+                </article>
+                <article class="case-card reveal">
+                    <span class="case-type">Launch Site</span>
+                    <h3>Startup Feature Deck</h3>
+                    <p>Organized product details into stronger sections, clearer hierarchy, and simpler conversion flow.</p>
+                </article>
+                <article class="case-card reveal">
+                    <span class="case-type">Consulting Brand</span>
+                    <h3>Independent Web Presence</h3>
+                    <p>Built a more modern professional site with better project framing and contact clarity.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section experience" id="experience">
+        <div class="container experience-board reveal">
+            <article><span>2024 - Present</span><h3>Frontend Systems Lead</h3><p>Signal Grid Labs</p></article>
+            <article><span>2022 - 2024</span><h3>UI Engineer</h3><p>Northline Product</p></article>
+            <article><span>2020 - 2022</span><h3>Web Designer</h3><p>Independent Work</p></article>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container contact-shell reveal">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2 class="section-title">Need a portfolio with a stronger product feel?</h2>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="4" placeholder="Project details" required></textarea>
+                <button class="btn btn-primary" type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-row">
+            <p>&copy; 2026 Port<span>Edge</span>. Signal Deck template.</p>
+            <div class="footer-links"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">Website</a></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

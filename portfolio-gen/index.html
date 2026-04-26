@@ -160,8 +160,11 @@
 
     <div class="form-layout">
       <aside class="form-sidebar">
-        <div class="sidebar-logo"><span class="logo-mark">[]</span> Build Profile</div>
-        <div class="sidebar-nav">
+    <a href="../index.html" class="sidebar-logo" title="Go to Home">
+     <img src="./assets/logo.png" alt="PortEdge Logo" class="sidebar-logo-img" />
+     <span class="sidebar-logo-text">PortEdge</span>
+    </a>        
+    <div class="sidebar-nav">
           <button class="snav-item" type="button" data-section="personal">
             <span class="snav-icon">1</span><span>Personal Info</span><span id="check-personal"
               class="snav-check">&#10003;</span>
@@ -333,7 +336,7 @@
       <button class="step-back" type="button" onclick="App.goToTemplates()"><- Back to Templates</button>
           <div class="step-title">
             <h2>Customize Theme</h2>
-            <p>Tune colors, fonts, and layout</p>
+            <p>Tune colors and fonts</p>
           </div>
           <button class="btn-primary" type="button" onclick="App.goTo('preview')">Preview -></button>
     </header>
@@ -351,11 +354,6 @@
         </div>
 
         <div class="cust-group">
-          <h3>Layout</h3>
-          <div id="layout-options" class="layout-options"></div>
-        </div>
-
-        <div class="cust-group">
           <h3>Content Options</h3>
           <div class="toggle-options">
             <label class="toggle-row" for="opt-show-photo">
@@ -369,13 +367,6 @@
               <span>Show Skills Section</span>
               <span class="toggle-switch">
                 <input id="opt-show-skills" type="checkbox" />
-                <span class="toggle-track"></span>
-              </span>
-            </label>
-            <label class="toggle-row" for="opt-dark-mode">
-              <span>Dark Mode</span>
-              <span class="toggle-switch">
-                <input id="opt-dark-mode" type="checkbox" />
                 <span class="toggle-track"></span>
               </span>
             </label>

@@ -1,44 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
-    const navWrap = document.getElementById('nav-links');
-    const menuBtn = document.getElementById('menu-btn');
     const revealItems = document.querySelectorAll('.reveal');
     const skillBars = document.querySelectorAll('.skill-track span');
     const form = document.getElementById('contact-form');
+    const bgGlow = document.querySelector('.bg-glow');
+    const scrollProgress = document.querySelector('.scroll-progress');
 
-    menuBtn?.addEventListener('click', () => {
-        navWrap.classList.toggle('active');
-    });
-
-    navLinks.forEach((link) => {
-        link.addEventListener('click', () => navWrap.classList.remove('active'));
+    // Mouse Tracking Glow
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        bgGlow.style.setProperty('--mouse-x', `${x}%`);
+        bgGlow.style.setProperty('--mouse-y', `${y}%`);
     });
 
     window.addEventListener('scroll', () => {
+        // Scroll Progress
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (scrollProgress) scrollProgress.style.width = `${scrolled}%`;
+
+        // Active Nav Link
         let current = '';
         document.querySelectorAll('section[id]').forEach((section) => {
             if (window.scrollY >= section.offsetTop - 150) current = section.id;
         });
-        navLinks.forEach((link) => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-        });
+        navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
     });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             entry.target.classList.add('active');
-            if (entry.target.classList.contains('skills-card')) {
-                skillBars.forEach((bar) => {
-                    bar.style.width = bar.dataset.width || '80%';
-                });
+            if (entry.target.querySelector('.skill-track')) {
+                skillBars.forEach((bar) => { bar.style.width = bar.dataset.width || '80%'; });
             }
         });
-    }, { threshold: 0.18 });
+    }, { threshold: 0.1 });
 
     revealItems.forEach((item) => observer.observe(item));
-    const skillsCard = document.querySelector('.skills-card');
-    if (skillsCard) observer.observe(skillsCard);
 
     form?.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -47,12 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         button.disabled = true;
         button.textContent = 'Sending...';
         setTimeout(() => {
-            button.textContent = 'Message Sent';
+            button.textContent = 'Sent';
             form.reset();
             setTimeout(() => {
                 button.disabled = false;
                 button.textContent = original;
-            }, 1700);
-        }, 1100);
+            }, 1500);
+        }, 900);
     });
 });

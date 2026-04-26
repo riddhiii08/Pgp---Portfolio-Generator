@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortEdge | Studio Narrative Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    <div class="bg-glow"></div>
+    
+    <header class="header" id="header">
+        <div class="container nav-shell">
+            <a href="#" class="logo">Port<span>Edge</span></a>
+            <nav class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">Studio Narrative</p>
+                <h1 class="hero-name" id="hero-name">Samartha <span>Khatal</span></h1>
+                <p class="hero-subtitle">Designer, Developer, and Digital Story Builder</p>
+                <p class="hero-description">Crafting high-impact digital experiences through a mix of strategic design and modern frontend engineering.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Explore Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Work With Me</a>
+                </div>
+            </div>
+            <div class="hero-stack reveal">
+                <article class="visual-card about-img profile-visual"></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container narrative-grid">
+            <div class="section-head reveal">
+                <h2 class="section-title">About</h2>
+            </div>
+            <div class="detail-card reveal">
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section skills" id="skills">
+        <div class="container narrative-grid">
+            <div class="detail-card reveal">
+                <p class="eyebrow">Skills</p>
+                <div class="skill-item">
+                    <div class="skill-top"><span>Portfolio Storytelling</span><span>95%</span></div>
+                    <div class="skill-track"><span data-width="95%"></span></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top"><span>Frontend Execution</span><span>90%</span></div>
+                    <div class="skill-track"><span data-width="90%"></span></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-top"><span>Design Systems</span><span>88%</span></div>
+                    <div class="skill-track"><span data-width="88%"></span></div>
+                </div>
+            </div>
+            <div class="detail-card reveal tags-card">
+                <span>Case Studies</span><span>Creative UI</span><span>Portfolio Design</span><span>Frontend</span><span>Responsive Layouts</span><span>Brand Systems</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="eyebrow">Projects</p>
+                <h2 class="section-title">Portfolio stories with stronger structure.</h2>
+            </div>
+            <div class="project-showcase">
+                <article class="showcase-card reveal">
+                    <span class="project-tag">Portfolio</span>
+                    <h3>Consultant Identity Site</h3>
+                    <p>Rebuilt a service-led personal brand page to feel clearer, warmer, and more trustworthy.</p>
+                </article>
+                <article class="showcase-card reveal">
+                    <span class="project-tag">Launch</span>
+                    <h3>Product Story Microsite</h3>
+                    <p>Turned feature-heavy content into a cleaner launch narrative with better emphasis.</p>
+                </article>
+                <article class="showcase-card reveal">
+                    <span class="project-tag">Studio</span>
+                    <h3>Creative Team Presence</h3>
+                    <p>Presented team capability and project proof in a more elegant editorial-commercial mix.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section experience" id="experience">
+        <div class="container experience-cards reveal">
+            <article><span>2024 - Present</span><h3>Senior Digital Designer</h3><p>Studio Narrative Co.</p></article>
+            <article><span>2021 - 2024</span><h3>Frontend Designer</h3><p>Harborframe</p></article>
+            <article><span>2019 - 2021</span><h3>Freelance Creative Developer</h3><p>Independent Practice</p></article>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="container contact-shell reveal">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2 class="section-title">For personal websites that need more clarity and presence.</h2>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <input type="text" placeholder="Your name" required>
+                <input type="email" placeholder="Email address" required>
+                <textarea rows="4" placeholder="Tell me about the project" required></textarea>
+                <button class="btn btn-primary" type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-row">
+            <p>&copy; 2026 Port<span>Edge</span>. Studio Narrative template.</p>
+            <div class="footer-links"><a href="#">LinkedIn</a><a href="#">Behance</a><a href="#">GitHub</a></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
