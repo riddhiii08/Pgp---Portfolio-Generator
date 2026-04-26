@@ -30,8 +30,11 @@
       <div class="nav-links">
         <a href="#landing-plans" class="link">Features</a>
         <a href="#landing-coverage" class="link">Showcase</a>
-
-        <a href="#" class="nav-cta" onclick="App.goToForm(); return false;">Get Started</a>
+        <a id="nav-login-btn" href="./login.html" class="link">Login</a>
+        <a id="nav-signup-btn" href="./signup.html" class="nav-cta">Sign Up</a>
+        <a id="nav-get-started-btn" href="#" class="nav-cta" onclick="App.goToForm(); return false;" hidden>Get Started</a>
+        <span id="auth-status" class="auth-status"></span>
+        <button id="auth-logout-btn" class="auth-logout-btn" type="button" hidden>Logout</button>
       </div>
     </nav>
 
@@ -190,6 +193,13 @@
           <div class="auto-save-indicator">
             <span class="save-dot"></span>
             <span id="save-status">Auto-saved</span>
+          </div>
+          <div id="sidebar-profile-card" class="sidebar-profile" hidden>
+            <div class="sidebar-profile-meta">
+              <span id="sidebar-profile-name" class="sidebar-profile-name">Portfolio User</span>
+              <span id="sidebar-profile-email" class="sidebar-profile-email"></span>
+            </div>
+            <button id="sidebar-logout-btn" class="sidebar-logout-btn" type="button">Logout</button>
           </div>
         </div>
       </aside>
@@ -667,6 +677,7 @@
   <script src="js/customize.js"></script>
   <script src="js/exporter.js"></script>
   <script src="js/app.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
 </body>
 
 </html>

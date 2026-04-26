@@ -125,6 +125,53 @@
 }
 .save-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
 
+.sidebar-profile {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.sidebar-profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.sidebar-profile-name {
+  font-size: 0.82rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.sidebar-profile-email {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  word-break: break-word;
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  border: 1px solid rgba(244, 114, 182, 0.45);
+  background: rgba(244, 114, 182, 0.1);
+  color: #ffd7ea;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(244, 114, 182, 0.16);
+}
+
+.sidebar-logout-btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
 
 .form-content {
   display: flex; flex-direction: column; min-height: calc(100vh - 61px);
