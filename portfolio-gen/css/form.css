@@ -41,17 +41,63 @@
 
 
 .form-sidebar {
-  border-right: 1px solid var(--border); background: rgba(10, 16, 32, 0.55);
-  display: flex; flex-direction: column; position: sticky; top: 61px;
-  height: calc(100vh - 61px); overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: rgba(10, 16, 32, 0.55);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 61px;
+  height: calc(100vh - 61px);
+  overflow-y: auto;
+  overflow-x: visible;      /* ← ADD THIS LINE: stops horizontal clipping */
+  min-width: 200px;         /* ← ADD THIS LINE: guarantees sidebar is wide enough */
   backdrop-filter: blur(14px);
 }
 .sidebar-logo {
-  display: flex; align-items: center; gap: 8px; padding: 24px 20px 20px;
-  font-family: var(--ff-display); font-weight: 700; font-size: .95rem;
-  border-bottom: 1px solid var(--border); color: var(--ink);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-shrink: 0;           /* Prevents the logo row from shrinking */
+  gap: 4px;
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;    /* No underline on the link */
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;      /* ← KEY FIX: stops text from wrapping or cutting */
+  overflow: visible;        /* ← KEY FIX: don't clip anything inside this row */
+  width: 100%;
+  box-sizing: border-box;
+  
 }
-.sidebar-logo .logo-mark { color: var(--accent); font-size: 1.2rem; }
+
+.sidebar-logo:hover {
+  opacity: 0.8;
+}
+
+.sidebar-logo-img {
+  width: 68px;              /* ← large so the actual icon inside looks big */
+  height: 68px;
+  min-width: 68px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: block;
+  margin: -10px -16px -10px -10px; /* ← crops transparent edges on all sides */
+}
+
+.sidebar-logo-text {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--ff-display);
+  background: linear-gradient(135deg, #5b8af5, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  overflow: visible;        /* Don't clip the text */
+  flex-shrink: 0;           /* Text won't shrink or disappear */
+}
 .sidebar-nav { display: flex; flex-direction: column; gap: 2px; padding: 12px 8px; flex: 1; }
 
 .snav-item {
