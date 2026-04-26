@@ -1,4 +1,4 @@
-﻿
+
 
 window.templates = [
   {
@@ -9,6 +9,7 @@ window.templates = [
     tags: ["modern", "clean"],
     gradient: "linear-gradient(135deg, #667eea, #764ba2)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp1.png",
     path: "../templates/temp1/index.html"
   },
   {
@@ -19,6 +20,7 @@ window.templates = [
     tags: ["business"],
     gradient: "linear-gradient(135deg, #0ea5e9, #0369a1)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp2.png",
     path: "../templates/temp2/index.html"
   },
   {
@@ -29,6 +31,7 @@ window.templates = [
     tags: ["design"],
     gradient: "linear-gradient(135deg, #f97316, #ea580c)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp3.png",
     path: "../templates/temp3/index.html"
   },
   {
@@ -39,6 +42,7 @@ window.templates = [
     tags: ["minimal"],
     gradient: "linear-gradient(135deg, #22c55e, #15803d)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp4.png",
     path: "../templates/temp4/index.html"
   },
   {
@@ -49,6 +53,7 @@ window.templates = [
     tags: ["bold"],
     gradient: "linear-gradient(135deg, #e11d48, #be123c)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp5.png",
     path: "../templates/temp5/index.html"
   },
   {
@@ -59,6 +64,7 @@ window.templates = [
     tags: ["landing", "telecom", "bold"],
     gradient: "linear-gradient(135deg, #16213e, #00f0ff)",
     textColor: "#ffffff",
+    screenshot: "assets/templates/temp6.jpg",
     path: "../templates/temp6/index.html"
   }
 ];

@@ -7,6 +7,7 @@
     preview:   'screen-preview'
   };
   let currentScreen = 'landing';
+  let previewRenderToken = 0;
   function goTo(screenName) {
     if (!SCREENS[screenName]) { console.warn('Unknown screen:', screenName); return; }
     if (screenName === 'templates') onEnterTemplates();
@@ -37,13 +38,13 @@
   function onEnterCustomize() {
     Customizer.initCustomizePanel();
     initUiRevealAnimations();
-    bindPremium3D(document.getElementById(SCREENS.CUSTOMIZE));
+    bindPremium3D(document.getElementById(SCREENS.customize));
   }
 
   function onEnterPreview() {
     renderFullPreview();
     initUiRevealAnimations();
-    bindPremium3D(document.getElementById(SCREENS.PREVIEW));
+    bindPremium3D(document.getElementById(SCREENS.preview));
   }
 
   function bindPremium3D(root = document) {
@@ -66,13 +67,12 @@
     const iframe = document.getElementById('preview-iframe');
     if (!iframe) return;
 
+    const currentToken = ++previewRenderToken;
     if (loading) loading.classList.remove('hidden');
-    setTimeout(() => {
+    setTimeout(async () => {
       try {
-        const desktopMode = iframe.classList.contains('desktop');
-        window.__previewLayoutOverride = desktopMode ? 'single' : null;
-        const html = Renderer.render();
-        window.__previewLayoutOverride = null;
+        const html = await Renderer.renderSelectedTemplate();
+        if (currentToken !== previewRenderToken) return;
         iframe.srcdoc = html;
         iframe.onload = () => {
           if (loading) {
@@ -126,7 +126,7 @@
     }
 
     const targets = document.querySelectorAll(
-      '.template-card, .font-option, .layout-option, .cust-group, .dynamic-card, .btn-add-item, .field-group'
+      '.template-card, .font-option, .cust-group, .dynamic-card, .btn-add-item, .field-group'
     );
 
     targets.forEach((el, index) => {

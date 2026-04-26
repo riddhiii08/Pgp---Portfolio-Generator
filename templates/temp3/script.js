@@ -40,13 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --- Cyber Typing Effect --- */
-    const roles = ["NEURAL_INTERFACE", "UX_SPECIALIST", "QUANTUM_CODER", "DIGITAL_NOMAD"];
+    const customTitle = (window.__PORTEDGE_DATA__?.personal?.title || '').trim();
+    const roles = customTitle ? [customTitle] : ["NEURAL_INTERFACE", "UX_SPECIALIST", "QUANTUM_CODER", "DIGITAL_NOMAD"];
     let roleIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
     const typingEl = document.getElementById('typing-text');
 
     function typeEffect() {
+        if (!typingEl) return;
         const fullTxt = roles[roleIdx];
         const displayTxt = isDeleting ? fullTxt.substring(0, charIdx - 1) : fullTxt.substring(0, charIdx + 1);
 
@@ -65,7 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeEffect, speed);
         }
     }
-    typeEffect();
+    if (customTitle) {
+        typingEl.textContent = customTitle;
+    } else {
+        typeEffect();
+    }
 
 
     /* --- Intersection Observer for Cyber Reveal --- */

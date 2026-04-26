@@ -54,13 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --- Typing Effect --- */
-    const roles = ["ELEGANT_CODE", "CREATIVE_UI", "STARTUP_SOLUTIONS", "DIGITAL_BRANDS"];
+    const customTitle = (window.__PORTEDGE_DATA__?.personal?.title || '').trim();
+    const roles = customTitle ? [customTitle] : ["ELEGANT_CODE", "CREATIVE_UI", "STARTUP_SOLUTIONS", "DIGITAL_BRANDS"];
     let roleIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
     const typingEl = document.getElementById('typing-text');
 
     function typeEffect() {
+        if (!typingEl) return;
         const fullTxt = roles[roleIdx];
         const displayTxt = isDeleting
             ? fullTxt.substring(0, charIdx - 1)
@@ -82,7 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (typingEl) typeEffect();
+    if (typingEl) {
+        if (customTitle) typingEl.textContent = customTitle;
+        else typeEffect();
+    }
 
 
     /* --- Animation Observer --- */

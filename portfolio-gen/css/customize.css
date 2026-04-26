@@ -76,24 +76,6 @@
 .font-option.active .font-check { opacity: 1; }
 
 
-.layout-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.layout-option {
-  padding: 12px 8px; border-radius: var(--r-md); border: 1.5px solid var(--border);
-  cursor: pointer; text-align: center; transition: all var(--trans-fast);
-  background: rgba(255, 255, 255, 0.02);
-}
-.layout-option:hover { border-color: var(--border-strong); }
-.layout-option.active {
-  border-color: var(--accent);
-  background: var(--accent-light);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 24px rgba(37, 99, 235, .24);
-}
-.layout-icon { font-size: 1.4rem; margin-bottom: 4px; }
-.layout-label { font-size: .72rem; color: var(--ink-muted); font-weight: 500; }
-.layout-option.active .layout-label { color: var(--accent); }
-
-
 .toggle-options { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; padding: 0 14px; }
 
 

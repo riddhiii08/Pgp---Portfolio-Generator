@@ -84,10 +84,10 @@ const Exporter = (() => {
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  function downloadHTML() {
+  async function downloadHTML() {
     App.toast('Generating HTML file...');
     try {
-      const html = Renderer.render();
+      const html = await Renderer.renderSelectedTemplate({ inlineLocalAssets: true });
       const name = State.get('personal.name') || 'portfolio';
       const filename = name.toLowerCase().replace(/\s+/g, '-') + '-portfolio.html';
       downloadFile(filename, html, 'text/html');
@@ -359,9 +359,11 @@ const Exporter = (() => {
       .sidebar-item strong { display: block; font-size: 7.5pt; text-transform: uppercase; color: #444; }
 
       .cv-main { width: 68%; padding: 20pt 25pt; display: flex; flex-direction: column; gap: 15pt; }
-      .cv-header-block { margin-bottom: 5pt; }
+      .cv-header-block { margin-bottom: 5pt; display: flex; justify-content: space-between; align-items: flex-start; gap: 10pt; }
+      .cv-header-text { flex: 1; min-width: 0; }
       .cv-name { font-size: 22pt; font-weight: bold; text-transform: uppercase; margin-bottom: 2pt; }
       .cv-role { font-size: 11pt; font-style: italic; color: #333; margin-bottom: 10pt; }
+      .cv-top-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 1px solid #000; }
       
       .sec-title { 
         font-size: 11pt; font-weight: bold; text-transform: uppercase; 
@@ -385,13 +387,9 @@ const Exporter = (() => {
     const body = `
       <div class="cv-container">
         <div class="cv-sidebar">
-          <div class="cv-avatar-wrap">
-            ${personal.avatar ? `<img src="${esc(personal.avatar)}" class="cv-avatar" />` : ''}
-          </div>
-
           <div class="sidebar-section">
             <div class="sidebar-sec-title">Contact</div>
-            <div class="sidebar-item"><strong>Email</strong><a href="mailto:${contact.email}">${esc(contact.email)}</a></div>
+            ${contact.email ? `<div class="sidebar-item"><strong>Email</strong><a href="mailto:${contact.email}">${esc(contact.email)}</a></div>` : ''}
             ${contact.phone ? `<div class="sidebar-item"><strong>Phone</strong>${esc(contact.phone)}</div>` : ''}
             ${contact.location ? `<div class="sidebar-item"><strong>Location</strong>${esc(contact.location)}</div>` : ''}
             ${contact.github ? `<div class="sidebar-item"><strong>GitHub</strong>${esc(getHandle(contact.github))}</div>` : ''}
@@ -419,13 +417,16 @@ const Exporter = (() => {
 
         <div class="cv-main">
           <div class="cv-header-block">
-            <div class="cv-name">${esc(personal.name) || 'Name'}</div>
-            <div class="cv-role">${esc(personal.title) || 'Title'}</div>
+            <div class="cv-header-text">
+              <div class="cv-name">${esc(personal.name) || ''}</div>
+              <div class="cv-role">${esc(personal.title) || ''}</div>
+            </div>
+            ${personal.avatar ? `<img src="${esc(personal.avatar)}" class="cv-top-photo" />` : ''}
           </div>
           
           <div class="cv-section">
             <div class="sec-title">Professional Summary</div>
-            <div class="cv-summary">${esc(personal.bio) || 'Professional summary...'}</div>
+            <div class="cv-summary">${esc(personal.bio) || ''}</div>
           </div>
 
           ${projects.length ? `

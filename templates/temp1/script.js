@@ -51,13 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Typing Effect ---
-    const words = ["Frontend Developer", "UI/UX Designer", "Creative Thinker", "Future Shaper"];
+    const customTitle = (window.__PORTEDGE_DATA__?.personal?.title || '').trim();
+    const words = customTitle ? [customTitle] : ["Frontend Developer", "UI/UX Designer", "Creative Thinker", "Future Shaper"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     const typingText = document.getElementById('typing-text');
 
     function type() {
+        if (!typingText) return;
         const currentWord = words[wordIndex];
         const displayText = isDeleting ? currentWord.substring(0, charIndex - 1) : currentWord.substring(0, charIndex + 1);
 
@@ -76,7 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(type, speed);
         }
     }
-    type();
+    if (customTitle) {
+        typingText.textContent = customTitle;
+    } else {
+        type();
+    }
 
 
     // --- Intersection Observer for Animations ---
