@@ -1,4 +1,4 @@
-﻿const FormManager = (() => {
+const FormManager = (() => {
   const SECTIONS = ['personal', 'skills', 'projects', 'education', 'contact'];
   const SECTION_LABELS = {
     personal: 'Personal Info',
@@ -147,6 +147,17 @@
   function loadProjectsFromState() {
     const projects = State.get('projects');
     projects.forEach(p => addProject(p));
+    refreshProjectNumbers();
+  }
+
+  function refreshProjectNumbers() {
+    const container = document.getElementById('projects-list');
+    if (!container) return;
+    const cards = container.querySelectorAll('.dynamic-card');
+    cards.forEach((card, i) => {
+      const h4 = card.querySelector('.card-header h4');
+      if (h4) h4.textContent = `Project ${i + 1}`;
+    });
   }
 
   function addProject(data = null) {
@@ -164,7 +175,7 @@
     card.id = `project-card-${id}`;
     card.innerHTML = `
       <div class="card-header">
-        <h4>Project ${State.get('projects').length}</h4>
+        <h4>Project</h4>
         <button class="card-remove" onclick="FormManager.removeProject('${id}')" title="Remove">x</button>
       </div>
       <div class="form-grid">
@@ -186,6 +197,7 @@
         </div>
       </div>`;
     container.appendChild(card);
+    refreshProjectNumbers();
     card.querySelectorAll('[data-proj]').forEach(el => {
       el.addEventListener('input', () => {
         const field = el.getAttribute('data-field');
@@ -208,7 +220,15 @@
     const projects = State.get('projects').filter(p => p.id !== id);
     State.set('projects', projects);
     const card = document.getElementById(`project-card-${id}`);
-    if (card) { card.style.opacity = '0'; card.style.transform = 'scale(.97)'; card.style.transition = 'all .2s'; setTimeout(() => card.remove(), 200); }
+    if (card) {
+      card.style.opacity = '0';
+      card.style.transform = 'scale(.97)';
+      card.style.transition = 'all .2s';
+      setTimeout(() => {
+        card.remove();
+        refreshProjectNumbers();
+      }, 200);
+    }
     updateSectionCheck('projects');
   }
   let eduCounter = 0;

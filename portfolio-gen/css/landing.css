@@ -79,17 +79,7 @@
   text-transform: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-#screen-landing .logo::before {
-  content: '';
-  width: 14px;
-  height: 14px;
-  background: var(--cyan);
-  border-radius: 3px;
-  display: inline-block;
-  box-shadow: 0 0 10px var(--cyan-glow);
+  gap: 0;
 }
 
 #screen-landing .nav-links {
