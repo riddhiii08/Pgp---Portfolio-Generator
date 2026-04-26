@@ -20,29 +20,75 @@ const Customizer = (() => {
     { name: 'Roboto',     sample: 'Material classic' }
   ];
 
+  function templateScreenshotCandidates(t) {
+    const id = String(t?.id || '').trim();
+    const screenshot = String(t?.screenshot || '').trim();
+    const candidates = [];
+
+    if (screenshot) candidates.push(screenshot);
+    if (id) {
+      ['jpg', 'jpeg', 'png', 'webp'].forEach((ext) => {
+        candidates.push(`assets/templates/${id}.${ext}`);
+      });
+    }
+
+    return [...new Set(candidates)];
+  }
+
+  function buildMissingPreview(name) {
+    return `
+      <div class="template-preview-fallback">
+        <div class="template-preview-fallback__icon">Preview</div>
+        <strong>${name}</strong>
+        <span>Screenshot asset not found</span>
+      </div>`;
+  }
+
   function renderTemplateThumb(t) {
-    const screenshot = t.screenshot || '';
     const name = t.name || 'Template';
-    
-    // Using a placeholder service or empty if screenshot is missing
-    if (!screenshot) {
-      return `
-        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,.5);font-family:sans-serif;font-size:12px;text-align:center;padding:20px;">
-          <div>
-            <div style="font-size:24px;margin-bottom:8px">🖼️</div>
-            Preview Not Available
-          </div>
-        </div>`;
+    const candidates = templateScreenshotCandidates(t);
+
+    if (!candidates.length) {
+      return buildMissingPreview(name);
     }
 
     return `
-      <img src="${screenshot}" 
-           alt="${name} Preview" 
-           class="template-screenshot" 
-           onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:white;opacity:0.6\'>Image Load Error</div>'"
+      <img src="${candidates[0]}"
+           alt="${name} Preview"
+           class="template-screenshot"
+           data-candidates="${candidates.join('|')}"
            style="width:100%;height:100%;object-fit:cover;display:block;">
     `;
   }
+
+  function bindTemplateImageFallbacks(root) {
+    root.querySelectorAll('.template-screenshot').forEach((img) => {
+      if (img.dataset.fallbackBound === '1') return;
+      img.dataset.fallbackBound = '1';
+
+      img.addEventListener('error', () => {
+        const candidates = String(img.dataset.candidates || '')
+          .split('|')
+          .map((value) => value.trim())
+          .filter(Boolean);
+
+        const currentSrc = img.getAttribute('src');
+        const currentIndex = candidates.indexOf(currentSrc);
+        const nextSrc = candidates[currentIndex + 1];
+
+        if (nextSrc) {
+          img.setAttribute('src', nextSrc);
+          return;
+        }
+
+        const thumb = img.closest('.template-thumb-inner');
+        const card = img.closest('.template-card');
+        const title = card?.querySelector('.template-info h3')?.textContent?.trim() || 'Template';
+        if (thumb) thumb.innerHTML = buildMissingPreview(title);
+      });
+    });
+  }
+
   function initTemplateGrid() {
     const grid = document.getElementById('templates-grid');
     if (!grid) return;
@@ -53,11 +99,9 @@ const Customizer = (() => {
       State.set('selectedTemplate', templates[0].id);
     }
 
-    // Remove old listener by replacing the node with a clone
     const newGrid = grid.cloneNode(false);
     grid.parentNode.replaceChild(newGrid, grid);
 
-    // Build cards — NO inline onclick anywhere
     newGrid.innerHTML = templates.map(t => `
       <div class="template-card ${State.get('selectedTemplate') === t.id ? 'selected' : ''}"
            data-template="${t.id}">
@@ -69,7 +113,7 @@ const Customizer = (() => {
             <button class="template-select-btn" type="button" data-template="${t.id}">Select Template</button>
           </div>
           <span class="template-badge badge-${t.category || 'default'}">${t.category || 'default'}</span>
-          <div class="selected-checkmark">✓</div>
+          <div class="selected-checkmark">OK</div>
         </div>
         <div class="template-info">
           <h3>${t.name}</h3>
@@ -81,14 +125,14 @@ const Customizer = (() => {
       </div>
     `).join('');
 
-    // Single delegated listener — reads data-template from the closest card
+    bindTemplateImageFallbacks(newGrid);
+
     newGrid.addEventListener('click', (e) => {
       const card = e.target.closest('.template-card');
       if (!card) return;
       selectTemplate(card.dataset.template);
     });
 
-    // Filter buttons — also clone to remove old listeners
     document.querySelectorAll('.filter-btn').forEach(btn => {
       const newBtn = btn.cloneNode(true);
       btn.parentNode.replaceChild(newBtn, btn);
@@ -112,6 +156,7 @@ const Customizer = (() => {
     });
     App.toast(`Template "${templates.find(t => t.id === id)?.name}" selected`);
   }
+
   function initCustomizePanel() {
     renderColorSwatches();
     renderFontOptions();
@@ -159,6 +204,7 @@ const Customizer = (() => {
       skills.addEventListener('change', () => { State.set('theme.showSkills', skills.checked); schedulePreview(0); });
     }
   }
+
   function setAccent(color) {
     State.set('theme.accent', color);
     document.querySelectorAll('.color-swatch').forEach(el => {
@@ -180,6 +226,7 @@ const Customizer = (() => {
 
   let previewTimeout = null;
   let miniRenderToken = 0;
+
   function schedulePreview(delay = 300) {
     clearTimeout(previewTimeout);
     previewTimeout = setTimeout(updateMiniPreview, delay);
@@ -194,12 +241,13 @@ const Customizer = (() => {
       const html = await Renderer.renderSelectedTemplate();
       if (renderToken !== miniRenderToken) return;
       iframe.srcdoc = html;
-    } catch(e) { console.warn('Preview error:', e); }
+    } catch (e) {
+      console.warn('Preview error:', e);
+    }
   }
 
   return {
-      initTemplateGrid, initCustomizePanel, selectTemplate,
+    initTemplateGrid, initCustomizePanel, selectTemplate,
     setAccent, setFont, updateMiniPreview
   };
 })();
-  

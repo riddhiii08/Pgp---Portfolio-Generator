@@ -174,6 +174,37 @@
   transition: opacity 0.3s ease;
 }
 
+.template-preview-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+  color: rgba(255, 255, 255, 0.92);
+  background:
+    linear-gradient(180deg, rgba(10, 16, 32, 0.18), rgba(10, 16, 32, 0.58)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 55%);
+}
+
+.template-preview-fallback strong {
+  font-family: var(--ff-display);
+  font-size: .92rem;
+  line-height: 1.35;
+}
+
+.template-preview-fallback span,
+.template-preview-fallback__icon {
+  font-size: .74rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.template-preview-fallback__icon {
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+
 /* ── Overlays ── */
 .template-hover-overlay {
   position: absolute;

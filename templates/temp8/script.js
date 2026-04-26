@@ -1,44 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
-    const navWrap = document.getElementById('nav-links');
-    const menuBtn = document.getElementById('menu-btn');
     const revealItems = document.querySelectorAll('.reveal');
     const skillBars = document.querySelectorAll('.skill-track span');
     const form = document.getElementById('contact-form');
-
-    menuBtn?.addEventListener('click', () => {
-        navWrap.classList.toggle('active');
-    });
-
-    navLinks.forEach((link) => {
-        link.addEventListener('click', () => navWrap.classList.remove('active'));
-    });
 
     window.addEventListener('scroll', () => {
         let current = '';
         document.querySelectorAll('section[id]').forEach((section) => {
             if (window.scrollY >= section.offsetTop - 150) current = section.id;
         });
-        navLinks.forEach((link) => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-        });
+        navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
     });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             entry.target.classList.add('active');
-            if (entry.target.classList.contains('skills-card')) {
-                skillBars.forEach((bar) => {
-                    bar.style.width = bar.dataset.width || '80%';
-                });
+            if (entry.target.classList.contains('board-card')) {
+                skillBars.forEach((bar) => { bar.style.width = bar.dataset.width || '80%'; });
             }
         });
-    }, { threshold: 0.18 });
+    }, { threshold: 0.16 });
 
     revealItems.forEach((item) => observer.observe(item));
-    const skillsCard = document.querySelector('.skills-card');
-    if (skillsCard) observer.observe(skillsCard);
+    document.querySelectorAll('.board-card').forEach((card) => observer.observe(card));
 
     form?.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -47,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         button.disabled = true;
         button.textContent = 'Sending...';
         setTimeout(() => {
-            button.textContent = 'Message Sent';
+            button.textContent = 'Sent';
             form.reset();
             setTimeout(() => {
                 button.disabled = false;
                 button.textContent = original;
-            }, 1700);
-        }, 1100);
+            }, 1500);
+        }, 900);
     });
 });
