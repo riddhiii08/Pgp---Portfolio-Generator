@@ -64,15 +64,19 @@ body.auth-page {
   font-weight: 700;
   letter-spacing: 0.01em;
   font-size: 1.35rem;
+  color: var(--auth-text);
+  text-decoration: none;
 }
 
-.auth-brand::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background: var(--auth-cyan);
-  box-shadow: 0 0 10px var(--auth-cyan-glow);
+.auth-brand-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.22));
+}
+
+.auth-brand:hover {
+  color: #d8ffff;
 }
 
 .auth-aside h1 {
