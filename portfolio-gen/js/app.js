@@ -26,7 +26,13 @@
     updateProgressIndicator(screenName);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  function goToForm() { goTo('form'); }
+  function goToForm() {
+    if (!window.__isAuthenticated) {
+      window.location.href = './login.html';
+      return;
+    }
+    goTo('form');
+  }
   function goToTEMPLATES() { goTo('templates'); }
   function goToTemplates()  { goTo('templates'); }
   function onEnterTemplates() {
@@ -138,14 +144,21 @@
     });
   }
   function init() {
-    const savedScreen = State.get('currentScreen') || 'landing';
+    const queryScreen = new URLSearchParams(window.location.search).get('screen');
+    const initialScreen = SCREENS[queryScreen] ? queryScreen : 'landing';
     const landing = document.getElementById(SCREENS.landing);
-    if (landing) landing.classList.add('active');
+    if (landing && initialScreen === 'landing') {
+      landing.classList.add('active');
+    }
     FormManager.init();
     FormManager.restoreChecks();
     initDeviceToggle();
     initUiRevealAnimations();
     bindPremium3D(document);
+
+    if (initialScreen !== 'landing') {
+      goTo(initialScreen);
+    }
 
     console.log('%c PortfolioForge [] ', 'background:#5b4cf5;color:white;padding:4px 8px;border-radius:4px;font-weight:bold;');
     console.log('State:', State.data());

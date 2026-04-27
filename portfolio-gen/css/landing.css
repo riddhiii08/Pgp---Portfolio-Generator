@@ -57,7 +57,7 @@
   padding: 0 5vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   border-bottom: 1px solid transparent;
   background: rgba(5, 8, 18, 0.72);
   backdrop-filter: blur(12px);
@@ -79,23 +79,14 @@
   text-transform: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-#screen-landing .logo::before {
-  content: '';
-  width: 14px;
-  height: 14px;
-  background: var(--cyan);
-  border-radius: 3px;
-  display: inline-block;
-  box-shadow: 0 0 10px var(--cyan-glow);
+  gap: 0;
 }
 
 #screen-landing .nav-links {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
 }
 
 #screen-landing .nav-links a {
@@ -129,6 +120,36 @@
   padding: 0.68rem 1.22rem;
   border-radius: 999px;
   box-shadow: 0 0 20px var(--cyan-glow), 0 8px 26px rgba(0, 240, 255, 0.24);
+}
+
+#screen-landing .auth-status {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#screen-landing .auth-logout-btn {
+  border: 1px solid rgba(0, 240, 255, 0.5);
+  background: rgba(0, 240, 255, 0.1);
+  color: #d8ffff;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#screen-landing .auth-logout-btn:hover {
+  background: rgba(0, 240, 255, 0.18);
+}
+
+#screen-landing .auth-logout-btn:disabled {
+  opacity: 0.75;
+  cursor: progress;
 }
 
 #screen-landing .hero {
@@ -872,6 +893,10 @@
 
 @media (max-width: 760px) {
   #screen-landing .nav-links .link {
+    display: none;
+  }
+
+  #screen-landing .auth-status {
     display: none;
   }
 
