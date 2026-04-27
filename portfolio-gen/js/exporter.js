@@ -36,6 +36,24 @@ const Exporter = (() => {
       const r = String(val || '').trim();
       return r && !/^https?:\/\//i.test(r) ? `https://${r}` : r;
     };
+    const normImage = (val) => {
+      const r = String(val || '').trim().replace(/^['\"]|['\"]$/g, '');
+      if (!r) return '';
+      if (/^[a-zA-Z]:[\\/]/.test(r)) return encodeURI(`file:///${r.replace(/\\/g, '/')}`);
+      if (/^\\\\/.test(r)) return encodeURI(`file:${r.replace(/\\/g, '/')}`);
+      if (/^(https?:|data:|blob:)/i.test(r)) return r;
+      if (r.startsWith('//')) return `https:${r}`;
+      if (/^www\./i.test(r)) return `https://${r}`;
+      if (/^(\.{1,2}[\\/]|[\\/])/.test(r)) {
+        try {
+          return new URL(r.replace(/\\/g, '/'), window.location.href).toString();
+        } catch (_) {
+          return r.replace(/\\/g, '/');
+        }
+      }
+      return r;
+    };
+    const avatarUrl = normImage(personal.avatar);
     const getHandle = (url) => {
       if (!url) return '';
       return String(url).replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
@@ -205,8 +223,8 @@ const Exporter = (() => {
 <body>
 <div class="sheet">
 
-  <div class="hdr" style="${personal.avatar ? 'display:flex; gap:24px; align-items:center;' : ''}">
-    ${personal.avatar ? `<img src="${esc(personal.avatar)}" alt="Avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2.5px solid #fff;" />` : ''}
+  <div class="hdr" style="${avatarUrl ? 'display:flex; gap:24px; align-items:center;' : ''}">
+    ${avatarUrl ? `<img src="${esc(avatarUrl)}" alt="Avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2.5px solid #fff;" />` : ''}
     <div>
       <div class="hdr-name">${esc(personal.name) || 'Your Name'}</div>
       <div class="hdr-role">${esc(personal.title) || 'Professional Title'}</div>
@@ -252,6 +270,24 @@ const Exporter = (() => {
       const r = String(val || '').trim();
       return r && !/^https?:\/\//i.test(r) ? `https://${r}` : r;
     };
+    const normImage = (val) => {
+      const r = String(val || '').trim().replace(/^['\"]|['\"]$/g, '');
+      if (!r) return '';
+      if (/^[a-zA-Z]:[\\/]/.test(r)) return encodeURI(`file:///${r.replace(/\\/g, '/')}`);
+      if (/^\\\\/.test(r)) return encodeURI(`file:${r.replace(/\\/g, '/')}`);
+      if (/^(https?:|data:|blob:)/i.test(r)) return r;
+      if (r.startsWith('//')) return `https:${r}`;
+      if (/^www\./i.test(r)) return `https://${r}`;
+      if (/^(\.{1,2}[\\/]|[\\/])/.test(r)) {
+        try {
+          return new URL(r.replace(/\\/g, '/'), window.location.href).toString();
+        } catch (_) {
+          return r.replace(/\\/g, '/');
+        }
+      }
+      return r;
+    };
+    const avatarUrl = normImage(personal.avatar);
     const getHandle = (url) => {
       if (!url) return '';
       return String(url).replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
@@ -348,7 +384,7 @@ const Exporter = (() => {
               <div class="cv-name">${esc(personal.name) || ''}</div>
               <div class="cv-role">${esc(personal.title) || ''}</div>
             </div>
-            ${personal.avatar ? `<img src="${esc(personal.avatar)}" class="cv-top-photo" />` : ''}
+            ${avatarUrl ? `<img src="${esc(avatarUrl)}" class="cv-top-photo" />` : ''}
           </div>
           
           <div class="cv-section">

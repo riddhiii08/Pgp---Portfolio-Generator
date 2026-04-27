@@ -23,6 +23,7 @@ const FormManager = (() => {
     goToSection(0);
     bindSidebarNav();
     bindAvatarPreview();
+    bindAvatarFilePicker();
     bindBioCounter();
   }
   function bindPersonalFields() {
@@ -30,12 +31,59 @@ const FormManager = (() => {
     ['name', 'title', 'bio', 'avatar'].forEach(key => {
       const el = document.getElementById(`f-${key}`);
       if (!el) return;
-      el.value = d.personal[key] || '';
+      if (key === 'avatar') {
+        const currentAvatar = d.personal[key] || '';
+        if (/^data:image\//i.test(String(currentAvatar))) {
+          el.dataset.avatarValue = currentAvatar;
+          el.value = '[Local image selected]';
+        } else {
+          delete el.dataset.avatarValue;
+          el.value = currentAvatar;
+        }
+      } else {
+        el.value = d.personal[key] || '';
+      }
       el.addEventListener('input', () => {
-        State.set(`personal.${key}`, el.value);
+        if (key === 'avatar') {
+          delete el.dataset.avatarValue;
+          State.set('personal.avatar', normalizeImageUrl(el.value));
+          renderAvatarPreview(el.value);
+        } else {
+          State.set(`personal.${key}`, el.value);
+        }
         updateSectionCheck('personal');
       });
     });
+  }
+
+  function normalizeImageUrl(value) {
+    const raw = String(value || '').trim().replace(/^['\"]|['\"]$/g, '');
+    if (!raw) return '';
+
+    // Windows absolute path (e.g. C:\Users\me\photo.jpg) -> file URL
+    if (/^[a-zA-Z]:[\\/]/.test(raw)) {
+      return encodeURI(`file:///${raw.replace(/\\/g, '/')}`);
+    }
+
+    // UNC path (e.g. \\server\share\photo.jpg) -> file URL
+    if (/^\\\\/.test(raw)) {
+      return encodeURI(`file:${raw.replace(/\\/g, '/')}`);
+    }
+
+    if (/^(https?:|data:|blob:)/i.test(raw)) return raw;
+    if (raw.startsWith('//')) return `https:${raw}`;
+    if (/^www\./i.test(raw)) return `https://${raw}`;
+
+    // Relative local paths (./img/me.jpg or ..\img\me.jpg)
+    if (/^(\.{1,2}[\\/]|[\\/])/.test(raw)) {
+      try {
+        return new URL(raw.replace(/\\/g, '/'), window.location.href).toString();
+      } catch (_) {
+        return raw.replace(/\\/g, '/');
+      }
+    }
+
+    return raw;
   }
 
   function bindContactFields() {
@@ -52,20 +100,66 @@ const FormManager = (() => {
   }
   function bindAvatarPreview() {
     const input = document.getElementById('f-avatar');
-    const preview = document.getElementById('avatar-preview');
-    if (!input || !preview) return;
+    if (!input) return;
+    const initial = input.dataset.avatarValue || input.value;
+    renderAvatarPreview(initial);
+    input.addEventListener('input', () => renderAvatarPreview(input.value));
+  }
 
-    function updatePreview(url) {
-      if (url && url.startsWith('http')) {
-        const img = document.createElement('img');
-        img.src = url;
-        img.onerror = () => { preview.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`; };
-        preview.innerHTML = '';
-        preview.appendChild(img);
-      }
+  function renderAvatarPreview(url) {
+    const preview = document.getElementById('avatar-preview');
+    if (!preview) return;
+
+    function resetPreview() {
+      preview.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
     }
-    updatePreview(input.value);
-    input.addEventListener('input', () => updatePreview(input.value));
+
+    const normalized = normalizeImageUrl(url);
+    if (!normalized) {
+      resetPreview();
+      return;
+    }
+
+    const img = document.createElement('img');
+    img.src = normalized;
+    img.onerror = () => resetPreview();
+    preview.innerHTML = '';
+    preview.appendChild(img);
+  }
+
+  function bindAvatarFilePicker() {
+    const button = document.getElementById('f-avatar-local-btn');
+    const fileInput = document.getElementById('f-avatar-file');
+    const urlInput = document.getElementById('f-avatar');
+    if (!button || !fileInput || !urlInput) return;
+
+    button.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      if (!/^image\//i.test(file.type || '')) {
+        App.toast('Please select an image file.', 'error');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = String(reader.result || '');
+        if (!dataUrl) return;
+
+        urlInput.dataset.avatarValue = dataUrl;
+        urlInput.value = `[Local image] ${file.name}`;
+        State.set('personal.avatar', dataUrl);
+        renderAvatarPreview(dataUrl);
+        updateSectionCheck('personal');
+        App.toast('Local image selected successfully.');
+      };
+      reader.onerror = () => {
+        App.toast('Could not read this image file.', 'error');
+      };
+      reader.readAsDataURL(file);
+    });
   }
   function bindBioCounter() {
     const bio = document.getElementById('f-bio');

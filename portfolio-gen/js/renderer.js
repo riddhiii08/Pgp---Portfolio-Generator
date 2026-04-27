@@ -17,6 +17,23 @@ const Renderer = (() => {
   // ─── Utilities ────────────────────────────────────────────────────────────────
   const esc  = s => String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const norm = v => { const r = String(v || '').trim(); return r && !/^https?:\/\//i.test(r) ? `https://${r}` : r; };
+  const normImage = (v) => {
+    const r = String(v || '').trim().replace(/^['\"]|['\"]$/g, '');
+    if (!r) return '';
+    if (/^[a-zA-Z]:[\\/]/.test(r)) return encodeURI(`file:///${r.replace(/\\/g, '/')}`);
+    if (/^\\\\/.test(r)) return encodeURI(`file:${r.replace(/\\/g, '/')}`);
+    if (/^(https?:|data:|blob:)/i.test(r)) return r;
+    if (r.startsWith('//')) return `https:${r}`;
+    if (/^www\./i.test(r)) return `https://${r}`;
+    if (/^(\.{1,2}[\\/]|[\\/])/.test(r)) {
+      try {
+        return new URL(r.replace(/\\/g, '/'), window.location.href).toString();
+      } catch (_) {
+        return r.replace(/\\/g, '/');
+      }
+    }
+    return r;
+  };
   const initials = n => n ? n.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2) : '?';
   const safe = (arr) => Array.isArray(arr) ? arr.filter(Boolean) : [];
 
@@ -390,9 +407,10 @@ const Renderer = (() => {
       </div>`;
     }
     // artistic / minimal — show avatar large
-    if (personal.avatar) {
+    const avatarUrl = normImage(personal.avatar);
+    if (avatarUrl) {
       return `<div style="width:100%;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;max-width:480px">
-        <img src="${esc(personal.avatar)}" style="width:100%;height:100%;object-fit:cover" alt="${esc(personal.name||'')}">
+        <img src="${esc(avatarUrl)}" style="width:100%;height:100%;object-fit:cover" alt="${esc(personal.name||'')}">
       </div>`;
     }
     return `<div style="width:100%;aspect-ratio:1;border-radius:var(--radius);background:linear-gradient(135deg,var(--bgCard),var(--border));display:flex;align-items:center;justify-content:center;font-size:6rem;font-weight:800;color:var(--accent);max-width:480px">${initials(personal.name)}</div>`;
@@ -400,8 +418,9 @@ const Renderer = (() => {
 
   function buildHero(d, cfg) {
     const { personal, contact } = d;
-    const avatarHTML = personal.avatar
-      ? `<div class="avatar"><img src="${esc(personal.avatar)}" alt="${esc(personal.name||'')}" onerror="this.style.display='none'"></div>`
+    const avatarUrl = normImage(personal.avatar);
+    const avatarHTML = avatarUrl
+      ? `<div class="avatar"><img src="${esc(avatarUrl)}" alt="${esc(personal.name||'')}" onerror="this.style.display='none'"></div>`
       : '';
 
     const heroTitle = esc(personal.name || '');
@@ -706,7 +725,7 @@ ${fontLink}
     const name = String(personal.name || '').trim();
     const title = String(personal.title || '').trim();
     const bio = String(personal.bio || '').trim();
-    const avatar = String(personal.avatar || '').trim();
+    const avatar = normImage(personal.avatar);
     const location = String(contact.location || '').trim();
 
     const nameEl = firstMatch(doc, ['#hero-name', '.hero-name', '.hero-title', 'h1']);
@@ -1050,7 +1069,7 @@ ${fontLink}
         name: String(data.personal?.name || ''),
         title: String(data.personal?.title || ''),
         bio: String(data.personal?.bio || ''),
-        avatar: String(data.personal?.avatar || '')
+        avatar: normImage(data.personal?.avatar)
       }
     };
 

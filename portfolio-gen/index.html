@@ -251,7 +251,9 @@
             <div class="field-group full">
               <label for="f-avatar">Avatar URL</label>
               <div class="image-input-wrap">
-                <input id="f-avatar" type="url" placeholder="https://example.com/photo.jpg" />
+                <input id="f-avatar" type="text" placeholder="https://example.com/photo.jpg" />
+                <button id="f-avatar-local-btn" type="button" class="btn-ghost">Choose Image</button>
+                <input id="f-avatar-file" type="file" accept="image/*" hidden />
                 <div id="avatar-preview" class="avatar-preview">
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="12" cy="8" r="4"></circle>

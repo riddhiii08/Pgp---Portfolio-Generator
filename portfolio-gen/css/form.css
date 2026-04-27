@@ -236,6 +236,7 @@
 
 .image-input-wrap { display: flex; gap: 12px; align-items: center; }
 .image-input-wrap input { flex: 1; }
+.image-input-wrap .btn-ghost { white-space: nowrap; flex-shrink: 0; }
 .avatar-preview {
   width: 52px; height: 52px; border-radius: 50%; border: 2px dashed var(--border);
   overflow: hidden; display: flex; align-items: center; justify-content: center;
