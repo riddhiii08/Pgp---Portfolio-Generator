@@ -1,23 +1,23 @@
 const Customizer = (() => {
   const COLOR_THEMES = [
-    { name: 'Violet',   accent: '#5b4cf5' },
-    { name: 'Ocean',    accent: '#0ea5e9' },
-    { name: 'Forest',   accent: '#22c55e' },
-    { name: 'Sunset',   accent: '#f97316' },
-    { name: 'Rose',     accent: '#e11d48' },
-    { name: 'Gold',     accent: '#d97706' },
-    { name: 'Teal',     accent: '#14b8a6' },
-    { name: 'Magenta',  accent: '#d946ef' },
-    { name: 'Slate',    accent: '#475569' },
+    { name: 'Violet', accent: '#5b4cf5' },
+    { name: 'Ocean', accent: '#0ea5e9' },
+    { name: 'Forest', accent: '#22c55e' },
+    { name: 'Sunset', accent: '#f97316' },
+    { name: 'Rose', accent: '#e11d48' },
+    { name: 'Gold', accent: '#d97706' },
+    { name: 'Teal', accent: '#14b8a6' },
+    { name: 'Magenta', accent: '#d946ef' },
+    { name: 'Slate', accent: '#475569' },
     { name: 'Midnight', accent: '#1e1b4b' }
   ];
   const FONTS = [
-    { name: 'DM Sans',    sample: 'Clean & modern' },
-    { name: 'Inter',      sample: 'The web standard' },
-    { name: 'Poppins',    sample: 'Friendly & round' },
+    { name: 'DM Sans', sample: 'Clean & modern' },
+    { name: 'Inter', sample: 'The web standard' },
+    { name: 'Poppins', sample: 'Friendly & round' },
     { name: 'Playfair Display', sample: 'Editorial serif' },
     { name: 'Montserrat', sample: 'Geometric & bold' },
-    { name: 'Roboto',     sample: 'Material classic' }
+    { name: 'Roboto', sample: 'Material classic' }
   ];
 
   function templateScreenshotCandidates(t) {
